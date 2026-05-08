@@ -1080,7 +1080,7 @@
       #virtue-strip button:nth-child(2) { border-right: none !important; }
       #virtue-strip button:nth-child(even) { border-right: none !important; }
       #virtue-strip button { border-bottom: 1px solid var(--border) !important; border-right: 1px solid var(--border) !important; }
-      #virtue-strip button:nth-child(5) { grid-column: span 2; border-right: none !important; border-bottom: none !important; }
+      #virtue-strip button:nth-child(7) { grid-column: span 2; border-right: none !important; border-bottom: none !important; }
 
       .philosophy-grid { grid-template-columns: 1fr; gap: 40px; }
 
@@ -1114,7 +1114,7 @@
       transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
     }
     #paciencia-page.open { transform: translateX(0); }
-    #fortaleza-page, #humildad-page, #prudencia-page, #generosidad-page, #esperanza-page {
+    #fortaleza-page, #humildad-page, #prudencia-page, #generosidad-page, #esperanza-page, #laboriosidad-page {
       position: fixed;
       inset: 0;
       z-index: 200;
@@ -1123,7 +1123,7 @@
       transform: translateX(100%);
       transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
     }
-    #fortaleza-page.open, #humildad-page.open, #prudencia-page.open, #generosidad-page.open, #esperanza-page.open { transform: translateX(0); }
+    #fortaleza-page.open, #humildad-page.open, #prudencia-page.open, #generosidad-page.open, #esperanza-page.open, #laboriosidad-page.open { transform: translateX(0); }
 
 
     .pac-nav {
@@ -1779,12 +1779,20 @@
           <div style="font-size:11px; color:var(--muted); line-height:1.5;">Dar sin calcular lo que recibes</div>
         </button>
 
-        <button onclick="openEsperanza()" style="all:unset; cursor:pointer; padding:20px 16px; background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
+        <button onclick="openEsperanza()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
           <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
           <div style="font-size:20px; margin-bottom:10px;">🌟</div>
           <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Esperanza</div>
           <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 06</div>
           <div style="font-size:11px; color:var(--muted); line-height:1.5;">Tender hacia el bien futuro</div>
+        </button>
+
+        <button onclick="openLaboriosidad()" style="all:unset; cursor:pointer; padding:20px 16px; background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
+          <div style="font-size:20px; margin-bottom:10px;">🔨</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Laboriosidad</div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 07</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">El trabajo bien hecho</div>
         </button>
 
       </div>
@@ -2050,6 +2058,13 @@
           <div class="virtue-name">Esperanza</div>
           <div class="virtue-desc">Tender hacia el bien futuro con confianza activa</div>
           <button class="virtue-cta-btn" onclick="openEsperanza()">Ver el ciclo completo →</button>
+        </div>
+        <div class="virtue-card available featured reveal" onclick="openLaboriosidad()" style="cursor:pointer;">
+          <span class="virtue-badge">Ciclo 07 · Disponible ahora</span>
+          <span class="virtue-emoji">🔨</span>
+          <div class="virtue-name">Laboriosidad</div>
+          <div class="virtue-desc">El trabajo bien hecho, equilibrado con la vida completa</div>
+          <button class="virtue-cta-btn" onclick="openLaboriosidad()">Ver el ciclo completo →</button>
         </div>
       </div>
     </div>
@@ -4985,6 +5000,363 @@
   <!-- FIN ESPERANZA PAGE -->
 
 
+  <!-- ═══════════════ LABORIOSIDAD PAGE ═══════════════ -->
+  <div id="laboriosidad-page">
+
+    <div class="pac-nav">
+      <button class="pac-back" onclick="closeLaboriosidad()">
+        <span class="pac-back-arrow">←</span>
+        Volver
+      </button>
+      <div class="pac-nav-title">Laboriosidad · 21 días</div>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeLaboriosidad()">Quiero probar</a>
+    </div>
+
+    <div class="pac-hero">
+      <div class="pac-hero-glow"></div>
+      <div class="hero-grid"></div>
+      <div class="pac-hero-inner">
+        <div class="pac-ciclo-label">
+          <span>CICLO 07</span>
+          <div class="pac-ciclo-div"></div>
+          <span>LABORIOSIDAD</span>
+          <div class="pac-ciclo-div"></div>
+          <span style="color:var(--muted);">Beta · Sep 2026</span>
+        </div>
+        <h1 class="pac-headline serif">
+          No es activismo frenético.<br/>
+          <em>Es trabajo bien hecho.</em><br/>
+          Con la energía justa y el propósito claro.
+        </h1>
+        <p class="pac-sub">21 días. 4 bloques. 9 minutos al día. Del hacer por inercia al trabajar con sentido: entrena la virtud del artesano que cuida lo que hace porque sabe por qué lo hace.</p>
+        <div class="pac-stats">
+          <div class="pac-stat"><span class="pac-stat-num serif">21</span><div class="pac-stat-label">Días</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">4</span><div class="pac-stat-label">Bloques</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">3</span><div class="pac-stat-label">Momentos al día</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">22</span><div class="pac-stat-label">Libros de referencia</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">19</span><div class="pac-stat-label">Películas</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">9</span><div class="pac-stat-label">Dimensiones</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section">
+      <div class="container">
+        <div class="section-label">Estructura diaria</div>
+        <h2 class="section-title">Tres momentos.<br/>Nueve minutos.</h2>
+        <p class="section-desc">Cada día del ciclo sigue el mismo ritmo: un vídeo breve por la mañana, una notificación de mediodía, y tres preguntas para cerrar el día.</p>
+        <div class="daily-format">
+          <div class="daily-card morning">
+            <span class="daily-icon">🌅</span>
+            <div class="daily-time">Mañana</div>
+            <h3>Vídeo matinal</h3>
+            <p>El Manager de la Virtud abre el día con un concepto, una idea filosófica y el reto concreto. Grabado en localizaciones reales.</p>
+            <span class="daily-duration">50–60 segundos</span>
+          </div>
+          <div class="daily-card midday">
+            <span class="daily-icon">☀️</span>
+            <div class="daily-time">Mediodía</div>
+            <h3>Notificación + mini reto</h3>
+            <p>Una pregunta o micro-acción que conecta lo aprendido con lo que está pasando en tu día real. Directa al cuerpo, no solo a la mente.</p>
+            <span class="daily-duration">30 segundos de atención</span>
+          </div>
+          <div class="daily-card night">
+            <span class="daily-icon">🌙</span>
+            <div class="daily-time">Cierre</div>
+            <h3>Reflexión nocturna</h3>
+            <p>Tres preguntas de reflexión profunda + el indicador del día: registra tu progreso en el ciclo.</p>
+            <span class="daily-duration">5 minutos de escritura</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section pac-section-alt">
+      <div class="container">
+        <div class="section-label">Los 4 bloques</div>
+        <h2 class="section-title">Del saber al hacer.<br/><em class="serif" style="font-style:italic; color:var(--gold)">Una semana a la vez.</em></h2>
+        <p class="section-desc" style="margin-bottom:48px;">Cada bloque trabaja una capa de la laboriosidad: primero entender qué significa trabajar bien, luego construir los hábitos, después encontrar el equilibrio, y finalmente integrarlo como forma de vida.</p>
+        <div class="blocks-timeline">
+
+          <div class="block-card expanded" id="lblock1">
+            <div class="block-header" onclick="toggleBlock('lblock1')">
+              <div class="block-num">Semana 1</div>
+              <div class="block-header-content"><h3>Conocer</h3><p>¿Qué es trabajar bien? Fundamentos filosóficos del trabajo como vocación.</p></div>
+              <div class="block-days-badge">Días 1–5</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 1</div>
+                  <div class="day-title">El ergon aristotélico</div>
+                  <div class="day-author">Aristóteles · La función propia del ser humano y la excelencia como ejercicio sostenido</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 2</div>
+                  <div class="day-title">Laborem Exercens</div>
+                  <div class="day-author">Juan Pablo II · El trabajo no es castigo sino vocación — realizarse a través del trabajo</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 3</div>
+                  <div class="day-title">El artesano interior</div>
+                  <div class="day-author">Richard Sennett · Hacer bien algo por el placer de hacerlo bien como forma de virtud</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–5 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;" onclick="closeLaboriosidad()">Quiero probar</a>
+                </div>
+              </div>
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 1</div>
+                <div class="termometro-track">
+                  <div class="termo-step active"><div class="termo-dot">❓</div><div class="termo-word">Función</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🏺</div><div class="termo-word">Vocación</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🔨</div><div class="termo-word">Artesanía</div></div>
+                  <div class="termo-step active"><div class="termo-dot">⚖️</div><div class="termo-word">Valor</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🌿</div><div class="termo-word">Ocio</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block-card" id="lblock2">
+            <div class="block-header" onclick="toggleBlock('lblock2')">
+              <div class="block-num">Semana 2</div>
+              <div class="block-header-content"><h3>Practicar</h3><p>Hábitos del buen trabajador: rutinas, concentración y gestión del esfuerzo.</p></div>
+              <div class="block-days-badge">Días 6–12</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 6</div>
+                  <div class="day-title">La regla de los tres bloques</div>
+                  <div class="day-author">Cal Newport · Trabajo profundo: cómo estructurar la jornada para el foco real</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 7</div>
+                  <div class="day-title">El ritual de inicio</div>
+                  <div class="day-author">Diseño de hábitos · El cerebro necesita señales para entrar en modo trabajo</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 8</div>
+                  <div class="day-title">La lista honesta</div>
+                  <div class="day-author">Brian Tracy · Tres compromisos reales vs. diez intenciones vacías</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 9–12 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;" onclick="closeLaboriosidad()">Quiero probar</a>
+                </div>
+              </div>
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 2</div>
+                <div class="termometro-track">
+                  <div class="termo-step active"><div class="termo-dot">🎯</div><div class="termo-word">Foco</div></div>
+                  <div class="termo-step active"><div class="termo-dot">⏰</div><div class="termo-word">Ritual</div></div>
+                  <div class="termo-step active"><div class="termo-dot">📋</div><div class="termo-word">Compromiso</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🌊</div><div class="termo-word">Flujo</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🔁</div><div class="termo-word">Revisión</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block-card" id="lblock3">
+            <div class="block-header" onclick="toggleBlock('lblock3')">
+              <div class="block-num">Semana 3</div>
+              <div class="block-header-content"><h3>Equilibrar</h3><p>Trabajo y vida completa: sostenibilidad, límites y descanso como virtud.</p></div>
+              <div class="block-days-badge">Días 13–17</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 13</div>
+                  <div class="day-title">El precio del desequilibrio</div>
+                  <div class="day-author">Jeffrey Pfeffer · Cuándo el trabajo consume la vida en lugar de enriquecerla</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 14</div>
+                  <div class="day-title">Los límites como virtud</div>
+                  <div class="day-author">Greg McKeown · Decir no a una tarea es decir sí a lo que más importa</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 15</div>
+                  <div class="day-title">El descanso activo</div>
+                  <div class="day-author">Diseño de recuperación · Cómo el ocio real alimenta el trabajo real</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 16–17 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;" onclick="closeLaboriosidad()">Quiero probar</a>
+                </div>
+              </div>
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 3</div>
+                <div class="termometro-track">
+                  <div class="termo-step active"><div class="termo-dot">🔥</div><div class="termo-word">Burnout</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🚫</div><div class="termo-word">Límite</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🌿</div><div class="termo-word">Descanso</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🏠</div><div class="termo-word">Presencia</div></div>
+                  <div class="termo-step active"><div class="termo-dot">⚖️</div><div class="termo-word">Equilibrio</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block-card" id="lblock4">
+            <div class="block-header" onclick="toggleBlock('lblock4')">
+              <div class="block-num">Demo · Día 1</div>
+              <div class="block-header-content"><h3>Demo completa</h3><p>Así es el Día 1 del ciclo: experiencia completa del método.</p></div>
+              <div class="block-days-badge">Día 1 completo</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div style="display:grid; gap:20px;">
+                <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:28px;">
+                  <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">🌅 Mañana · Vídeo del Manager</div>
+                  <div style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:8px;">"¿Cuál es tu ergon?"</div>
+                  <p style="font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:16px;">Aristóteles preguntó: ¿cuál es la función propia del ser humano? No como pregunta abstracta, sino práctica. Tu <em>ergon</em> es aquella actividad en la que tu trabajo tiene impacto real. No la que más tiempo te ocupa, sino la que más importa. La excelencia nace de conocerla y de ejercitarla con constancia.</p>
+                  <div style="background:var(--gold-glow); border:1px solid rgba(200,164,90,0.2); border-radius:var(--radius-sm); padding:16px;">
+                    <div style="font-size:12px; font-weight:700; color:var(--gold); margin-bottom:8px;">Reto del día 1</div>
+                    <p style="font-size:13px; color:var(--text); margin:0; line-height:1.6;">Identifica tu ergon profesional. ¿Cuál es la actividad en la que tu trabajo tiene más impacto real? Escríbela en una frase. No más de 20 palabras.</p>
+                  </div>
+                </div>
+                <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:28px;">
+                  <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">☀️ Mediodía · Notificación</div>
+                  <div style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:8px;">"¿Estás haciendo ahora mismo lo que más importa?"</div>
+                  <p style="font-size:14px; color:var(--muted); line-height:1.7;">La pregunta no es un juicio: es una brújula. Si la respuesta es no, no pasa nada. Solo obsérvalo. ¿Qué te alejó del ergon? ¿Una urgencia? ¿Un hábito? ¿El miedo a la tarea difícil?</p>
+                </div>
+                <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:28px;">
+                  <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">🌙 Noche · Reflexión</div>
+                  <div style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:12px;">Tres preguntas para cerrar el día</div>
+                  <div style="display:flex; flex-direction:column; gap:10px;">
+                    <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:14px; font-size:14px; color:var(--text);">01 &nbsp;·&nbsp; ¿Hubo algún momento hoy en que trabajaste con plena atención? ¿Qué lo hizo posible?</div>
+                    <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:14px; font-size:14px; color:var(--text);">02 &nbsp;·&nbsp; ¿Qué tarea pospostaste? ¿Qué reveló eso sobre tu relación con el esfuerzo?</div>
+                    <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:14px; font-size:14px; color:var(--text);">03 &nbsp;·&nbsp; En una palabra: ¿cómo describirías la calidad de tu trabajo hoy?</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section">
+      <div class="container">
+        <div class="section-label">Las 9 dimensiones</div>
+        <h2 class="section-title">La laboriosidad tiene<br/>muchas caras.</h2>
+        <p class="section-desc" style="margin-bottom:48px;">El ciclo trabaja la laboriosidad desde nueve ángulos distintos, cada uno revelando una faceta que el trabajo cotidiano pone a prueba.</p>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🔄</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Constancia</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Sostener el esfuerzo en el tiempo sin depender de la motivación del momento.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🎯</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Cuidado</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Atención al detalle y a la calidad de la ejecución: hacer bien lo que hay que hacer.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">⚡</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Eficiencia</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Usar bien el tiempo y la energía; no confundir actividad con productividad.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🧠</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Concentración</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Capacidad de trabajo profundo, sin distracción fragmentada.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🚀</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Iniciativa</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Empezar sin que te lo digan; ver lo que hay que hacer y hacerlo.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🤝</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Fiabilidad</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Cumplir lo comprometido, en plazo y forma. Que tu sí sea sí.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">⚖️</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Equilibrio</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Trabajar con intensidad y descansar con profundidad: sostenibilidad a largo plazo.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🧭</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Sentido</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Conectar el trabajo diario con un propósito mayor que la tarea misma.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">📈</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Mejora continua</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Aprender del trabajo realizado y hacerlo mejor cada vez.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section pac-section-alt">
+      <div class="container">
+        <div class="section-label">Bibliografía del ciclo</div>
+        <h2 class="section-title">22 libros.<br/>19 películas.</h2>
+        <p class="section-desc" style="margin-bottom:40px;">El ciclo de Laboriosidad bebe de la mejor tradición filosófica, literaria y cinematográfica sobre el trabajo bien hecho como virtud humana real.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+          <div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">📚 Libros de referencia</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--muted);">
+              <div>Aristóteles · <em>Ética a Nicómaco</em></div>
+              <div>Hannah Arendt · <em>La Condición Humana</em></div>
+              <div>Josef Pieper · <em>El Ocio y la Vida Intelectual</em></div>
+              <div>Richard Sennett · <em>El artesano</em></div>
+              <div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 18 libros más · Acceso completo al unirte →</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">🎬 Películas de referencia</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--muted);">
+              <div><em>Whiplash</em> (Chazelle, 2014)</div>
+              <div><em>Jiro Dreams of Sushi</em> (Gelb, 2011)</div>
+              <div><em>El discurso del rey</em> (Hooper, 2010)</div>
+              <div><em>Ratatouille</em> (Bird, 2007)</div>
+              <div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 15 películas más · Acceso completo al unirte →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section" style="text-align:center;">
+      <div class="container" style="max-width:700px; margin:0 auto;">
+        <div class="section-label">El final del ciclo</div>
+        <h2 class="section-title serif" style="font-style:italic; margin-bottom:32px;">"La excelencia no es un acto,<br/>sino un hábito."</h2>
+        <div style="font-size:13px; color:var(--gold); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:48px;">— Aristóteles · Día 21</div>
+        <button class="btn btn-primary btn-lg" onclick="closeLaboriosidad(); setTimeout(()=>{ document.getElementById('cta').scrollIntoView({behavior:'smooth'}); }, 400);">50 pioneros.<br/>Beta exclusiva. Únete</button>
+        <p style="font-size:12px; color:var(--muted); margin-top:16px;">Acceso exclusivo · Septiembre 2026 · Sin compromiso</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- FIN LABORIOSIDAD PAGE -->
+
+
   <script>
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
@@ -5076,6 +5448,16 @@
     }
     function closeEsperanza() {
       document.getElementById('esperanza-page').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function openLaboriosidad() {
+      const page = document.getElementById('laboriosidad-page');
+      page.classList.add('open');
+      page.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLaboriosidad() {
+      document.getElementById('laboriosidad-page').classList.remove('open');
       document.body.style.overflow = '';
     }
 
