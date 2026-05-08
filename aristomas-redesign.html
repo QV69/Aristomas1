@@ -100,21 +100,13 @@
     }
 
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--text);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      opacity: 0.9;
+      transition: opacity 0.2s;
     }
-
-    .nav-logo sup {
-      font-size: 9px;
-      vertical-align: super;
-      color: var(--gold);
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-    }
+    .nav-logo:hover { opacity: 1; }
 
     .nav-links {
       display: flex;
@@ -1084,6 +1076,12 @@
       .concept-item { border-right: none; border-bottom: 1px solid var(--border); }
       .concept-item:last-child { border-bottom: none; }
 
+      #virtue-strip [style*="grid-template-columns:repeat(5"] { grid-template-columns: repeat(2,1fr) !important; }
+      #virtue-strip button:nth-child(2) { border-right: none !important; }
+      #virtue-strip button:nth-child(even) { border-right: none !important; }
+      #virtue-strip button { border-bottom: 1px solid var(--border) !important; border-right: 1px solid var(--border) !important; }
+      #virtue-strip button:nth-child(5) { grid-column: span 2; border-right: none !important; border-bottom: none !important; }
+
       .philosophy-grid { grid-template-columns: 1fr; gap: 40px; }
 
       .virtues-grid { grid-template-columns: 1fr 1fr; }
@@ -1116,7 +1114,7 @@
       transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
     }
     #paciencia-page.open { transform: translateX(0); }
-    #humildad-page, #prudencia-page, #generosidad-page {
+    #fortaleza-page, #humildad-page, #prudencia-page, #generosidad-page, #esperanza-page {
       position: fixed;
       inset: 0;
       z-index: 200;
@@ -1125,7 +1123,7 @@
       transform: translateX(100%);
       transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
     }
-    #humildad-page.open, #prudencia-page.open, #generosidad-page.open { transform: translateX(0); }
+    #fortaleza-page.open, #humildad-page.open, #prudencia-page.open, #generosidad-page.open, #esperanza-page.open { transform: translateX(0); }
 
 
     .pac-nav {
@@ -1645,14 +1643,21 @@
 
   <!-- ═══════════════ NAV ═══════════════ -->
   <nav>
-    <a href="#" class="nav-logo">ARISTOMAS<sup>®</sup></a>
+    <a href="#" class="nav-logo" aria-label="Aristomas">
+      <svg width="22" height="27" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="5" y1="68" x2="30" y2="4" stroke="#C8A45A" stroke-width="5.5" stroke-linecap="round"/>
+        <line x1="55" y1="68" x2="30" y2="4" stroke="#C8A45A" stroke-width="5.5" stroke-linecap="round"/>
+        <line x1="15.5" y1="42" x2="44.5" y2="42" stroke="#C8A45A" stroke-width="5.5" stroke-linecap="round"/>
+        <line x1="30" y1="42" x2="30" y2="68" stroke="#C8A45A" stroke-width="5.5" stroke-linecap="round"/>
+      </svg>
+    </a>
     <ul class="nav-links">
       <li><a href="#metodo">El Método</a></li>
       <li><a href="#virtudes">Virtudes</a></li>
       <li><a href="#para-quien">Para Quién</a></li>
       <li><a href="#diferencias">Por Qué</a></li>
     </ul>
-    <a href="#cta" class="btn btn-primary">Reservar plaza</a>
+    <a href="#cta" class="btn btn-primary">Quiero probar</a>
   </nav>
 
   <!-- ═══════════════ HERO ═══════════════ -->
@@ -1675,7 +1680,7 @@
       </p>
 
       <div class="hero-ctas" style="margin-top:36px; margin-bottom:80px;">
-        <a href="#cta" class="btn btn-primary btn-lg">Únete a los 50 pioneros</a>
+        <a href="#cta" class="btn btn-primary btn-lg">50 pioneros.<br/>Beta exclusiva. Únete</a>
         <a href="#metodo" class="btn btn-ghost btn-lg">Ver el método →</a>
       </div>
 
@@ -1720,6 +1725,72 @@
         <span class="concept-num">03</span>
         <h3>Pasa a la siguiente</h3>
         <p>Cada ciclo completado construye sobre el anterior. El carácter se construye capa a capa, virtud a virtud.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ VIRTUE STRIP ═══════════════ -->
+  <section id="virtue-strip" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--surface);">
+    <div style="max-width:1200px; margin:0 auto; padding:40px 32px;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:28px; flex-wrap:wrap;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);">Ciclos disponibles ahora</div>
+        <div style="flex:1; height:1px; background:var(--border); min-width:40px;"></div>
+        <a href="#virtudes" style="font-size:12px; color:var(--muted); text-decoration:none; white-space:nowrap;">Ver todos los ciclos →</a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+
+        <button onclick="openPaciencia()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
+          <div style="font-size:20px; margin-bottom:10px;">⏳</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Paciencia</div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 01</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Tolerar la demora sin ansiedad</div>
+        </button>
+
+        <button onclick="openFortaleza()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
+          <div style="font-size:20px; margin-bottom:10px;">⚔️</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Fortaleza</div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 02</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Actuar a pesar del miedo</div>
+        </button>
+
+        <button onclick="openHumildad()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
+          <div style="font-size:20px; margin-bottom:10px;">🙏</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Humildad</div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 03</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Conocerse sin inflarse ni disminuirse</div>
+        </button>
+
+        <button onclick="openPrudencia()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
+          <div style="font-size:20px; margin-bottom:10px;">🧭</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Prudencia</div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 04</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Decidir bien en cada situación</div>
+        </button>
+
+        <button onclick="openGenerosidad()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
+          <div style="font-size:20px; margin-bottom:10px;">🤝</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Generosidad</div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 05</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Dar sin calcular lo que recibes</div>
+        </button>
+
+        <button onclick="openEsperanza()" style="all:unset; cursor:pointer; padding:20px 16px; background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
+          <div style="font-size:20px; margin-bottom:10px;">🌟</div>
+          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Esperanza</div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 06</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Tender hacia el bien futuro</div>
+        </button>
+
+      </div>
+      <div style="display:flex; gap:20px; margin-top:16px; padding:0 4px; flex-wrap:wrap;">
+        <div style="font-size:11px; color:var(--muted);">⚖️ Templanza &nbsp;·&nbsp; ⚡ Justicia &nbsp;·&nbsp; <span style="color:rgba(107,107,126,0.5);">+9 más</span></div>
+        <div style="font-size:11px; color:rgba(107,107,126,0.5); margin-left:auto;">○ Próximamente</div>
       </div>
     </div>
   </section>
@@ -1973,11 +2044,12 @@
           <div class="virtue-desc">Dar a cada uno lo que le corresponde</div>
           <div class="virtue-status">○ Próximamente</div>
         </div>
-        <div class="virtue-card soon reveal reveal-delay-3">
+        <div class="virtue-card available featured reveal reveal-delay-3" onclick="openEsperanza()" style="cursor:pointer;">
+          <span class="virtue-badge">Ciclo 06 · Disponible ahora</span>
           <span class="virtue-emoji">🌟</span>
           <div class="virtue-name">Esperanza</div>
           <div class="virtue-desc">Tender hacia el bien futuro con confianza activa</div>
-          <div class="virtue-status">○ Próximamente</div>
+          <button class="virtue-cta-btn" onclick="openEsperanza()">Ver el ciclo completo →</button>
         </div>
       </div>
     </div>
@@ -1990,12 +2062,12 @@
       <!-- Intro -->
       <div style="max-width:680px; margin-bottom:72px;">
         <div class="section-label reveal">Para quién es Aristomas</div>
-        <h2 class="section-title reveal">Hay un momento en el que los libros de autoayuda ya no te bastan.</h2>
+        <h2 class="section-title reveal">Para quien quiere construir algo real en sí mismo.</h2>
         <p class="section-desc reveal" style="margin-bottom:20px;">
-          Sabes que quieres ser mejor — más paciente, más generoso, más firme. Lo has leído, lo has escuchado en podcasts, lo has subrayado. Y sin embargo, las mismas situaciones te siguen pillando igual.
+          No hace falta haber leído a Aristóteles. No hace falta venir de ningún fracaso concreto. Hace falta algo más sencillo y más difícil a la vez: querer ser mejor de verdad, con método, desde el primer día.
         </p>
         <p class="section-desc reveal" style="font-size:16px; color:var(--text); font-weight:400;">
-          El problema no es la información. Es que nadie te ha enseñado a practicarlo.
+          Aristomas es para quien cree que el carácter no es un rasgo de personalidad. Es una práctica.
         </p>
       </div>
 
@@ -2003,23 +2075,23 @@
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:72px;">
         <div class="reveal" style="display:flex; gap:14px; align-items:flex-start; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px 22px; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(200,164,90,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
           <span style="color:var(--gold); font-size:16px; flex-shrink:0; margin-top:1px;">✓</span>
-          <p style="font-size:14px; color:var(--text); line-height:1.6;">Tienes más de 30 años y sabes que crecer requiere algo más que leer.</p>
+          <p style="font-size:14px; color:var(--text); line-height:1.6;">Crees que el carácter se forma con práctica diaria, no con buenas intenciones aisladas.</p>
         </div>
         <div class="reveal reveal-delay-1" style="display:flex; gap:14px; align-items:flex-start; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px 22px; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(200,164,90,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
           <span style="color:var(--gold); font-size:16px; flex-shrink:0; margin-top:1px;">✓</span>
-          <p style="font-size:14px; color:var(--text); line-height:1.6;">Buscas consistencia, no intensidad: pequeños pasos diarios que se acumulen.</p>
+          <p style="font-size:14px; color:var(--text); line-height:1.6;">Buscas consistencia, no intensidad: pequeños pasos diarios que se acumulan y se notan.</p>
         </div>
         <div class="reveal reveal-delay-1" style="display:flex; gap:14px; align-items:flex-start; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px 22px; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(200,164,90,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
           <span style="color:var(--gold); font-size:16px; flex-shrink:0; margin-top:1px;">✓</span>
-          <p style="font-size:14px; color:var(--text); line-height:1.6;">Quieres un método con fundamento real, no frases de Instagram.</p>
+          <p style="font-size:14px; color:var(--text); line-height:1.6;">Quieres un método con fundamento real — no frases, no atajos, no motivación efímera.</p>
         </div>
         <div class="reveal reveal-delay-2" style="display:flex; gap:14px; align-items:flex-start; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px 22px; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(200,164,90,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
           <span style="color:var(--gold); font-size:16px; flex-shrink:0; margin-top:1px;">✓</span>
-          <p style="font-size:14px; color:var(--text); line-height:1.6;">Tienes una virtud que sabes que necesitas trabajar: paciencia, generosidad, templanza, coraje.</p>
+          <p style="font-size:14px; color:var(--text); line-height:1.6;">Hay una virtud que quieres desarrollar: paciencia, fortaleza, generosidad, prudencia, templanza…</p>
         </div>
         <div class="reveal" style="display:flex; gap:14px; align-items:flex-start; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px 22px; grid-column:span 2; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(200,164,90,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
           <span style="color:var(--gold); font-size:16px; flex-shrink:0; margin-top:1px;">✓</span>
-          <p style="font-size:14px; color:var(--text); line-height:1.6;">Valoras la tradición filosófica pero quieres aplicarla hoy, no estudiarla.</p>
+          <p style="font-size:14px; color:var(--text); line-height:1.6;">Valoras la tradición filosófica y quieres vivirla hoy — no solo estudiarla en un libro.</p>
         </div>
       </div>
 
@@ -2054,10 +2126,10 @@
       <!-- ¿Eres tú? -->
       <div style="padding:40px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); display:flex; align-items:center; gap:48px; flex-wrap:wrap;" class="reveal">
         <div style="flex:1; min-width:200px;">
-          <div style="font-family:'Playfair Display',serif; font-size:22px; color:var(--text); margin-bottom:8px; font-style:italic;">Aristomas no es otro libro.</div>
-          <p style="font-size:15px; color:var(--muted);">Es un método de práctica diaria. Para quienes han llegado a ese punto.</p>
+          <div style="font-family:'Playfair Display',serif; font-size:22px; color:var(--text); margin-bottom:8px; font-style:italic;">Si te reconoces aquí, Aristomas es para ti.</div>
+          <p style="font-size:15px; color:var(--muted);">21 días. Una virtud. Práctica real desde el primer día.</p>
         </div>
-        <a href="#cta" class="btn btn-primary btn-lg">Reserva tu plaza →</a>
+        <a href="#cta" class="btn btn-primary btn-lg">50 pioneros.<br/>Beta exclusiva. Únete</a>
       </div>
 
     </div>
@@ -2067,35 +2139,12 @@
   <section id="diferencias" style="background:var(--bg);">
     <div class="container">
 
-      <!-- El problema con las otras opciones -->
+      <!-- Por qué Aristomas -->
       <div style="margin-bottom:80px;">
-        <div class="section-label reveal">El problema con las otras opciones</div>
-        <h2 class="section-title reveal" style="max-width:560px;">Hay miles de libros<br/>sobre mejora personal.</h2>
-        <p class="section-desc reveal" style="margin-bottom:48px;">Ninguno te enseña a practicarlo. Esto es lo que existe, y por qué se queda corto.</p>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
-          <div class="philosophy-card reveal">
-            <div class="philosophy-icon">📚</div>
-            <h3>Libros y cursos</h3>
-            <p>Te dan información valiosa. Pero leer sobre la paciencia no te hace más paciente. Sin práctica guiada, el conocimiento no se convierte en carácter.</p>
-          </div>
-          <div class="philosophy-card reveal reveal-delay-1">
-            <div class="philosophy-icon">🧘</div>
-            <h3>Apps de bienestar</h3>
-            <p>Calman el momento. Pero Calm o Headspace no entrenan virtudes: entrenan relajación. Son útiles y distintas. Aristomas va más lejos.</p>
-          </div>
-          <div class="philosophy-card reveal reveal-delay-2">
-            <div class="philosophy-icon">💬</div>
-            <h3>Coaching y terapia</h3>
-            <p>Potentes, pero puntuales y caros. No tienen la continuidad diaria ni el marco filosófico estructurado que convierte un mes en cambio real.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- La diferencia -->
-      <div style="margin-bottom:80px;">
-        <div class="section-label reveal">La diferencia</div>
-        <h2 class="section-title reveal" style="max-width:560px;">Lo que hace<br/>Aristomas distinto.</h2>
-        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:48px;">
+        <div class="section-label reveal">Por qué Aristomas</div>
+        <h2 class="section-title reveal" style="max-width:620px;">Filosofía de 2.500 años.<br/>Método para el día a día.</h2>
+        <p class="section-desc reveal" style="margin-bottom:48px;">La síntesis que faltaba: el rigor de la tradición clásica con la practicidad de nueve minutos diarios. No es teoría que se estudia. Es práctica que se vive.</p>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:20px;">
           <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px;" class="reveal">
             <div style="font-size:28px; margin-bottom:16px;">⏳</div>
             <h3 style="font-family:'Playfair Display',serif; font-size:18px; color:var(--text); margin-bottom:10px;">Tradición de 2.500 años</h3>
@@ -2115,6 +2164,30 @@
             <div style="font-size:28px; margin-bottom:16px;">📈</div>
             <h3 style="font-family:'Playfair Display',serif; font-size:18px; color:var(--text); margin-bottom:10px;">Progreso visible</h3>
             <p style="font-size:14px; color:var(--muted); line-height:1.7;">Termómetro diario, racha, badges de bloque. No para gamificar por gamificar: para que veas que algo está cambiando en ti.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contexto honesto -->
+      <div style="margin-bottom:80px;">
+        <div class="section-label reveal">Un contexto honesto</div>
+        <h2 class="section-title reveal" style="max-width:560px;">Hay buenas herramientas<br/>ahí fuera.</h2>
+        <p class="section-desc reveal" style="margin-bottom:48px;">Cada una tiene su lugar. Aristomas no reemplaza todo — ocupa el espacio que las demás dejan vacío: la práctica guiada y estructurada de las virtudes.</p>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <div class="philosophy-card reveal">
+            <div class="philosophy-icon">📚</div>
+            <h3>Libros y cursos</h3>
+            <p>Conocimiento rico y necesario. Sin práctica estructurada, el saber no se convierte en hábito. Aristomas empieza donde el libro termina.</p>
+          </div>
+          <div class="philosophy-card reveal reveal-delay-1">
+            <div class="philosophy-icon">🧘</div>
+            <h3>Apps de bienestar</h3>
+            <p>Alivio inmediato y gestión del momento. Un propósito distinto y valioso. La calma no es lo mismo que el carácter — los dos importan.</p>
+          </div>
+          <div class="philosophy-card reveal reveal-delay-2">
+            <div class="philosophy-icon">💬</div>
+            <h3>Coaching y terapia</h3>
+            <p>Herramientas potentes para el desarrollo personal. Aristomas aporta la continuidad filosófica diaria que ninguna sesión puntual puede dar.</p>
           </div>
         </div>
       </div>
@@ -2178,20 +2251,34 @@
   <!-- ═══════════════ CTA ═══════════════ -->
   <section id="cta">
     <div class="cta-inner">
-      <div class="tag" style="margin:0 auto 32px; display:inline-flex;">Beta privada · Septiembre 2026</div>
+      <div class="tag" style="margin:0 auto 32px; display:inline-flex;">50 plazas · Beta privada · Septiembre 2026</div>
       <h2 class="section-title serif reveal">
-        Empieza a construir<br/>tu carácter hoy.
+        Estás a un mail<br/>de estar dentro.
       </h2>
-      <p class="section-desc reveal">
-        Aristóteles lo llamaba "segunda naturaleza": el punto en el que la virtud deja de ser un esfuerzo y se convierte en quien eres. Aristomas es el camino hasta ahí.
-      </p>
-      <p style="font-size:13px; color:var(--muted); margin-bottom:36px;" class="reveal">Únete a la lista de espera. Sin compromiso. Beta privada en septiembre 2026.</p>
+
+      <div style="max-width:560px; margin:0 auto 48px; display:flex; flex-direction:column; gap:0;" class="reveal">
+        <div style="display:flex; gap:20px; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--border);">
+          <span style="color:var(--gold); font-size:18px; flex-shrink:0; margin-top:2px;">→</span>
+          <p style="font-size:15px; color:var(--text); line-height:1.7; margin:0;">Recibirás instrucciones para empezar con una virtud completa — sin app todavía, con el método desde el primer día.</p>
+        </div>
+        <div style="display:flex; gap:20px; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--border);">
+          <span style="color:var(--gold); font-size:18px; flex-shrink:0; margin-top:2px;">→</span>
+          <p style="font-size:15px; color:var(--text); line-height:1.7; margin:0;">Sin coste. Y si nos compartes tu experiencia, te regalamos una virtud más a tu elección.</p>
+        </div>
+        <div style="display:flex; gap:20px; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--border);">
+          <span style="color:var(--gold); font-size:18px; flex-shrink:0; margin-top:2px;">→</span>
+          <p style="font-size:15px; color:var(--text); line-height:1.7; margin:0;">Ayúdanos a construir lo que miles necesitarán. Cada opinión tuya da forma a lo que viene.</p>
+        </div>
+        <div style="padding:24px 0 0;">
+          <p style="font-size:17px; color:var(--gold); font-family:'Playfair Display',serif; font-style:italic; margin:0; line-height:1.6;">Un día lo podrás contar.</p>
+        </div>
+      </div>
 
       <div class="cta-form reveal">
         <input type="email" class="cta-input" placeholder="tu@email.com" />
-        <button class="btn btn-primary btn-lg">Reservar mi plaza</button>
+        <button class="btn btn-primary btn-lg">50 pioneros.<br/>Beta exclusiva. Únete</button>
       </div>
-      <p class="cta-note reveal">Sin spam. Solo acceso anticipado a la beta.</p>
+      <p class="cta-note reveal">Sin spam. Solo instrucciones para empezar.</p>
     </div>
   </section>
 
@@ -2330,7 +2417,7 @@
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
-      <div class="pac-nav-title"><span>Ciclo 01</span> · Paciencia · 21 días</div>
+      <div class="pac-nav-title">Paciencia · 21 días</div>
       <a href="#pac-cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;">Únete a la beta</a>
     </div>
 
@@ -2434,7 +2521,7 @@
           <!-- BLOQUE 1 -->
           <div class="block-card expanded" id="block1">
             <div class="block-header" onclick="toggleBlock('block1')">
-              <div class="block-num">BLOQUE 01</div>
+              <div class="block-num">Semana 1</div>
               <div class="block-header-content">
                 <h3>Claridad</h3>
                 <p>¿Qué es realmente la paciencia? Distinción, historia y paisaje interior.</p>
@@ -2459,15 +2546,12 @@
                   <div class="day-title">Paciencia ≠ Resignación</div>
                   <div class="day-author">Viktor Frankl · La respuesta libre</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 4</div>
-                  <div class="day-title">El tiempo como aliado</div>
-                  <div class="day-author">Ortega y Gasset · Lao-Tzu</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 5 ✦</div>
-                  <div class="day-title">El paisaje interior</div>
-                  <div class="day-author">Hesse · Rodaje exterior: cocina/jardín</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -2486,7 +2570,7 @@
           <!-- BLOQUE 2 -->
           <div class="block-card" id="block2">
             <div class="block-header" onclick="toggleBlock('block2')">
-              <div class="block-num">BLOQUE 02</div>
+              <div class="block-num">Semana 2</div>
               <div class="block-header-content">
                 <h3>Razón</h3>
                 <p>Cómo piensa la mente impaciente. Expectativas, control e incertidumbre.</p>
@@ -2511,15 +2595,12 @@
                   <div class="day-title">Control y soltar</div>
                   <div class="day-author">Ryan Holiday · La dicotomía estoica</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 9</div>
-                  <div class="day-title">La sabiduría de no saber</div>
-                  <div class="day-author">Keats · Duckworth · Grit</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 10 ✦</div>
-                  <div class="day-title">Perspectiva: la visión larga</div>
-                  <div class="day-author">Ikigai · Rodaje: cafetería</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -2538,7 +2619,7 @@
           <!-- BLOQUE 3 -->
           <div class="block-card" id="block3">
             <div class="block-header" onclick="toggleBlock('block3')">
-              <div class="block-num">BLOQUE 03</div>
+              <div class="block-num">Semana 3</div>
               <div class="block-header-content">
                 <h3>Emoción</h3>
                 <p>Cómo se siente la paciencia. El cuerpo, la frustración, la compasión, la serenidad.</p>
@@ -2563,15 +2644,12 @@
                   <div class="day-title">Compasión con los demás</div>
                   <div class="day-author">Brené Brown · Empatía relacional</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 14</div>
-                  <div class="day-title">Autocompasión</div>
-                  <div class="day-author">Kristin Neff · La carta compasiva</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 15 ✦</div>
-                  <div class="day-title">Serenidad: apatheia</div>
-                  <div class="day-author">Estoicismo · Rodaje: río/naturaleza</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -2590,7 +2668,7 @@
           <!-- BLOQUE 4 -->
           <div class="block-card" id="block4">
             <div class="block-header" onclick="toggleBlock('block4')">
-              <div class="block-num">BLOQUE 04</div>
+              <div class="block-num">Semana 4</div>
               <div class="block-header-content">
                 <h3>Acción y Consolidación</h3>
                 <p>La paciencia en tu vida real. Relaciones, trabajo, cambio, dolor y compromiso.</p>
@@ -2599,7 +2677,7 @@
               <div class="block-toggle">▾</div>
             </div>
             <div class="block-body">
-              <div class="days-grid" style="grid-template-columns:repeat(6,1fr);">
+              <div class="days-grid">
                 <div class="day-item">
                   <div class="day-num">Día 16</div>
                   <div class="day-title">Paciencia en relaciones</div>
@@ -2615,20 +2693,12 @@
                   <div class="day-title">Con tu propio cambio</div>
                   <div class="day-author">Brené Brown · Recableado</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 19</div>
-                  <div class="day-title">Paciencia ante el dolor</div>
-                  <div class="day-author">Séneca · Cartas a Lucilio</div>
-                </div>
-                <div class="day-item">
-                  <div class="day-num">Día 20</div>
-                  <div class="day-title">Integración</div>
-                  <div class="day-author">James Clear · Hábitos atómicos</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 21 ✦</div>
-                  <div class="day-title">El compromiso continuo</div>
-                  <div class="day-author">Aristóteles · Rodaje: terraza urbana</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -2853,24 +2923,7 @@
             <div class="ref-item"><div class="ref-num">02</div><div><div class="ref-title">La sociedad del cansancio</div><div class="ref-author">Byung-Chul Han</div></div></div>
             <div class="ref-item"><div class="ref-num">03</div><div><div class="ref-title">El hombre en busca de sentido</div><div class="ref-author">Viktor Frankl</div></div></div>
             <div class="ref-item"><div class="ref-num">04</div><div><div class="ref-title">El arte de amar</div><div class="ref-author">Erich Fromm</div></div></div>
-            <div class="ref-item"><div class="ref-num">05</div><div><div class="ref-title">Siddhartha</div><div class="ref-author">Hermann Hesse</div></div></div>
-            <div class="ref-item"><div class="ref-num">06</div><div><div class="ref-title">Pensar rápido, pensar despacio</div><div class="ref-author">Daniel Kahneman</div></div></div>
-            <div class="ref-item"><div class="ref-num">07</div><div><div class="ref-title">El sutil arte de que todo te importe una m...</div><div class="ref-author">Mark Manson</div></div></div>
-            <div class="ref-item"><div class="ref-num">08</div><div><div class="ref-title">El obstáculo es el camino</div><div class="ref-author">Ryan Holiday</div></div></div>
-            <div class="ref-item"><div class="ref-num">09</div><div><div class="ref-title">Grit: pasión y perseverancia</div><div class="ref-author">Angela Duckworth</div></div></div>
-            <div class="ref-item"><div class="ref-num">10</div><div><div class="ref-title">El poder del ahora</div><div class="ref-author">Eckhart Tolle</div></div></div>
-            <div class="ref-item"><div class="ref-num">11</div><div><div class="ref-title">El cuerpo lleva la cuenta</div><div class="ref-author">Bessel van der Kolk</div></div></div>
-            <div class="ref-item"><div class="ref-num">12</div><div><div class="ref-title">Agilidad emocional</div><div class="ref-author">Susan David</div></div></div>
-            <div class="ref-item"><div class="ref-num">13</div><div><div class="ref-title">Daring Greatly</div><div class="ref-author">Brené Brown</div></div></div>
-            <div class="ref-item"><div class="ref-num">14</div><div><div class="ref-title">Self-Compassion</div><div class="ref-author">Kristin Neff</div></div></div>
-            <div class="ref-item"><div class="ref-num">15</div><div><div class="ref-title">Mindfulness en la vida cotidiana</div><div class="ref-author">Jon Kabat-Zinn</div></div></div>
-            <div class="ref-item"><div class="ref-num">16</div><div><div class="ref-title">Los 7 principios del matrimonio</div><div class="ref-author">John Gottman</div></div></div>
-            <div class="ref-item"><div class="ref-num">17</div><div><div class="ref-title">Originals</div><div class="ref-author">Adam Grant</div></div></div>
-            <div class="ref-item"><div class="ref-num">18</div><div><div class="ref-title">Braving the Wilderness</div><div class="ref-author">Brené Brown</div></div></div>
-            <div class="ref-item"><div class="ref-num">19</div><div><div class="ref-title">Cartas a Lucilio</div><div class="ref-author">Séneca</div></div></div>
-            <div class="ref-item"><div class="ref-num">20</div><div><div class="ref-title">Hábitos atómicos</div><div class="ref-author">James Clear</div></div></div>
-            <div class="ref-item"><div class="ref-num">21</div><div><div class="ref-title">Las virtudes del guerrero</div><div class="ref-author">Steven Pressfield</div></div></div>
-            <div class="ref-item"><div class="ref-num">22</div><div><div class="ref-title">Ética a Nicómaco</div><div class="ref-author">Aristóteles</div></div></div>
+            <div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 18 libros más · Acceso completo al unirte →</div>
           </div>
 
           <div class="refs-list">
@@ -2879,21 +2932,7 @@
             <div class="ref-item"><div class="ref-num">02</div><div><div class="ref-title">La lista de Schindler</div><div class="ref-author">Steven Spielberg · 1993</div></div></div>
             <div class="ref-item"><div class="ref-num">03</div><div><div class="ref-title">Soul</div><div class="ref-author">Pixar · 2020</div></div></div>
             <div class="ref-item"><div class="ref-num">04</div><div><div class="ref-title">El caso Slevin</div><div class="ref-author">McGuigan · 2006</div></div></div>
-            <div class="ref-item"><div class="ref-num">05</div><div><div class="ref-title">Arrival</div><div class="ref-author">Denis Villeneuve · 2016</div></div></div>
-            <div class="ref-item"><div class="ref-num">06</div><div><div class="ref-title">Inception</div><div class="ref-author">Christopher Nolan · 2010</div></div></div>
-            <div class="ref-item"><div class="ref-num">07</div><div><div class="ref-title">El club de los poetas muertos</div><div class="ref-author">Peter Weir · 1989</div></div></div>
-            <div class="ref-item"><div class="ref-num">08</div><div><div class="ref-title">La princesa Mononoke</div><div class="ref-author">Hayao Miyazaki · 1997</div></div></div>
-            <div class="ref-item"><div class="ref-num">09</div><div><div class="ref-title">Inside Out / Del revés</div><div class="ref-author">Pixar · 2015</div></div></div>
-            <div class="ref-item"><div class="ref-num">10</div><div><div class="ref-title">Wonder</div><div class="ref-author">Stephen Chbosky · 2017</div></div></div>
-            <div class="ref-item"><div class="ref-num">11</div><div><div class="ref-title">The Secret Life of Walter Mitty</div><div class="ref-author">Ben Stiller · 2013</div></div></div>
-            <div class="ref-item"><div class="ref-num">12</div><div><div class="ref-title">Nomadland</div><div class="ref-author">Chloé Zhao · 2020</div></div></div>
-            <div class="ref-item"><div class="ref-num">13</div><div><div class="ref-title">Marriage Story</div><div class="ref-author">Noah Baumbach · 2019</div></div></div>
-            <div class="ref-item"><div class="ref-num">14</div><div><div class="ref-title">La teoría del todo</div><div class="ref-author">James Marsh · 2014</div></div></div>
-            <div class="ref-item"><div class="ref-num">15</div><div><div class="ref-title">Rocky</div><div class="ref-author">John G. Avildsen · 1976</div></div></div>
-            <div class="ref-item"><div class="ref-num">16</div><div><div class="ref-title">Manchester by the Sea</div><div class="ref-author">Kenneth Lonergan · 2016</div></div></div>
-            <div class="ref-item"><div class="ref-num">17</div><div><div class="ref-title">El gran Lebowski</div><div class="ref-author">Coen Brothers · 1998</div></div></div>
-            <div class="ref-item"><div class="ref-num">18</div><div><div class="ref-title">El camino</div><div class="ref-author">Emilio Estévez · 2010</div></div></div>
-            <div class="ref-item"><div class="ref-num">19</div><div><div class="ref-title">Paterson</div><div class="ref-author">Jim Jarmusch · 2016</div></div></div>
+            <div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 15 películas más · Acceso completo al unirte →</div>
           </div>
         </div>
       </div>
@@ -2909,11 +2948,11 @@
           <em class="serif" style="font-style:italic; color:var(--gold);">Has practicado la paciencia."</em>
         </h2>
         <p style="font-size:15px; font-weight:300; color:var(--muted); max-width:420px; margin:0 auto 40px; line-height:1.7;">
-          Hay una diferencia enorme. Reserva tu plaza en la beta privada y sé de los primeros en vivirlo.
+          Hay una diferencia enorme. Sé de los primeros en vivirlo.
         </p>
         <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:14px;">
           <input type="email" class="cta-input" placeholder="tu@email.com" style="min-width:240px;" />
-          <button class="btn btn-primary btn-lg">Reservar mi plaza</button>
+          <button class="btn btn-primary btn-lg">50 pioneros.<br/>Beta exclusiva. Únete</button>
         </div>
         <p style="font-size:12px; color:var(--muted);">Sin spam. Solo acceso anticipado.</p>
         <div style="margin-top:40px; padding-top:32px; border-top:1px solid var(--border);">
@@ -2938,8 +2977,8 @@
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
-      <div class="pac-nav-title"><span>Ciclo 02</span> · Fortaleza · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeFortaleza()">Únete a los 50 pioneros</a>
+      <div class="pac-nav-title">Fortaleza · 21 días</div>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeFortaleza()">Quiero probar</a>
     </div>
 
     <!-- HERO -->
@@ -3022,7 +3061,7 @@
           <!-- BLOQUE 1 -->
           <div class="block-card expanded" id="fblock1">
             <div class="block-header" onclick="toggleBlock('fblock1')">
-              <div class="block-num">BLOQUE 01</div>
+              <div class="block-num">Semana 1</div>
               <div class="block-header-content">
                 <h3>Claridad</h3>
                 <p>¿Qué es realmente la fortaleza? Distinción, historia y paisaje interior.</p>
@@ -3047,15 +3086,12 @@
                   <div class="day-title">Fortaleza ≠ Ausencia de miedo</div>
                   <div class="day-author">Viktor Frankl · La respuesta libre ante lo inevitable</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 4</div>
-                  <div class="day-title">El bien arduo</div>
-                  <div class="day-author">Tomás de Aquino · Actuar cuando cuesta de verdad</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 5 ✦</div>
-                  <div class="day-title">Tu mapa interior del miedo</div>
-                  <div class="day-author">Rodaje exterior: calle o plaza · Cierre de bloque</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -3074,7 +3110,7 @@
           <!-- BLOQUE 2 -->
           <div class="block-card" id="fblock2">
             <div class="block-header" onclick="toggleBlock('fblock2')">
-              <div class="block-num">BLOQUE 02</div>
+              <div class="block-num">Semana 2</div>
               <div class="block-header-content">
                 <h3>Razón</h3>
                 <p>Cómo piensa la mente ante el miedo. Imaginación, control e incertidumbre.</p>
@@ -3099,15 +3135,12 @@
                   <div class="day-title">Temeridad: la falsa fortaleza</div>
                   <div class="day-author">Don Quijote · El exceso que destruye desde dentro</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 9</div>
-                  <div class="day-title">Las raíces del miedo moderno</div>
-                  <div class="day-author">Jonathan Haidt · Por qué evitamos el riesgo hoy</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 10 ✦</div>
-                  <div class="day-title">El diálogo con el miedo</div>
-                  <div class="day-author">Rodaje exterior: naturaleza · Cierre de bloque</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -3126,7 +3159,7 @@
           <!-- BLOQUE 3 -->
           <div class="block-card" id="fblock3">
             <div class="block-header" onclick="toggleBlock('fblock3')">
-              <div class="block-num">BLOQUE 03</div>
+              <div class="block-num">Semana 3</div>
               <div class="block-header-content">
                 <h3>Emoción</h3>
                 <p>Sentir la fortaleza. El cuerpo, la vergüenza y el coraje compasivo.</p>
@@ -3151,15 +3184,12 @@
                   <div class="day-title">Héroes cotidianos</div>
                   <div class="day-author">Churchill · Teresa de Ávila · La fortaleza en la historia real</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 14</div>
-                  <div class="day-title">Ser fuerte para los demás</div>
-                  <div class="day-author">Dalai Lama · La fortaleza compasiva como motor</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 15 ✦</div>
-                  <div class="day-title">Cuando actuar duele</div>
-                  <div class="day-author">Rodaje exterior: ciudad · Cierre de bloque</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -3178,7 +3208,7 @@
           <!-- BLOQUE 4 -->
           <div class="block-card" id="fblock4">
             <div class="block-header" onclick="toggleBlock('fblock4')">
-              <div class="block-num">BLOQUE 04</div>
+              <div class="block-num">Semana 4</div>
               <div class="block-header-content">
                 <h3>Acción</h3>
                 <p>Vivir la fortaleza. Conversaciones difíciles, hábitos de coraje e integración.</p>
@@ -3203,20 +3233,12 @@
                   <div class="day-title">La fortaleza civil</div>
                   <div class="day-author">Sócrates · Defender lo justo aunque cueste</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 19</div>
-                  <div class="day-title">Perseverancia vs. obstinación</div>
-                  <div class="day-author">Carol Dweck · Mindset · La diferencia que cambia todo</div>
-                </div>
-                <div class="day-item">
-                  <div class="day-num">Día 20</div>
-                  <div class="day-title">Fortaleza ante el sufrimiento</div>
-                  <div class="day-author">Marco Aurelio · El dolor como maestro, no como enemigo</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 21 ✦</div>
-                  <div class="day-title">La fortaleza como segunda naturaleza</div>
-                  <div class="day-author">Rodaje exterior: amanecer · Integración final</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -3373,24 +3395,7 @@
               <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">Suma Teológica</span><span style="font-size:12px; color:var(--muted);"> — Tomás de Aquino</span></div></div>
               <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">Meditaciones</span><span style="font-size:12px; color:var(--muted);"> — Marco Aurelio</span></div></div>
               <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">El hombre en busca de sentido</span><span style="font-size:12px; color:var(--muted);"> — Viktor Frankl</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">05</span><div><span style="font-size:14px; color:var(--text);">Cartas a Lucilio</span><span style="font-size:12px; color:var(--muted);"> — Séneca</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">06</span><div><span style="font-size:14px; color:var(--text);">Enquiridión</span><span style="font-size:12px; color:var(--muted);"> — Epicteto</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">07</span><div><span style="font-size:14px; color:var(--text);">Daring Greatly</span><span style="font-size:12px; color:var(--muted);"> — Brené Brown</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">08</span><div><span style="font-size:14px; color:var(--text);">El cuerpo lleva la cuenta</span><span style="font-size:12px; color:var(--muted);"> — Bessel van der Kolk</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">09</span><div><span style="font-size:14px; color:var(--text);">El obstáculo es el camino</span><span style="font-size:12px; color:var(--muted);"> — Ryan Holiday</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">10</span><div><span style="font-size:14px; color:var(--text);">Antifragile</span><span style="font-size:12px; color:var(--muted);"> — Nassim Taleb</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">11</span><div><span style="font-size:14px; color:var(--text);">Mindset</span><span style="font-size:12px; color:var(--muted);"> — Carol Dweck</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">12</span><div><span style="font-size:14px; color:var(--text);">Pensar rápido, pensar despacio</span><span style="font-size:12px; color:var(--muted);"> — Daniel Kahneman</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">13</span><div><span style="font-size:14px; color:var(--text);">The Coddling of the American Mind</span><span style="font-size:12px; color:var(--muted);"> — Jonathan Haidt</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">14</span><div><span style="font-size:14px; color:var(--text);">Conversaciones difíciles</span><span style="font-size:12px; color:var(--muted);"> — Stone, Patton, Heen</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">15</span><div><span style="font-size:14px; color:var(--text);">Resilience</span><span style="font-size:12px; color:var(--muted);"> — Eric Greitens</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">16</span><div><span style="font-size:14px; color:var(--text);">El coraje de no gustar</span><span style="font-size:12px; color:var(--muted);"> — Ichiro Kishimi</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">17</span><div><span style="font-size:14px; color:var(--text);">El libro de la alegría</span><span style="font-size:12px; color:var(--muted);"> — Dalai Lama y Desmond Tutu</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">18</span><div><span style="font-size:14px; color:var(--text);">Castillo interior</span><span style="font-size:12px; color:var(--muted);"> — Teresa de Ávila</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">19</span><div><span style="font-size:14px; color:var(--text);">Atomic Habits</span><span style="font-size:12px; color:var(--muted);"> — James Clear</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">20</span><div><span style="font-size:14px; color:var(--text);">El señor de los anillos</span><span style="font-size:12px; color:var(--muted);"> — J.R.R. Tolkien</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">21</span><div><span style="font-size:14px; color:var(--text);">Grit</span><span style="font-size:12px; color:var(--muted);"> — Angela Duckworth</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">22</span><div><span style="font-size:14px; color:var(--text);">Man's Search for Meaning</span><span style="font-size:12px; color:var(--muted);"> — Viktor Frankl (edición original)</span></div></div>
+              <div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 18 libros más · Acceso completo al unirte →</div>
             </div>
           </div>
           <div>
@@ -3400,21 +3405,7 @@
               <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">Invictus</span><span style="font-size:12px; color:var(--muted);"> — 2009 · Clint Eastwood</span></div></div>
               <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">El discurso del rey</span><span style="font-size:12px; color:var(--muted);"> — 2010 · Tom Hooper</span></div></div>
               <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">Dunkirk</span><span style="font-size:12px; color:var(--muted);"> — 2017 · Christopher Nolan</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">05</span><div><span style="font-size:14px; color:var(--text);">Mandela: Long Walk to Freedom</span><span style="font-size:12px; color:var(--muted);"> — 2013</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">06</span><div><span style="font-size:14px; color:var(--text);">The Shawshank Redemption</span><span style="font-size:12px; color:var(--muted);"> — 1994 · Frank Darabont</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">07</span><div><span style="font-size:14px; color:var(--text);">Philadelphia</span><span style="font-size:12px; color:var(--muted);"> — 1993 · Jonathan Demme</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">08</span><div><span style="font-size:14px; color:var(--text);">Million Dollar Baby</span><span style="font-size:12px; color:var(--muted);"> — 2004 · Clint Eastwood</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">09</span><div><span style="font-size:14px; color:var(--text);">Unbroken</span><span style="font-size:12px; color:var(--muted);"> — 2014 · Angelina Jolie</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">10</span><div><span style="font-size:14px; color:var(--text);">La lista de Schindler</span><span style="font-size:12px; color:var(--muted);"> — 1993 · Steven Spielberg</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">11</span><div><span style="font-size:14px; color:var(--text);">Gladiator</span><span style="font-size:12px; color:var(--muted);"> — 2000 · Ridley Scott</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">12</span><div><span style="font-size:14px; color:var(--text);">Rocky</span><span style="font-size:12px; color:var(--muted);"> — 1976 · John G. Avildsen</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">13</span><div><span style="font-size:14px; color:var(--text);">Whiplash</span><span style="font-size:12px; color:var(--muted);"> — 2014 · Damien Chazelle</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">14</span><div><span style="font-size:14px; color:var(--text);">A Beautiful Mind</span><span style="font-size:12px; color:var(--muted);"> — 2001 · Ron Howard</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">15</span><div><span style="font-size:14px; color:var(--text);">Sully</span><span style="font-size:12px; color:var(--muted);"> — 2016 · Clint Eastwood</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">16</span><div><span style="font-size:14px; color:var(--text);">127 horas</span><span style="font-size:12px; color:var(--muted);"> — 2010 · Danny Boyle</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">17</span><div><span style="font-size:14px; color:var(--text);">Capitán Fantastic</span><span style="font-size:12px; color:var(--muted);"> — 2016 · Matt Ross</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">18</span><div><span style="font-size:14px; color:var(--text);">El camino (The Way)</span><span style="font-size:12px; color:var(--muted);"> — 2010 · Emilio Estévez</span></div></div>
-              <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">19</span><div><span style="font-size:14px; color:var(--text);">Braveheart</span><span style="font-size:12px; color:var(--muted);"> — 1995 · Mel Gibson</span></div></div>
+              <div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 15 películas más · Acceso completo al unirte →</div>
             </div>
           </div>
         </div>
@@ -3434,7 +3425,7 @@
         <p style="font-size:13px; color:var(--muted); margin-bottom:48px;">— Aristomas · Día 21 · Ciclo Fortaleza</p>
         <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;">
           <input type="email" class="cta-input" placeholder="tu@email.com" style="min-width:240px;" />
-          <button class="btn btn-primary btn-lg">Únete a los 50 pioneros</button>
+          <button class="btn btn-primary btn-lg">50 pioneros.<br/>Beta exclusiva. Únete</button>
         </div>
         <p style="font-size:12px; color:var(--muted);">Acceso exclusivo · Septiembre 2026 · Sin compromiso</p>
       </div>
@@ -3449,8 +3440,8 @@
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
-      <div class="pac-nav-title"><span>Ciclo 03</span> · Humildad · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeHumildad()">Únete a los 50 pioneros</a>
+      <div class="pac-nav-title">Humildad · 21 días</div>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeHumildad()">Quiero probar</a>
     </div>
 
     <div class="pac-hero">
@@ -3526,7 +3517,7 @@
           
           <div class="block-card expanded" id="hblock1">
             <div class="block-header" onclick="toggleBlock('hblock1')">
-              <div class="block-num">BLOQUE 01</div>
+              <div class="block-num">Semana 1</div>
               <div class="block-header-content"><h3>Claridad</h3><p>¿Qué es realmente la humildad? Mitos, orígenes y definición filosófica.</p></div>
               <div class="block-days-badge">Días 1–5</div>
               <div class="block-toggle">▾</div>
@@ -3548,16 +3539,14 @@
                   <div class="day-title">Orígenes: la humilitas latina</div>
                   <div class="day-author">Humus · tierra · conectarse con lo real y concreto</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 4</div>
-                  <div class="day-title">Tomás de Aquino: la humildad como verdad</div>
-                  <div class="day-author">La humildad es la verdad vivida</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 5 ✦</div>
-                  <div class="day-title">El orgullo como opuesto de la humildad</div>
-                  <div class="day-author">Rodaje exterior: plaza concurrida · Cierre de bloque</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Termómetro del Bloque 1</div>
@@ -3567,7 +3556,7 @@
           </div>
           <div class="block-card" id="hblock2">
             <div class="block-header" onclick="toggleBlock('hblock2')">
-              <div class="block-num">BLOQUE 02</div>
+              <div class="block-num">Semana 2</div>
               <div class="block-header-content"><h3>Razón</h3><p>Ego, sesgo, origen de los talentos y liderazgo humilde.</p></div>
               <div class="block-days-badge">Días 6–11</div>
               <div class="block-toggle">▾</div>
@@ -3589,21 +3578,14 @@
                   <div class="day-title">Reconocer el origen de tus talentos</div>
                   <div class="day-author">San Pablo · ¿Qué tienes que no hayas recibido?</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 9</div>
-                  <div class="day-title">La humildad en el liderazgo</div>
-                  <div class="day-author">Jim Collins · El liderazgo de nivel 5</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 10</div>
-                  <div class="day-title">Humildad intelectual y polarización</div>
-                  <div class="day-author">Sócrates · La pregunta como acto más humilde</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 11 ✦</div>
-                  <div class="day-title">La vergüenza y la humildad: la diferencia crucial</div>
-                  <div class="day-author">Rodaje exterior: biblioteca · Brené Brown · Cierre de bloque</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Termómetro del Bloque 2</div>
@@ -3613,7 +3595,7 @@
           </div>
           <div class="block-card" id="hblock3">
             <div class="block-header" onclick="toggleBlock('hblock3')">
-              <div class="block-num">BLOQUE 03</div>
+              <div class="block-num">Semana 3</div>
               <div class="block-header-content"><h3>Emoción</h3><p>Asombro, gratitud, admiración y el cuerpo como maestro.</p></div>
               <div class="block-days-badge">Días 12–16</div>
               <div class="block-toggle">▾</div>
@@ -3635,16 +3617,14 @@
                   <div class="day-title">Admirar sin envidiar</div>
                   <div class="day-author">Victor Hugo · La envidia como impuesto a los logros ajenos</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 15</div>
-                  <div class="day-title">El duelo como escuela de humildad</div>
-                  <div class="day-author">Carl Sagan · Somos polvo de estrellas que se pregunta</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 16 ✦</div>
-                  <div class="day-title">La humildad del cuerpo</div>
-                  <div class="day-author">Rodaje exterior: naturaleza · El cuerpo como primer maestro</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Termómetro del Bloque 3</div>
@@ -3654,7 +3634,7 @@
           </div>
           <div class="block-card" id="hblock4">
             <div class="block-header" onclick="toggleBlock('hblock4')">
-              <div class="block-num">BLOQUE 04</div>
+              <div class="block-num">Semana 4</div>
               <div class="block-header-content"><h3>Acción</h3><p>Conflicto, servicio invisible, corrección e integración.</p></div>
               <div class="block-days-badge">Días 17–21</div>
               <div class="block-toggle">▾</div>
@@ -3676,16 +3656,14 @@
                   <div class="day-title">Recibir la corrección con gracia</div>
                   <div class="day-author">Churchill · La crítica como dolor necesario</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 20</div>
-                  <div class="day-title">La humildad como estilo de vida</div>
-                  <div class="day-author">Lincoln · Mandela · La grandeza que no necesita proclamarse</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 21 ✦</div>
-                  <div class="day-title">El humilde que sabe que es grande</div>
-                  <div class="day-author">Rodaje exterior: amanecer · Magnanimidad sin arrogancia</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Termómetro del Bloque 4</div>
@@ -3818,24 +3796,7 @@
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">Suma Teológica</span><span style="font-size:12px; color:var(--muted);"> — Tomás de Aquino</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">Mero Cristianismo</span><span style="font-size:12px; color:var(--muted);"> — C.S. Lewis</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">Los dones de la imperfección</span><span style="font-size:12px; color:var(--muted);"> — Brené Brown</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">05</span><div><span style="font-size:14px; color:var(--text);">El poder de ser vulnerable</span><span style="font-size:12px; color:var(--muted);"> — Brené Brown</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">06</span><div><span style="font-size:14px; color:var(--text);">Good to Great</span><span style="font-size:12px; color:var(--muted);"> — Jim Collins</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">07</span><div><span style="font-size:14px; color:var(--text);">Ego is the Enemy</span><span style="font-size:12px; color:var(--muted);"> — Ryan Holiday</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">08</span><div><span style="font-size:14px; color:var(--text);">El hombre en busca de sentido</span><span style="font-size:12px; color:var(--muted);"> — Viktor Frankl</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">09</span><div><span style="font-size:14px; color:var(--text);">Mente Zen, mente de principiante</span><span style="font-size:12px; color:var(--muted);"> — Shunryu Suzuki</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">10</span><div><span style="font-size:14px; color:var(--text);">Ortodoxia</span><span style="font-size:12px; color:var(--muted);"> — G.K. Chesterton</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">11</span><div><span style="font-size:14px; color:var(--text);">Tao Te Ching</span><span style="font-size:12px; color:var(--muted);"> — Laozi</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">12</span><div><span style="font-size:14px; color:var(--text);">Meditaciones</span><span style="font-size:12px; color:var(--muted);"> — Marco Aurelio</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">13</span><div><span style="font-size:14px; color:var(--text);">Enquiridión</span><span style="font-size:12px; color:var(--muted);"> — Epicteto</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">14</span><div><span style="font-size:14px; color:var(--text);">The Return of the Prodigal Son</span><span style="font-size:12px; color:var(--muted);"> — Henri Nouwen</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">15</span><div><span style="font-size:14px; color:var(--text);">A la espera de Dios</span><span style="font-size:12px; color:var(--muted);"> — Simone Weil</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">16</span><div><span style="font-size:14px; color:var(--text);">The Servant as Leader</span><span style="font-size:12px; color:var(--muted);"> — Robert Greenleaf</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">17</span><div><span style="font-size:14px; color:var(--text);">Think Again</span><span style="font-size:12px; color:var(--muted);"> — Adam Grant</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">18</span><div><span style="font-size:14px; color:var(--text);">El precio de la gracia</span><span style="font-size:12px; color:var(--muted);"> — Dietrich Bonhoeffer</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">19</span><div><span style="font-size:14px; color:var(--text);">Man's Search for Meaning</span><span style="font-size:12px; color:var(--muted);"> — Viktor Frankl</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">20</span><div><span style="font-size:14px; color:var(--text);">El coraje de no gustar</span><span style="font-size:12px; color:var(--muted);"> — Ichiro Kishimi</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">21</span><div><span style="font-size:14px; color:var(--text);">Cartas a Lucilio</span><span style="font-size:12px; color:var(--muted);"> — Séneca</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">22</span><div><span style="font-size:14px; color:var(--text);">El libro de la alegría</span><span style="font-size:12px; color:var(--muted);"> — Dalai Lama y Tutu</span></div></div></div>
+<div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 18 libros más · Acceso completo al unirte →</div></div>
           </div>
           <div>
             <div style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:24px;">🎬 Películas de referencia</div>
@@ -3843,21 +3804,7 @@
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">Lincoln</span><span style="font-size:12px; color:var(--muted);"> — 2012 · liderazgo humilde en la crisis</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">A Beautiful Mind</span><span style="font-size:12px; color:var(--muted);"> — 2001 · límites reconocidos</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">The Shawshank Redemption</span><span style="font-size:12px; color:var(--muted);"> — 1994 · dignidad sin arrogancia</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">05</span><div><span style="font-size:14px; color:var(--text);">Arrival</span><span style="font-size:12px; color:var(--muted);"> — 2016 · humildad epistemológica</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">06</span><div><span style="font-size:14px; color:var(--text);">Silence</span><span style="font-size:12px; color:var(--muted);"> — 2016 · Scorsese · humildad ante el sufrimiento</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">07</span><div><span style="font-size:14px; color:var(--text);">La lista de Schindler</span><span style="font-size:12px; color:var(--muted);"> — 1993 · redención desde la humildad</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">08</span><div><span style="font-size:14px; color:var(--text);">Ikiru</span><span style="font-size:12px; color:var(--muted);"> — 1952 · Kurosawa · servicio invisible</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">09</span><div><span style="font-size:14px; color:var(--text);">Of Gods and Men</span><span style="font-size:12px; color:var(--muted);"> — 2010 · renuncia al protagonismo</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">10</span><div><span style="font-size:14px; color:var(--text);">The Tree of Life</span><span style="font-size:12px; color:var(--muted);"> — 2011 · Malick · asombro y pequeñez humana</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">11</span><div><span style="font-size:14px; color:var(--text);">Hidden Figures</span><span style="font-size:12px; color:var(--muted);"> — 2016 · humildad ante la injusticia</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">12</span><div><span style="font-size:14px; color:var(--text);">Chariots of Fire</span><span style="font-size:12px; color:var(--muted);"> — 1981 · talento y carácter</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">13</span><div><span style="font-size:14px; color:var(--text);">Whiplash</span><span style="font-size:12px; color:var(--muted);"> — 2014 · el precio del ego sin humildad</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">14</span><div><span style="font-size:14px; color:var(--text);">Dead Poets Society</span><span style="font-size:12px; color:var(--muted);"> — 1989 · la pregunta como humildad</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">15</span><div><span style="font-size:14px; color:var(--text);">Bohemian Rhapsody</span><span style="font-size:12px; color:var(--muted);"> — 2018 · caída del ego y redención</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">16</span><div><span style="font-size:14px; color:var(--text);">Selma</span><span style="font-size:12px; color:var(--muted);"> — 2014 · grandeza sin protagonismo</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">17</span><div><span style="font-size:14px; color:var(--text);">Monsieur Lazhar</span><span style="font-size:12px; color:var(--muted);"> — 2011 · aprender de los más pequeños</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">18</span><div><span style="font-size:14px; color:var(--text);">Bridge of Spies</span><span style="font-size:12px; color:var(--muted);"> — 2015 · principios bajo presión</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">19</span><div><span style="font-size:14px; color:var(--text);">Into the Wild</span><span style="font-size:12px; color:var(--muted);"> — 2007 · la lección de la soberbia</span></div></div></div>
+<div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 15 películas más · Acceso completo al unirte →</div></div>
           </div>
         </div>
       </div>
@@ -3875,7 +3822,7 @@
         <p style="font-size:13px; color:var(--muted); margin-bottom:48px;">— Aristomas · Día 21 · Ciclo Humildad</p>
         <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;">
           <input type="email" class="cta-input" placeholder="tu@email.com" style="min-width:240px;" />
-          <button class="btn btn-primary btn-lg">Únete a los 50 pioneros</button>
+          <button class="btn btn-primary btn-lg">50 pioneros.<br/>Beta exclusiva. Únete</button>
         </div>
         <p style="font-size:12px; color:var(--muted);">Acceso exclusivo · Septiembre 2026 · Sin compromiso</p>
       </div>
@@ -3891,8 +3838,8 @@
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
-      <div class="pac-nav-title"><span>Ciclo 04</span> · Prudencia · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closePrudencia()">Únete a los 50 pioneros</a>
+      <div class="pac-nav-title">Prudencia · 21 días</div>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closePrudencia()">Quiero probar</a>
     </div>
 
     <div class="pac-hero">
@@ -3968,7 +3915,7 @@
           
           <div class="block-card expanded" id="pblock1">
             <div class="block-header" onclick="toggleBlock('pblock1')">
-              <div class="block-num">BLOQUE 01</div>
+              <div class="block-num">Semana 1</div>
               <div class="block-header-content"><h3>Deliberación</h3><p>La prudencia empieza en la pausa. Romper el hábito de la reactividad.</p></div>
               <div class="block-days-badge">Días 1–5</div>
               <div class="block-toggle">▾</div>
@@ -3990,16 +3937,14 @@
                   <div class="day-title">La memoria como fuente de prudencia</div>
                   <div class="day-author">Santayana · El que no conoce la historia la repite</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 4</div>
-                  <div class="day-title">Saber lo que no sabes</div>
-                  <div class="day-author">Sócrates · La ignorancia reconocida como punto de partida</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 5 ✦</div>
-                  <div class="day-title">La pausa estratégica</div>
-                  <div class="day-author">Rodaje exterior: plaza · Frankl · El espacio entre estímulo y respuesta</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Brújula del Bloque 1</div>
@@ -4009,7 +3954,7 @@
           </div>
           <div class="block-card" id="pblock2">
             <div class="block-header" onclick="toggleBlock('pblock2')">
-              <div class="block-num">BLOQUE 02</div>
+              <div class="block-num">Semana 2</div>
               <div class="block-header-content"><h3>Juicio</h3><p>La prudencia en la evaluación. Sesgos, consecuencias y proporcionalidad.</p></div>
               <div class="block-days-badge">Días 6–11</div>
               <div class="block-toggle">▾</div>
@@ -4031,21 +3976,14 @@
                   <div class="day-title">Consecuencias de primer y segundo orden</div>
                   <div class="day-author">Mencken · La consecuencia obvia suele estar equivocada</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 9</div>
-                  <div class="day-title">La proporcionalidad en la respuesta</div>
-                  <div class="day-author">Confucio · No uses un cañón para matar una mosca</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 10</div>
-                  <div class="day-title">El timing: cuándo actuar</div>
-                  <div class="day-author">Eclesiastés · Hay un tiempo para todo bajo el sol</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 11 ✦</div>
-                  <div class="day-title">Prudencia y moralidad: ¿cuándo la norma falla?</div>
-                  <div class="day-author">Rodaje exterior: biblioteca · Aristóteles · Epikeia</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Brújula del Bloque 2</div>
@@ -4055,7 +3993,7 @@
           </div>
           <div class="block-card" id="pblock3">
             <div class="block-header" onclick="toggleBlock('pblock3')">
-              <div class="block-num">BLOQUE 03</div>
+              <div class="block-num">Semana 3</div>
               <div class="block-header-content"><h3>Consejo</h3><p>La prudencia en relación. Pedir, dar y recibir consejo con sabiduría.</p></div>
               <div class="block-days-badge">Días 12–16</div>
               <div class="block-toggle">▾</div>
@@ -4077,16 +4015,14 @@
                   <div class="day-title">Dar consejo con prudencia</div>
                   <div class="day-author">Proverbio árabe · Habla solo cuando puedas mejorar el silencio</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 15</div>
-                  <div class="day-title">La prudencia en el silencio</div>
-                  <div class="day-author">Lincoln · Mejor guardar silencio y parecer tonto</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 16 ✦</div>
-                  <div class="day-title">La prudencia ante la incertidumbre</div>
-                  <div class="day-author">Rodaje exterior: ciudad · Actuar con lo que tenemos</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Brújula del Bloque 3</div>
@@ -4096,7 +4032,7 @@
           </div>
           <div class="block-card" id="pblock4">
             <div class="block-header" onclick="toggleBlock('pblock4')">
-              <div class="block-num">BLOQUE 04</div>
+              <div class="block-num">Semana 4</div>
               <div class="block-header-content"><h3>Integración</h3><p>La prudencia como hábito. Liderazgo, riesgo, error y comunicación.</p></div>
               <div class="block-days-badge">Días 17–21</div>
               <div class="block-toggle">▾</div>
@@ -4118,16 +4054,14 @@
                   <div class="day-title">Aprender del error con prudencia</div>
                   <div class="day-author">Capote · El error bien procesado es el mejor maestro</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 20</div>
-                  <div class="day-title">La comunicación prudente</div>
-                  <div class="day-author">Wilson · Habla de manera que no puedas ser malinterpretado</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 21 ✦</div>
-                  <div class="day-title">El prudente que actúa</div>
-                  <div class="day-author">Rodaje exterior: amanecer · Phronesis · Sabiduría práctica</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Brújula del Bloque 4</div>
@@ -4260,24 +4194,7 @@
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">Suma Teológica</span><span style="font-size:12px; color:var(--muted);"> — Tomás de Aquino (II-II, qq. 47-56)</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">Thinking, Fast and Slow</span><span style="font-size:12px; color:var(--muted);"> — Daniel Kahneman</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">Good to Great</span><span style="font-size:12px; color:var(--muted);"> — Jim Collins</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">05</span><div><span style="font-size:14px; color:var(--text);">Antifragile</span><span style="font-size:12px; color:var(--muted);"> — Nassim Taleb</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">06</span><div><span style="font-size:14px; color:var(--text);">Stillness Is the Key</span><span style="font-size:12px; color:var(--muted);"> — Ryan Holiday</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">07</span><div><span style="font-size:14px; color:var(--text);">Poor Charlie's Almanack</span><span style="font-size:12px; color:var(--muted);"> — Charlie Munger</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">08</span><div><span style="font-size:14px; color:var(--text);">Meditaciones</span><span style="font-size:12px; color:var(--muted);"> — Marco Aurelio</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">09</span><div><span style="font-size:14px; color:var(--text);">Enquiridión</span><span style="font-size:12px; color:var(--muted);"> — Epicteto</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">10</span><div><span style="font-size:14px; color:var(--text);">Cartas a Lucilio</span><span style="font-size:12px; color:var(--muted);"> — Séneca</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">11</span><div><span style="font-size:14px; color:var(--text);">The Effective Executive</span><span style="font-size:12px; color:var(--muted);"> — Peter Drucker</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">12</span><div><span style="font-size:14px; color:var(--text);">Noise</span><span style="font-size:12px; color:var(--muted);"> — Kahneman y Sunstein</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">13</span><div><span style="font-size:14px; color:var(--text);">Superforecasting</span><span style="font-size:12px; color:var(--muted);"> — Philip Tetlock</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">14</span><div><span style="font-size:14px; color:var(--text);">Thinking in Bets</span><span style="font-size:12px; color:var(--muted);"> — Annie Duke</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">15</span><div><span style="font-size:14px; color:var(--text);">The Great Mental Models Vol.1</span><span style="font-size:12px; color:var(--muted);"> — Shane Parrish</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">16</span><div><span style="font-size:14px; color:var(--text);">Justice</span><span style="font-size:12px; color:var(--muted);"> — Michael Sandel</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">17</span><div><span style="font-size:14px; color:var(--text);">Historia de la Guerra del Peloponeso</span><span style="font-size:12px; color:var(--muted);"> — Tucídides</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">18</span><div><span style="font-size:14px; color:var(--text);">Team of Rivals</span><span style="font-size:12px; color:var(--muted);"> — Doris Kearns Goodwin</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">19</span><div><span style="font-size:14px; color:var(--text);">El hombre en busca de sentido</span><span style="font-size:12px; color:var(--muted);"> — Viktor Frankl</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">20</span><div><span style="font-size:14px; color:var(--text);">La condición humana</span><span style="font-size:12px; color:var(--muted);"> — Hannah Arendt</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">21</span><div><span style="font-size:14px; color:var(--text);">El erizo y el zorro</span><span style="font-size:12px; color:var(--muted);"> — Isaiah Berlin</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">22</span><div><span style="font-size:14px; color:var(--text);">The 33 Strategies of War</span><span style="font-size:12px; color:var(--muted);"> — Robert Greene</span></div></div></div>
+<div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 18 libros más · Acceso completo al unirte →</div></div>
           </div>
           <div>
             <div style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:24px;">🎬 Películas de referencia</div>
@@ -4285,21 +4202,7 @@
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">Moneyball</span><span style="font-size:12px; color:var(--muted);"> — 2011 · decisión basada en datos</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">12 Angry Men</span><span style="font-size:12px; color:var(--muted);"> — 1957 · deliberación colectiva y sesgo cognitivo</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">Dunkirk</span><span style="font-size:12px; color:var(--muted);"> — 2017 · decisión bajo incertidumbre máxima</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">05</span><div><span style="font-size:14px; color:var(--text);">Sully</span><span style="font-size:12px; color:var(--muted);"> — 2016 · juicio experto vs. protocolo</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">06</span><div><span style="font-size:14px; color:var(--text);">The Darkest Hour</span><span style="font-size:12px; color:var(--muted);"> — 2017 · liderazgo prudente en crisis</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">07</span><div><span style="font-size:14px; color:var(--text);">Apollo 13</span><span style="font-size:12px; color:var(--muted);"> — 1995 · resolución bajo presión</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">08</span><div><span style="font-size:14px; color:var(--text);">Margin Call</span><span style="font-size:12px; color:var(--muted);"> — 2011 · fallos del juicio colectivo</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">09</span><div><span style="font-size:14px; color:var(--text);">The Imitation Game</span><span style="font-size:12px; color:var(--muted);"> — 2014 · dilemas de decisión</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">10</span><div><span style="font-size:14px; color:var(--text);">The Big Short</span><span style="font-size:12px; color:var(--muted);"> — 2015 · pensamiento contrario</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">11</span><div><span style="font-size:14px; color:var(--text);">Selma</span><span style="font-size:12px; color:var(--muted);"> — 2014 · timing estratégico</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">12</span><div><span style="font-size:14px; color:var(--text);">Bridge of Spies</span><span style="font-size:12px; color:var(--muted);"> — 2015 · prudencia y principios</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">13</span><div><span style="font-size:14px; color:var(--text);">Chef</span><span style="font-size:12px; color:var(--muted);"> — 2014 · riesgo prudente y reinvención</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">14</span><div><span style="font-size:14px; color:var(--text);">A Few Good Men</span><span style="font-size:12px; color:var(--muted);"> — 1992 · dilemas morales institucionales</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">15</span><div><span style="font-size:14px; color:var(--text);">Arrival</span><span style="font-size:12px; color:var(--muted);"> — 2016 · prudencia ante lo desconocido</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">16</span><div><span style="font-size:14px; color:var(--text);">The Crown S1-2</span><span style="font-size:12px; color:var(--muted);"> — Netflix · juicio político y personal</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">17</span><div><span style="font-size:14px; color:var(--text);">Chernobyl</span><span style="font-size:12px; color:var(--muted);"> — HBO 2019 · consecuencias de la imprudencia</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">18</span><div><span style="font-size:14px; color:var(--text);">WarGames</span><span style="font-size:12px; color:var(--muted);"> — 1983 · la lógica de la decisión y sus límites</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">19</span><div><span style="font-size:14px; color:var(--text);">El discurso del rey</span><span style="font-size:12px; color:var(--muted);"> — 2010 · superar los límites propios</span></div></div></div>
+<div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 15 películas más · Acceso completo al unirte →</div></div>
           </div>
         </div>
       </div>
@@ -4317,7 +4220,7 @@
         <p style="font-size:13px; color:var(--muted); margin-bottom:48px;">— Aristomas · Día 21 · Ciclo Prudencia</p>
         <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;">
           <input type="email" class="cta-input" placeholder="tu@email.com" style="min-width:240px;" />
-          <button class="btn btn-primary btn-lg">Únete a los 50 pioneros</button>
+          <button class="btn btn-primary btn-lg">50 pioneros.<br/>Beta exclusiva. Únete</button>
         </div>
         <p style="font-size:12px; color:var(--muted);">Acceso exclusivo · Septiembre 2026 · Sin compromiso</p>
       </div>
@@ -4333,8 +4236,8 @@
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
-      <div class="pac-nav-title"><span>Ciclo 05</span> · Generosidad · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeGenerosidad()">Únete a los 50 pioneros</a>
+      <div class="pac-nav-title">Generosidad · 21 días</div>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeGenerosidad()">Quiero probar</a>
     </div>
 
     <div class="pac-hero">
@@ -4410,7 +4313,7 @@
           
           <div class="block-card expanded" id="gblock1">
             <div class="block-header" onclick="toggleBlock('gblock1')">
-              <div class="block-num">BLOQUE 01</div>
+              <div class="block-num">Semana 1</div>
               <div class="block-header-content"><h3>Libertad</h3><p>La generosidad nace de la libertad interior. Mentalidad de abundancia.</p></div>
               <div class="block-days-badge">Días 1–5</div>
               <div class="block-toggle">▾</div>
@@ -4432,16 +4335,14 @@
                   <div class="day-title">La relación con el dinero</div>
                   <div class="day-author">Francis Bacon · El dinero: buen sirviente, pésimo amo</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 4</div>
-                  <div class="day-title">El desapego como condición de la generosidad</div>
-                  <div class="day-author">Thoreau · Lo que posees te posee</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 5 ✦</div>
-                  <div class="day-title">¿Esperamos algo a cambio?</div>
-                  <div class="day-author">Rodaje exterior: mercado · La diferencia entre regalo y transacción</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Corazón del Bloque 1</div>
@@ -4451,7 +4352,7 @@
           </div>
           <div class="block-card" id="gblock2">
             <div class="block-header" onclick="toggleBlock('gblock2')">
-              <div class="block-num">BLOQUE 02</div>
+              <div class="block-num">Semana 2</div>
               <div class="block-header-content"><h3>Abundancia</h3><p>Las múltiples formas de dar: tiempo, saber, reconocimiento, presencia.</p></div>
               <div class="block-days-badge">Días 6–11</div>
               <div class="block-toggle">▾</div>
@@ -4473,21 +4374,14 @@
                   <div class="day-title">Generosidad de reconocimiento</div>
                   <div class="day-author">Napoleón · Las personas mueren por un reconocimiento</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 9</div>
-                  <div class="day-title">Generosidad emocional: estar para el otro</div>
-                  <div class="day-author">Eckhart Tolle · El mayor regalo es tu presencia</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 10</div>
-                  <div class="day-title">Generosidad de oportunidad</div>
-                  <div class="day-author">Peter Drucker · El éxito sin sucesor es un fracaso</div>
-                </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 11 ✦</div>
-                  <div class="day-title">Los límites de la generosidad</div>
-                  <div class="day-author">Rodaje exterior: plaza · No puedes dar desde un recipiente vacío</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Corazón del Bloque 2</div>
@@ -4497,7 +4391,7 @@
           </div>
           <div class="block-card" id="gblock3">
             <div class="block-header" onclick="toggleBlock('gblock3')">
-              <div class="block-num">BLOQUE 03</div>
+              <div class="block-num">Semana 3</div>
               <div class="block-header-content"><h3>Relación</h3><p>La generosidad en familia, trabajo, conflicto y contigo mismo.</p></div>
               <div class="block-days-badge">Días 12–16</div>
               <div class="block-toggle">▾</div>
@@ -4519,16 +4413,14 @@
                   <div class="day-title">Generosidad con quienes nos han fallado</div>
                   <div class="day-author">Paul Boese · El perdón amplía el futuro</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 15</div>
-                  <div class="day-title">Generosidad en el trabajo</div>
-                  <div class="day-author">San Martín de Porres · El voluntario invisible</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 16 ✦</div>
-                  <div class="day-title">Generosidad hacia uno mismo</div>
-                  <div class="day-author">Rodaje exterior: ciudad · La auto-compasión sana</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Corazón del Bloque 3</div>
@@ -4538,7 +4430,7 @@
           </div>
           <div class="block-card" id="gblock4">
             <div class="block-header" onclick="toggleBlock('gblock4')">
-              <div class="block-num">BLOQUE 04</div>
+              <div class="block-num">Semana 4</div>
               <div class="block-header-content"><h3>Integración</h3><p>La generosidad como vocación: sistematizada, legada, comunitaria.</p></div>
               <div class="block-days-badge">Días 17–21</div>
               <div class="block-toggle">▾</div>
@@ -4560,16 +4452,14 @@
                   <div class="day-title">Generosidad y legado</div>
                   <div class="day-author">Indira Gandhi · La mejor herencia no es dinero, es un ejemplo</div>
                 </div>
-                <div class="day-item">
-                  <div class="day-num">Día 20</div>
-                  <div class="day-title">La comunidad como expresión máxima</div>
-                  <div class="day-author">Proverbio africano · Se necesita un pueblo entero</div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
                 </div>
-                <div class="day-item" style="border-color:rgba(200,164,90,0.3); background:var(--gold-glow);">
-                  <div class="day-num" style="color:var(--gold);">Día 21 ✦</div>
-                  <div class="day-title">El que da, recibe</div>
-                  <div class="day-author">Rodaje exterior: amanecer · La paradoja final de la generosidad</div>
-                </div></div>
+              </div>
               
               <div class="block-termometro">
                 <div class="block-termometro-label">Corazón del Bloque 4</div>
@@ -4702,24 +4592,7 @@
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">Suma Teológica</span><span style="font-size:12px; color:var(--muted);"> — Tomás de Aquino (II-II, qq. 117-120)</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">La auténtica felicidad</span><span style="font-size:12px; color:var(--muted);"> — Martin Seligman</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">Give and Take</span><span style="font-size:12px; color:var(--muted);"> — Adam Grant</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">05</span><div><span style="font-size:14px; color:var(--text);">Originals</span><span style="font-size:12px; color:var(--muted);"> — Adam Grant</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">06</span><div><span style="font-size:14px; color:var(--text);">Los dones de la imperfección</span><span style="font-size:12px; color:var(--muted);"> — Brené Brown</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">07</span><div><span style="font-size:14px; color:var(--text);">El hombre en busca de sentido</span><span style="font-size:12px; color:var(--muted);"> — Viktor Frankl</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">08</span><div><span style="font-size:14px; color:var(--text);">Los cuatro amores</span><span style="font-size:12px; color:var(--muted);"> — C.S. Lewis</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">09</span><div><span style="font-size:14px; color:var(--text);">The Life You Can Save</span><span style="font-size:12px; color:var(--muted);"> — Peter Singer</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">10</span><div><span style="font-size:14px; color:var(--text);">El profeta</span><span style="font-size:12px; color:var(--muted);"> — Khalil Gibrán</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">11</span><div><span style="font-size:14px; color:var(--text);">Bowling Alone</span><span style="font-size:12px; color:var(--muted);"> — Robert Putnam</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">12</span><div><span style="font-size:14px; color:var(--text);">El regreso del hijo pródigo</span><span style="font-size:12px; color:var(--muted);"> — Henri Nouwen</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">13</span><div><span style="font-size:14px; color:var(--text);">No Greater Love</span><span style="font-size:12px; color:var(--muted);"> — Madre Teresa</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">14</span><div><span style="font-size:14px; color:var(--text);">La herida del otro</span><span style="font-size:12px; color:var(--muted);"> — Luigino Bruni</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">15</span><div><span style="font-size:14px; color:var(--text);">Drive</span><span style="font-size:12px; color:var(--muted);"> — Daniel Pink</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">16</span><div><span style="font-size:14px; color:var(--text);">Los ángeles que llevamos dentro</span><span style="font-size:12px; color:var(--muted);"> — Steven Pinker</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">17</span><div><span style="font-size:14px; color:var(--text);">La hipótesis de la felicidad</span><span style="font-size:12px; color:var(--muted);"> — Jonathan Haidt</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">18</span><div><span style="font-size:14px; color:var(--text);">Influence</span><span style="font-size:12px; color:var(--muted);"> — Robert Cialdini</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">19</span><div><span style="font-size:14px; color:var(--text);">Tao Te Ching</span><span style="font-size:12px; color:var(--muted);"> — Laozi</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">20</span><div><span style="font-size:14px; color:var(--text);">Ortodoxia</span><span style="font-size:12px; color:var(--muted);"> — G.K. Chesterton</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">21</span><div><span style="font-size:14px; color:var(--text);">El señor de los anillos</span><span style="font-size:12px; color:var(--muted);"> — J.R.R. Tolkien</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">22</span><div><span style="font-size:14px; color:var(--text);">Meditaciones</span><span style="font-size:12px; color:var(--muted);"> — Marco Aurelio</span></div></div></div>
+<div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 18 libros más · Acceso completo al unirte →</div></div>
           </div>
           <div>
             <div style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:24px;">🎬 Películas de referencia</div>
@@ -4727,21 +4600,7 @@
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">La lista de Schindler</span><span style="font-size:12px; color:var(--muted);"> — 1993 · generosidad heroica ante la injusticia</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">It's a Wonderful Life</span><span style="font-size:12px; color:var(--muted);"> — 1946 · el impacto invisible de la generosidad</span></div></div>
 <div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">The Blind Side</span><span style="font-size:12px; color:var(--muted);"> — 2009 · generosidad que transforma vidas</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">05</span><div><span style="font-size:14px; color:var(--text);">Gandhi</span><span style="font-size:12px; color:var(--muted);"> — 1982 · generosidad de causa y sacrificio</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">06</span><div><span style="font-size:14px; color:var(--text);">Patch Adams</span><span style="font-size:12px; color:var(--muted);"> — 1998 · generosidad de presencia y alegría</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">07</span><div><span style="font-size:14px; color:var(--text);">Hotel Rwanda</span><span style="font-size:12px; color:var(--muted);"> — 2004 · generosidad extrema bajo presión</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">08</span><div><span style="font-size:14px; color:var(--text);">The Pursuit of Happyness</span><span style="font-size:12px; color:var(--muted);"> — 2006 · generosidad intergeneracional</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">09</span><div><span style="font-size:14px; color:var(--text);">Wonder</span><span style="font-size:12px; color:var(--muted);"> — 2017 · generosidad con quien es diferente</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">10</span><div><span style="font-size:14px; color:var(--text);">Les Misérables</span><span style="font-size:12px; color:var(--muted);"> — 2012 · el perdón como generosidad extrema</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">11</span><div><span style="font-size:14px; color:var(--text);">Chef</span><span style="font-size:12px; color:var(--muted);"> — 2014 · generosidad de conocimiento y alegría</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">12</span><div><span style="font-size:14px; color:var(--text);">Philadelphia</span><span style="font-size:12px; color:var(--muted);"> — 1993 · generosidad ante el estigma</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">13</span><div><span style="font-size:14px; color:var(--text);">About Schmidt</span><span style="font-size:12px; color:var(--muted);"> — 2002 · el descubrimiento tardío de la generosidad</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">14</span><div><span style="font-size:14px; color:var(--text);">Hachi</span><span style="font-size:12px; color:var(--muted);"> — 2009 · lealtad y generosidad incondicional</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">15</span><div><span style="font-size:14px; color:var(--text);">Selma</span><span style="font-size:12px; color:var(--muted);"> — 2014 · servicio sin necesidad de protagonismo</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">16</span><div><span style="font-size:14px; color:var(--text);">Free Solo</span><span style="font-size:12px; color:var(--muted);"> — 2018 · generosidad de inspirar a otros</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">17</span><div><span style="font-size:14px; color:var(--text);">Coco</span><span style="font-size:12px; color:var(--muted);"> — Pixar 2017 · generosidad de memoria y legado</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">18</span><div><span style="font-size:14px; color:var(--text);">Sister Act</span><span style="font-size:12px; color:var(--muted);"> — 1992 · generosidad de talentos en comunidad</span></div></div>
-<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">19</span><div><span style="font-size:14px; color:var(--text);">The Secret Garden</span><span style="font-size:12px; color:var(--muted);"> — 1993 · generosidad que sana</span></div></div></div>
+<div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 15 películas más · Acceso completo al unirte →</div></div>
           </div>
         </div>
       </div>
@@ -4759,7 +4618,7 @@
         <p style="font-size:13px; color:var(--muted); margin-bottom:48px;">— Aristomas · Día 21 · Ciclo Generosidad</p>
         <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;">
           <input type="email" class="cta-input" placeholder="tu@email.com" style="min-width:240px;" />
-          <button class="btn btn-primary btn-lg">Únete a los 50 pioneros</button>
+          <button class="btn btn-primary btn-lg">50 pioneros.<br/>Beta exclusiva. Únete</button>
         </div>
         <p style="font-size:12px; color:var(--muted);">Acceso exclusivo · Septiembre 2026 · Sin compromiso</p>
       </div>
@@ -4767,6 +4626,363 @@
 
   </div>
   <!-- FIN GENEROSIDAD PAGE -->
+
+
+  <!-- ═══════════════ ESPERANZA PAGE ═══════════════ -->
+  <div id="esperanza-page">
+
+    <div class="pac-nav">
+      <button class="pac-back" onclick="closeEsperanza()">
+        <span class="pac-back-arrow">←</span>
+        Volver
+      </button>
+      <div class="pac-nav-title">Esperanza · 21 días</div>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeEsperanza()">Quiero probar</a>
+    </div>
+
+    <div class="pac-hero">
+      <div class="pac-hero-glow"></div>
+      <div class="hero-grid"></div>
+      <div class="pac-hero-inner">
+        <div class="pac-ciclo-label">
+          <span>CICLO 06</span>
+          <div class="pac-ciclo-div"></div>
+          <span>ESPERANZA</span>
+          <div class="pac-ciclo-div"></div>
+          <span style="color:var(--muted);">Beta · Sep 2026</span>
+        </div>
+        <h1 class="pac-headline serif">
+          La esperanza no es optimismo ingenuo.<br/>
+          <em>Es certeza activa.</em><br/>
+          El bien vale la pena aunque tarde en llegar.
+        </h1>
+        <p class="pac-sub">21 días. 4 bloques. 9 minutos al día. De la espera pasiva a la confianza activa: entrena la virtud que sostiene el carácter cuando todo habla en contra.</p>
+        <div class="pac-stats">
+          <div class="pac-stat"><span class="pac-stat-num serif">21</span><div class="pac-stat-label">Días</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">4</span><div class="pac-stat-label">Bloques</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">3</span><div class="pac-stat-label">Momentos al día</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">22</span><div class="pac-stat-label">Libros de referencia</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">19</span><div class="pac-stat-label">Películas</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">9</span><div class="pac-stat-label">Dimensiones</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section">
+      <div class="container">
+        <div class="section-label">Estructura diaria</div>
+        <h2 class="section-title">Tres momentos.<br/>Nueve minutos.</h2>
+        <p class="section-desc">Cada día del ciclo sigue el mismo ritmo: un vídeo breve por la mañana, una notificación de mediodía, y tres preguntas para cerrar el día.</p>
+        <div class="daily-format">
+          <div class="daily-card morning">
+            <span class="daily-icon">🌅</span>
+            <div class="daily-time">Mañana</div>
+            <h3>Vídeo matinal</h3>
+            <p>El Manager de la Virtud abre el día con un concepto, una idea filosófica y el reto concreto. Grabado en localizaciones reales.</p>
+            <span class="daily-duration">50–60 segundos</span>
+          </div>
+          <div class="daily-card midday">
+            <span class="daily-icon">☀️</span>
+            <div class="daily-time">Mediodía</div>
+            <h3>Notificación + mini reto</h3>
+            <p>Una pregunta o micro-acción que conecta lo aprendido con lo que está pasando en tu día real. Directa al cuerpo, no solo a la mente.</p>
+            <span class="daily-duration">30 segundos de atención</span>
+          </div>
+          <div class="daily-card night">
+            <span class="daily-icon">🌙</span>
+            <div class="daily-time">Cierre</div>
+            <h3>Reflexión nocturna</h3>
+            <p>Tres preguntas de reflexión profunda + el indicador del día: registra tu progreso en el ciclo.</p>
+            <span class="daily-duration">5 minutos de escritura</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section pac-section-alt">
+      <div class="container">
+        <div class="section-label">Los 4 bloques</div>
+        <h2 class="section-title">Del deseo al horizonte.<br/><em class="serif" style="font-style:italic; color:var(--gold)">Una semana a la vez.</em></h2>
+        <p class="section-desc" style="margin-bottom:48px;">Cada bloque trabaja una dimensión de la esperanza: primero comprenderla filosóficamente, luego cultivar sus raíces, luego probarla en la dificultad real, y finalmente integrarla como disposición permanente.</p>
+        <div class="blocks-timeline">
+
+          <div class="block-card expanded" id="eblock1">
+            <div class="block-header" onclick="toggleBlock('eblock1')">
+              <div class="block-num">Semana 1</div>
+              <div class="block-header-content"><h3>Conocer</h3><p>¿Qué es la esperanza? Sus raíces filosóficas y su diferencia con el optimismo.</p></div>
+              <div class="block-days-badge">Días 1–7</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 1</div>
+                  <div class="day-title">¿Qué es la esperanza?</div>
+                  <div class="day-author">Aristóteles · La esperanza como apetito del bien futuro posible y arduo</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 2</div>
+                  <div class="day-title">Esperar vs. desear: la distinción clave</div>
+                  <div class="day-author">Tomás de Aquino · Spes vs. desiderium — el arduo que hace posible el esfuerzo</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 3</div>
+                  <div class="day-title">Esperanza activa vs. resignación pasiva</div>
+                  <div class="day-author">Gabriel Marcel · La esperanza como acto de resistencia interior</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
+                </div>
+              </div>
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 1</div>
+                <div class="termometro-track">
+                  <div class="termo-step active"><div class="termo-dot">❓</div><div class="termo-word">Confusión</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🔍</div><div class="termo-word">Distinción</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🌱</div><div class="termo-word">Raíz</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🌅</div><div class="termo-word">Horizonte</div></div>
+                  <div class="termo-step active"><div class="termo-dot">✨</div><div class="termo-word">Certeza</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block-card" id="eblock2">
+            <div class="block-header" onclick="toggleBlock('eblock2')">
+              <div class="block-num">Semana 2</div>
+              <div class="block-header-content"><h3>Cultivar</h3><p>Las raíces que sostienen la esperanza: memoria, belleza, gratitud, relación.</p></div>
+              <div class="block-days-badge">Días 8–14</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 8</div>
+                  <div class="day-title">Esperanza y sufrimiento: el sentido sostiene</div>
+                  <div class="day-author">Viktor Frankl · El hombre que encontró sentido en el campo de concentración</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 9</div>
+                  <div class="day-title">La oscuridad como maestra</div>
+                  <div class="day-author">Rebecca Solnit · La esperanza en la oscuridad — aprender a ver sin luz</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 10</div>
+                  <div class="day-title">La espera como práctica activa</div>
+                  <div class="day-author">Simone Weil · Atención y espera — el arte de estar disponible</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
+                </div>
+              </div>
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 2</div>
+                <div class="termometro-track">
+                  <div class="termo-step active"><div class="termo-dot">💔</div><div class="termo-word">Dolor</div></div>
+                  <div class="termo-step active"><div class="termo-dot">👁️</div><div class="termo-word">Atención</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🌺</div><div class="termo-word">Belleza</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🕯️</div><div class="termo-word">Sentido</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🌊</div><div class="termo-word">Raíz</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block-card" id="eblock3">
+            <div class="block-header" onclick="toggleBlock('eblock3')">
+              <div class="block-num">Semana 3</div>
+              <div class="block-header-content"><h3>Integrar</h3><p>La esperanza como disposición permanente: legado, vocación, segunda naturaleza.</p></div>
+              <div class="block-days-badge">Días 15–21</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 15</div>
+                  <div class="day-title">Gratitud anticipada: dar gracias por lo que aún no es</div>
+                  <div class="day-author">Dante · In medias res del bien — la visión como motor</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 16</div>
+                  <div class="day-title">La apuesta por el bien</div>
+                  <div class="day-author">Blaise Pascal · La apuesta — el coste de no esperar</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 17</div>
+                  <div class="day-title">La esperanza que no decepciona</div>
+                  <div class="day-author">Pablo de Tarso · La caridad derramada en el corazón sostiene lo que la razón no alcanza</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); padding:18px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
+                    <div style="font-size:13px; color:var(--muted);">Días 4–7 · Solo disponible para pioneros</div>
+                  </div>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero probar</a>
+                </div>
+              </div>
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 3</div>
+                <div class="termometro-track">
+                  <div class="termo-step active"><div class="termo-dot">🎯</div><div class="termo-word">Horizonte</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🗓️</div><div class="termo-word">Legado</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🕊️</div><div class="termo-word">Confianza</div></div>
+                  <div class="termo-step active"><div class="termo-dot">🌳</div><div class="termo-word">Arraigo</div></div>
+                  <div class="termo-step active"><div class="termo-dot">⭐</div><div class="termo-word">Naturaleza</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="block-card" id="eblock4">
+            <div class="block-header" onclick="toggleBlock('eblock4')">
+              <div class="block-num">Demo · Día 1</div>
+              <div class="block-header-content"><h3>Demo completa</h3><p>Así es el Día 1 del ciclo: experiencia completa del método.</p></div>
+              <div class="block-days-badge">Día 1 completo</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div style="display:grid; gap:20px;">
+                <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:28px;">
+                  <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">🌅 Mañana · Vídeo del Manager</div>
+                  <div style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:8px;">"¿Qué es la esperanza?"</div>
+                  <p style="font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:16px;">Aristóteles la llamó <em>la apetencia del bien futuro posible y arduo</em>. No es cualquier deseo — es el que apunta a algo que exige esfuerzo para lograrse. Si es fácil, no necesitas esperanza: necesitas acción. Si es imposible, tampoco: necesitas aceptación. La esperanza vive en ese espacio tenso entre el deseo y el esfuerzo.</p>
+                  <div style="background:var(--gold-glow); border:1px solid rgba(200,164,90,0.2); border-radius:var(--radius-sm); padding:16px;">
+                    <div style="font-size:12px; font-weight:700; color:var(--gold); margin-bottom:8px;">Reto del día 1</div>
+                    <p style="font-size:13px; color:var(--text); margin:0; line-height:1.6;">Escribe una cosa que esperas — no deseas, esperas — en los próximos seis meses. Define por qué es ardua pero posible. Eso es el territorio de la esperanza.</p>
+                  </div>
+                </div>
+                <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:28px;">
+                  <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">☀️ Mediodía · Notificación</div>
+                  <div style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:8px;">"¿Qué es lo que más temes que no llegue?"</div>
+                  <p style="font-size:14px; color:var(--muted); line-height:1.7;">La esperanza tiene un reverso: el miedo a que no llegue lo que esperas. Identifica ese miedo. No para eliminarlo, sino para ver qué nos dice sobre lo que más valoramos.</p>
+                </div>
+                <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:28px;">
+                  <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">🌙 Noche · Reflexión</div>
+                  <div style="font-size:15px; font-weight:600; color:var(--text); margin-bottom:12px;">Tres preguntas para cerrar el día</div>
+                  <div style="display:flex; flex-direction:column; gap:10px;">
+                    <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:14px; font-size:14px; color:var(--text);">01 &nbsp;·&nbsp; ¿Hubo algún momento hoy en que esperé activamente en lugar de resignarme?</div>
+                    <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:14px; font-size:14px; color:var(--text);">02 &nbsp;·&nbsp; ¿Qué me costó esperar hoy? ¿Qué reveló eso sobre mí?</div>
+                    <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:14px; font-size:14px; color:var(--text);">03 &nbsp;·&nbsp; En una palabra: ¿cómo describirías tu relación con la esperanza hoy?</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section">
+      <div class="container">
+        <div class="section-label">Las 9 dimensiones</div>
+        <h2 class="section-title">La esperanza tiene<br/>muchas caras.</h2>
+        <p class="section-desc" style="margin-bottom:48px;">El ciclo trabaja la esperanza desde nueve ángulos distintos, cada uno revelando una faceta que la vida cotidiana pone a prueba.</p>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🎯</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Confianza activa</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Esperar no como pasividad sino como orientación decidida hacia el bien.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🌅</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Orientación al futuro</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Vivir desde el horizonte, no desde las circunstancias del momento.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">💪</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Resiliencia esperanzada</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">La capacidad de recuperarse sin perder la orientación hacia el bien.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🙏</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Gratitud anticipada</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Dar gracias por lo que aún no es: la gratitud como acto de fe en el bien futuro.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🕯️</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Perseverancia luminosa</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Seguir cuando todo habla en contra, sin volverse amargo ni cínico.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">👁️</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Visión del bien</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">La capacidad de ver el bien posible donde otros solo ven dificultad.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🤝</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Confianza interpersonal</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Esperar lo mejor de los demás: la esperanza como base de la relación.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">⭐</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Esperanza trascendente</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">El horizonte que supera lo inminente: la esperanza que no depende del resultado visible.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:24px; margin-bottom:12px;">🎨</div>
+            <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px;">Creatividad esperanzada</div>
+            <div style="font-size:13px; color:var(--muted); line-height:1.6;">Crear como acto de esperanza: imaginar y construir lo que aún no existe.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section pac-section-alt">
+      <div class="container">
+        <div class="section-label">Bibliografía del ciclo</div>
+        <h2 class="section-title">22 libros.<br/>19 películas.</h2>
+        <p class="section-desc" style="margin-bottom:40px;">El ciclo de Esperanza bebe de la mejor tradición filosófica, literaria y cinematográfica sobre la esperanza como virtud humana real.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+          <div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">📚 Libros de referencia</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--muted);">
+              <div>Aristóteles · <em>Ética a Nicómaco</em></div>
+              <div>Tomás de Aquino · <em>Suma Teológica</em> (II-II, qq. 17-22)</div>
+              <div>Gabriel Marcel · <em>Homo Viator</em></div>
+              <div>Jürgen Moltmann · <em>Teología de la Esperanza</em></div>
+              <div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 18 libros más · Acceso completo al unirte →</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">🎬 Películas de referencia</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--muted);">
+              <div><em>Cadena perpetua</em> (Darabont, 1994)</div>
+              <div><em>La vida es bella</em> (Benigni, 1997)</div>
+              <div><em>El viaje de Chihiro</em> (Miyazaki, 2001)</div>
+              <div><em>Las invasiones bárbaras</em> (Arcand, 2003)</div>
+              <div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 15 películas más · Acceso completo al unirte →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section" style="text-align:center;">
+      <div class="container" style="max-width:700px; margin:0 auto;">
+        <div class="section-label">El final del ciclo</div>
+        <h2 class="section-title serif" style="font-style:italic; margin-bottom:32px;">"La esperanza no es la convicción de que algo saldrá bien,<br/>sino la certeza de que algo tiene sentido,<br/>independientemente de cómo salga."</h2>
+        <div style="font-size:13px; color:var(--gold); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:48px;">— Václav Havel · Día 21</div>
+        <button class="btn btn-primary btn-lg" onclick="closeEsperanza(); setTimeout(()=>{ document.getElementById('cta').scrollIntoView({behavior:'smooth'}); }, 400);">50 pioneros.<br/>Beta exclusiva. Únete</button>
+        <p style="font-size:12px; color:var(--muted); margin-top:16px;">Acceso exclusivo · Septiembre 2026 · Sin compromiso</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- FIN ESPERANZA PAGE -->
 
 
   <script>
@@ -4850,6 +5066,19 @@
       document.getElementById('generosidad-page').classList.remove('open');
       document.body.style.overflow = '';
     }
+
+    // Esperanza page
+    function openEsperanza() {
+      const page = document.getElementById('esperanza-page');
+      page.classList.add('open');
+      page.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeEsperanza() {
+      document.getElementById('esperanza-page').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
     // Contact form submit
     function submitContact(e) {
       e.preventDefault();
