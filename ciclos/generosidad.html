@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciclo 05 · Generosidad — ARISTOMAS®</title>
+  <meta name="description" content="Entrena la virtud en 21 días. 9 minutos al día. Método filosófico para managers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #08080F;
+      --surface:  #10101A;
+      --card:     #16161F;
+      --border:   rgba(255,255,255,0.07);
+      --gold:     #C8A45A;
+      --gold-dim: rgba(200,164,90,0.18);
+      --gold-glow:rgba(200,164,90,0.08);
+      --text:     #EDE8DF;
+      --muted:    #6B6B7E;
+      --subtle:   #2A2A38;
+      --radius:   16px;
+      --radius-sm:10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--subtle); border-radius: 4px; }
+
+    /* ─── UTILITIES ─── */
+    .serif { font-family: 'Playfair Display', serif; }
+    .gold  { color: var(--gold); }
+    .muted { color: var(--muted); }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.25);
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    .tag::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,8,15,0.85);
+      transition: all 0.3s ease;
+    }
+
+    .nav-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+    .nav-logo:hover { opacity: 1; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #08080F;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: #D9B56A;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(200,164,90,0.35);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn-lg {
+      padding: 16px 34px;
+      font-size: 15px;
+      border-radius: 100px;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 32px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse, rgba(200,164,90,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+    }
+
+    .hero-inner .tag { margin-bottom: 36px; }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(46px, 7vw, 80px);
+      font-weight: 500;
+      line-height: 1.07;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 14px;
+      line-height: 1.65;
+    }
+
+    .hero-origin {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 44px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-origin span {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 72px;
+    }
+
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat-item {
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+    }
+
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .hero-stat-div {
+      width: 1px;
+      height: 40px;
+      background: var(--border);
+    }
+
+    /* ─── SECTIONS COMMON ─── */
+    section { padding: 120px 0; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    .section-header { margin-bottom: 64px; }
+
+    /* ─── CONCEPT STRIP ─── */
+    #concept {
+      padding: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .concept-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      divide-x: 1px solid var(--border);
+    }
+
+    .concept-item {
+      padding: 48px 40px;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .concept-item:last-child { border-right: none; }
+    .concept-item:hover { background: rgba(200,164,90,0.04); }
+
+    .concept-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: block;
+      opacity: 0.8;
+    }
+
+    .concept-item h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .concept-item p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── PHILOSOPHY ─── */
+    #philosophy {
+      background: var(--bg);
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .philosophy-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .philosophy-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.6;
+    }
+
+    .philosophy-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 24px;
+    }
+
+    .philosophy-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .philosophy-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .philosophy-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .philosophy-quote-attr {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── METHOD ─── */
+    #metodo {
+      background: var(--surface);
+    }
+
+    .method-phases {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .method-phases::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 60px;
+      bottom: 60px;
+      width: 1px;
+      background: linear-gradient(var(--border), var(--gold-dim), var(--border));
+    }
+
+    .method-phase {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: default;
+      transition: all 0.25s;
+    }
+    .method-phase:last-child { border-bottom: none; }
+    .method-phase:hover .phase-num { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+
+    .phase-num {
+      min-width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      transition: all 0.25s;
+    }
+
+    .phase-content { flex: 1; padding-top: 12px; }
+
+    .phase-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .phase-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .phase-content p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    .phase-days {
+      min-width: 100px;
+      text-align: right;
+      padding-top: 14px;
+    }
+
+    .phase-days span {
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── VIRTUES ─── */
+    #virtudes {
+      background: var(--bg);
+    }
+
+    /* Virtue strip pills — scalable to 50+ */
+    .vcpill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 12px; font-weight: 600; white-space: nowrap;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--muted); transition: all 0.2s;
+      text-decoration: none; cursor: default; flex-shrink: 0;
+    }
+    .vcpill::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor; flex-shrink: 0;
+    }
+    .vcpill.available {
+      border-color: rgba(200,164,90,0.35); color: var(--gold); cursor: pointer;
+    }
+    .vcpill.available:hover { background: rgba(200,164,90,0.1); }
+    .vcpill-strip {
+      display: flex; gap: 8px; overflow-x: auto; flex: 1;
+      padding-bottom: 2px; scrollbar-width: none;
+    }
+    .vcpill-strip::-webkit-scrollbar { display: none; }
+
+    .virtues-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 64px;
+    }
+
+    .virtue-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      cursor: default;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .virtue-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold-glow), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .virtue-card:hover {
+      border-color: rgba(200,164,90,0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .virtue-card:hover::after { opacity: 1; }
+
+    .virtue-card.available .virtue-status { color: var(--gold); }
+    .virtue-card.soon .virtue-status { color: var(--muted); }
+
+    .virtue-card.featured {
+      background: linear-gradient(145deg, #1C1A10, #16161F);
+      border-color: rgba(200,164,90,0.5);
+      box-shadow: 0 0 40px rgba(200,164,90,0.1), inset 0 1px 0 rgba(200,164,90,0.2);
+    }
+
+    .virtue-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .virtue-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #08080F;
+      background: var(--gold);
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .virtue-card.featured .virtue-name { font-size: 22px; }
+
+    .virtue-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      padding: 10px 18px;
+      background: var(--gold);
+      color: #08080F;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .virtue-cta-btn:hover {
+      background: #D9B56A;
+      transform: translateY(-1px);
+    }
+
+    .virtue-emoji {
+      font-size: 28px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .virtue-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .virtue-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .virtue-status {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .virtue-card:nth-child(5) {
+      grid-column: span 2;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    /* ─── FOR WHOM ─── */
+    #para-quien {
+      background: var(--surface);
+    }
+
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .persona-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: all 0.3s;
+    }
+    .persona-card:hover {
+      border-color: rgba(200,164,90,0.25);
+      transform: translateY(-2px);
+    }
+
+    .persona-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dim), var(--subtle));
+      border: 1px solid rgba(200,164,90,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .persona-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .persona-age {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .persona-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .persona-virtue {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .persona-virtue strong { color: var(--gold); font-weight: 500; }
+
+    /* ─── DIFFERENTIATORS ─── */
+    #diferencias {
+      background: var(--bg);
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .diff-table {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .diff-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      padding: 0;
+    }
+
+    .diff-row.header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .diff-cell {
+      padding: 16px 20px;
+      font-size: 13px;
+      border-right: 1px solid var(--border);
+    }
+    .diff-cell:last-child { border-right: none; }
+
+    .diff-row.header .diff-cell {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .diff-row:not(.header) { border-bottom: 1px solid var(--border); }
+    .diff-row:not(.header):last-child { border-bottom: none; }
+
+    .diff-row:not(.header) .diff-cell:first-child { color: var(--text); font-weight: 500; }
+    .diff-row:not(.header) .diff-cell:not(:first-child) { color: var(--muted); font-size: 13px; }
+
+    .check { color: #4ADE80; }
+    .cross { color: #F87171; }
+    .partial { color: #FB923C; }
+
+    /* ─── CTA SECTION ─── */
+    #cta {
+      background: var(--surface);
+      text-align: center;
+      padding: 140px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(200,164,90,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .cta-inner .section-title { margin-bottom: 16px; }
+    .cta-inner .section-desc { margin: 0 auto 44px; max-width: 460px; }
+
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .cta-input {
+      padding: 14px 20px;
+      border-radius: 100px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      min-width: 260px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .cta-input:focus { border-color: rgba(200,164,90,0.5); }
+    .cta-input::placeholder { color: var(--muted); }
+
+    .cta-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ─── CONTACT ─── */
+    #contacto {
+      background: var(--bg);
+      padding: 120px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .contact-info-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: var(--radius-sm);
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .contact-info-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .contact-info-value {
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .contact-form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.5;
+    }
+
+    .contact-field {
+      margin-bottom: 20px;
+    }
+
+    .contact-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .contact-field input,
+    .contact-field select,
+    .contact-field textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .contact-field input:focus,
+    .contact-field select:focus,
+    .contact-field textarea:focus {
+      border-color: rgba(200,164,90,0.5);
+    }
+
+    .contact-field input::placeholder,
+    .contact-field textarea::placeholder {
+      color: var(--muted);
+    }
+
+    .contact-field select option {
+      background: var(--card);
+      color: var(--text);
+    }
+
+    .contact-field textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+
+    .contact-submit {
+      width: 100%;
+      padding: 16px;
+      font-size: 15px;
+      margin-top: 8px;
+    }
+
+    .contact-success {
+      display: none;
+      text-align: center;
+      padding: 32px 0;
+    }
+
+    .contact-success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto 20px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .contact-form-card { padding: 32px 24px; }
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand .nav-logo { font-size: 20px; display: block; margin-bottom: 14px; text-decoration: none; }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--text); }
+
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .container { padding: 0 20px; }
+      section { padding: 80px 0; }
+
+      .concept-strip { grid-template-columns: 1fr; }
+      .concept-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .concept-item:last-child { border-bottom: none; }
+
+      /* virtue-strip: scalable pills, no overrides needed */
+
+      .philosophy-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .virtues-grid { grid-template-columns: 1fr 1fr; }
+      .virtue-card:nth-child(5) { grid-column: span 2; flex-direction: column; gap: 0; }
+
+      .personas-grid { grid-template-columns: 1fr; }
+      #para-quien [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      #diferencias [style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+      #diferencias [style*="grid-template-columns:repeat(2"] { grid-template-columns: 1fr !important; }
+
+      .diff-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .method-phase { flex-wrap: wrap; }
+      .phase-days { min-width: auto; text-align: left; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+    }
+
+    
+
+
+
+    .pac-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(8,8,15,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .pac-back {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color 0.2s;
+    }
+    .pac-back:hover { color: var(--text); }
+    .pac-back-arrow { font-size: 18px; }
+    .pac-nav-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .pac-nav-title span { color: var(--gold); }
+
+    /* HERO */
+    .pac-hero {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 32px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pac-hero-glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-55%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(200,164,90,0.14) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .pac-hero-inner { position: relative; z-index: 1; max-width: 780px; }
+    .pac-ciclo-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .pac-ciclo-label span { color: var(--gold); }
+    .pac-ciclo-div { width: 1px; height: 12px; background: var(--border); }
+    .pac-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 500;
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .pac-headline em { font-style: italic; color: var(--gold); }
+    .pac-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      line-height: 1.65;
+    }
+    .pac-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 36px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .pac-stat { text-align: center; }
+    .pac-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+    }
+    .pac-stat-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* DAILY FORMAT */
+    .pac-section { padding: 100px 0; }
+    .pac-section-alt { background: var(--surface); }
+
+    .daily-format {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+    }
+    .daily-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .daily-card:hover { border-color: rgba(200,164,90,0.3); transform: translateY(-2px); }
+    .daily-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+    .daily-card.morning::before { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
+    .daily-card.midday::before { background: linear-gradient(90deg, #C8A45A, #E8D5A3); }
+    .daily-card.night::before { background: linear-gradient(90deg, #6366F1, #A78BFA); }
+
+    .daily-time {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .daily-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .daily-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .daily-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+    .daily-duration {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 11px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    /* BLOCKS */
+    .blocks-timeline { display: flex; flex-direction: column; gap: 24px; }
+    .block-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .block-card:hover { border-color: rgba(200,164,90,0.25); }
+    .block-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 28px 32px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .block-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      min-width: 80px;
+    }
+    .block-header-content { flex: 1; }
+    .block-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .block-header p { font-size: 13px; color: var(--muted); }
+    .block-days-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.25);
+      padding: 5px 14px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .block-toggle { color: var(--muted); font-size: 18px; transition: transform 0.3s; }
+    .block-card.expanded .block-toggle { transform: rotate(180deg); }
+
+    .block-body {
+      display: none;
+      padding: 0 32px 32px;
+      border-top: 1px solid var(--border);
+    }
+    .block-card.expanded .block-body { display: block; }
+
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .day-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 12px;
+      transition: all 0.25s;
+      cursor: default;
+    }
+    .day-item:hover { border-color: rgba(200,164,90,0.3); background: var(--gold-glow); }
+    .day-num {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .day-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .day-author { font-size: 11px; color: var(--muted); font-style: italic; }
+
+    .block-termometro {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .block-termometro-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .termometro-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .termo-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .termo-step::after {
+      content: '';
+      position: absolute;
+      top: 14px;
+      right: -50%;
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+    .termo-step:last-child::after { display: none; }
+    .termo-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      margin: 0 auto 6px;
+      position: relative;
+      z-index: 1;
+    }
+    .termo-step.active .termo-dot {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .termo-word { font-size: 9px; color: var(--muted); letter-spacing: 0.04em; }
+
+    /* DAY 1 DEMO */
+    .demo-day {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .demo-day-header {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .demo-day-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .demo-day-header p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .demo-day-body { padding: 32px; display: flex; flex-direction: column; gap: 24px; }
+
+    .demo-moment {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+    }
+    .demo-moment-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .demo-moment-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .demo-moment-icon.m { background: rgba(245,158,11,0.15); }
+    .demo-moment-icon.d { background: rgba(200,164,90,0.18); }
+    .demo-moment-icon.n { background: rgba(99,102,241,0.15); }
+    .demo-moment-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .demo-moment-type { font-size: 11px; color: var(--muted); }
+    .demo-moment p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+    .demo-moment p:last-child { margin-bottom: 0; }
+    .demo-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--text);
+      border-left: 2px solid var(--gold);
+      padding-left: 16px;
+      margin: 12px 0;
+    }
+    .demo-reto {
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.25);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .demo-questions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .demo-q {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .demo-q-num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .demo-q p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .demo-termo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .demo-termo-label { font-size: 12px; color: var(--muted); }
+    .demo-termo-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.25);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+    .demo-book {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .demo-book-icon { font-size: 20px; flex-shrink: 0; }
+    .demo-book p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .demo-book strong { color: var(--text); }
+
+    /* REFERENCES */
+    .refs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+    .refs-list {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .refs-list-header {
+      padding: 20px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .ref-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-item:hover { background: var(--gold-glow); }
+    .ref-num { font-size: 11px; color: var(--muted); min-width: 22px; padding-top: 2px; }
+    .ref-title { font-size: 13px; color: var(--text); font-weight: 500; }
+    .ref-author { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* REFERENTES */
+    .referentes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .referente-chip {
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+    .referente-chip:hover { border-color: rgba(200,164,90,0.3); color: var(--text); }
+    .referente-chip.classic { color: var(--gold); background: var(--gold-dim); border-color: rgba(200,164,90,0.25); }
+
+    /* SCOPE SECTION */
+    .scope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+    .scope-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 24px 20px;
+      transition: all 0.3s;
+    }
+    .scope-item:hover { border-color: rgba(200,164,90,0.25); }
+    .scope-check { font-size: 18px; margin-bottom: 12px; display: block; }
+    .scope-item h4 { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .scope-item p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* MOBILE pac */
+    @media (max-width: 768px) {
+      .pac-nav { padding: 14px 20px; }
+      .daily-format { grid-template-columns: 1fr; }
+      .days-grid { grid-template-columns: repeat(3, 1fr); }
+      .refs-grid { grid-template-columns: 1fr; }
+      .scope-grid { grid-template-columns: 1fr 1fr; }
+      .block-header { gap: 14px; padding: 20px; }
+      .block-body { padding: 0 20px 20px; }
+      .pac-stats { gap: 24px; }
+    }
+  
+    /* Standalone cycle page entrance */
+    @keyframes cycleSlideIn {
+      from { opacity: 0; transform: translateX(24px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .cycle-page-root { animation: cycleSlideIn 0.35s cubic-bezier(0.22,1,0.36,1); }
+
+    body { margin: 0; background: var(--bg); color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="cycle-page-root">
+<div class="pac-nav">
+      <a class="pac-back" href="../">
+        <span class="pac-back-arrow">←</span>
+        Volver
+      </a>
+      <div class="pac-nav-title">Generosidad · 21 días</div>
+      <a href="../#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" href="../">Quiero probar</a>
+    </div>
+
+    <div class="pac-hero">
+      <div class="pac-hero-glow"></div>
+      <div class="hero-grid"></div>
+      <div class="pac-hero-inner">
+        <div class="pac-ciclo-label">
+          <span>CICLO 05</span>
+          <div class="pac-ciclo-div"></div>
+          <span>GENEROSIDAD</span>
+          <div class="pac-ciclo-div"></div>
+          <span style="color:var(--muted);">Beta · Sep 2026</span>
+        </div>
+        <h1 class="pac-headline serif">
+          La generosidad no empobrece.<br/>
+          <em>Ensancha.</em><br/>
+          El que abre la mano descubre que tenía más.
+        </h1>
+        <p class="pac-sub">21 días. 4 bloques. 9 minutos al día. De la mentalidad de escasez a la abundancia real: entrena la virtud que más transforma las relaciones humanas.</p>
+        <div class="pac-stats">
+          <div class="pac-stat"><span class="pac-stat-num serif">21</span><div class="pac-stat-label">Días</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">4</span><div class="pac-stat-label">Bloques</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">3</span><div class="pac-stat-label">Momentos al día</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">22</span><div class="pac-stat-label">Libros de referencia</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">19</span><div class="pac-stat-label">Películas</div></div>
+          <div class="hero-stat-div"></div>
+          <div class="pac-stat"><span class="pac-stat-num serif">9</span><div class="pac-stat-label">Dimensiones</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section">
+      <div class="container">
+        <div class="section-label">Estructura diaria</div>
+        <h2 class="section-title">Tres momentos.<br/>Nueve minutos.</h2>
+        <p class="section-desc">Cada día del ciclo sigue el mismo ritmo: un vídeo breve por la mañana, una notificación de mediodía, y tres preguntas para cerrar el día.</p>
+        <div class="daily-format">
+          <div class="daily-card morning">
+            <span class="daily-icon">🌅</span>
+            <div class="daily-time">Mañana</div>
+            <h3>Vídeo matinal</h3>
+            <p>El Manager de la Virtud abre el día con un concepto, una idea filosófica y el reto concreto. Grabado en localizaciones reales.</p>
+            <span class="daily-duration">50–60 segundos</span>
+          </div>
+          <div class="daily-card midday">
+            <span class="daily-icon">☀️</span>
+            <div class="daily-time">Mediodía</div>
+            <h3>Notificación + mini reto</h3>
+            <p>Una pregunta o micro-acción que conecta lo aprendido con lo que está pasando en tu día real. Directa al cuerpo, no solo a la mente.</p>
+            <span class="daily-duration">30 segundos de atención</span>
+          </div>
+          <div class="daily-card night">
+            <span class="daily-icon">🌙</span>
+            <div class="daily-time">Cierre</div>
+            <h3>Reflexión nocturna</h3>
+            <p>Tres preguntas de reflexión profunda + el indicador del día: registra tu progreso en el ciclo.</p>
+            <span class="daily-duration">5 minutos de escritura</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section pac-section-alt">
+      <div class="container">
+        <div class="section-label">Los 4 bloques</div>
+        <h2 class="section-title">Del cierre al don.<br/><em class="serif" style="font-style:italic; color:var(--gold)">Una semana a la vez.</em></h2>
+        <p class="section-desc" style="margin-bottom:48px;">Cada bloque trabaja una dimensión de la generosidad: primero la libertad interior que la hace posible, luego sus múltiples formas, luego las relaciones donde se prueba, y finalmente cómo convertirla en vocación.</p>
+        <div class="blocks-timeline">
+          
+          <div class="block-card expanded" id="gblock1">
+            <div class="block-header" onclick="toggleBlock('gblock1')">
+              <div class="block-num">Semana 1</div>
+              <div class="block-header-content"><h3>Libertad</h3><p>La generosidad nace de la libertad interior. Mentalidad de abundancia.</p></div>
+              <div class="block-days-badge">Días 1–5</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 1</div>
+                  <div class="day-title">¿Qué es la generosidad?</div>
+                  <div class="day-author">Aristóteles · La eleutheriotes: dar lo correcto, a quien corresponde</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 2</div>
+                  <div class="day-title">La mentalidad de escasez vs. abundancia</div>
+                  <div class="day-author">Gandhi · Hay suficiente para las necesidades de todos</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 3</div>
+                  <div class="day-title">La relación con el dinero</div>
+                  <div class="day-author">Francis Bacon · El dinero: buen sirviente, pésimo amo</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); overflow:hidden;">
+                  <div style="filter:blur(2px); pointer-events:none; user-select:none; padding:10px 14px; display:grid; gap:6px; opacity:0.6;">
+    <div class="day-item" style="pointer-events:none;">
+      <div class="day-num">Día 4</div>
+      <div class="day-title">El desapego que libera</div>
+      <div class="day-author">Thoreau · Quien tiene menos necesidades es más libre para dar</div>
+    </div>
+    <div class="day-item" style="pointer-events:none;">
+      <div class="day-num">Día 5 · 📍 Rodaje exterior</div>
+      <div class="day-title">La generosidad en la plaza: dar sin que nadie te vea</div>
+      <div class="day-author">El experimento que cambia cómo te percibes a ti mismo</div>
+    </div>
+                  </div>
+                  <div style="background:rgba(10,10,22,0.92); padding:12px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid rgba(200,164,90,0.25);">
+                    <div>
+                      <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">🔒 Acceso pionero</div>
+                      <div style="font-size:13px; color:var(--muted);">Días 4–5 · Solo con acceso completo</div>
+                    </div>
+                    <a href="../#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero acceso</a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 1</div>
+                <div class="termometro-track"><div class="termo-step active"><div class="termo-dot">🔒</div><div class="termo-word">Retención</div></div><div class="termo-step active"><div class="termo-dot">🌱</div><div class="termo-word">Apertura</div></div><div class="termo-step active"><div class="termo-dot">✋</div><div class="termo-word">Dar</div></div><div class="termo-step active"><div class="termo-dot">🤝</div><div class="termo-word">Libertad</div></div><div class="termo-step active"><div class="termo-dot">💛</div><div class="termo-word">Abundancia</div></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="block-card" id="gblock2">
+            <div class="block-header" onclick="toggleBlock('gblock2')">
+              <div class="block-num">Semana 2</div>
+              <div class="block-header-content"><h3>Abundancia</h3><p>Las múltiples formas de dar: tiempo, saber, reconocimiento, presencia.</p></div>
+              <div class="block-days-badge">Días 6–11</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 6</div>
+                  <div class="day-title">La generosidad de tiempo</div>
+                  <div class="day-author">Harvey MacKay · El tiempo es el único recurso que no recuperas</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 7</div>
+                  <div class="day-title">Generosidad de conocimiento</div>
+                  <div class="day-author">G.B. Shaw · Si intercambiamos ideas, cada uno tiene dos</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 8</div>
+                  <div class="day-title">Generosidad de reconocimiento</div>
+                  <div class="day-author">Napoleón · Las personas mueren por un reconocimiento</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); overflow:hidden;">
+                  <div style="filter:blur(2px); pointer-events:none; user-select:none; padding:10px 14px; display:grid; gap:6px; opacity:0.6;">
+    <div class="day-item" style="pointer-events:none;">
+      <div class="day-num">Día 9</div>
+      <div class="day-title">La generosidad emocional</div>
+      <div class="day-author">Eckhart Tolle · Dar presencia plena es el regalo más escaso</div>
+    </div>
+    <div class="day-item" style="pointer-events:none;">
+      <div class="day-num">Día 10 · 📍 Rodaje exterior</div>
+      <div class="day-title">Generosidad en red: lo que ocurre cuando das sin agenda</div>
+      <div class="day-author">El reto de networking que ningún libro de empresa enseña</div>
+    </div>
+    <div class="day-item" style="pointer-events:none;">
+      <div class="day-num">Día 11</div>
+      <div class="day-title">La oportunidad como forma de generosidad</div>
+      <div class="day-author">Peter Drucker · El líder que abre puertas que él no pasará</div>
+    </div>
+                  </div>
+                  <div style="background:rgba(10,10,22,0.92); padding:12px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid rgba(200,164,90,0.25);">
+                    <div>
+                      <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">🔒 Acceso pionero</div>
+                      <div style="font-size:13px; color:var(--muted);">Días 9–11 · Solo con acceso completo</div>
+                    </div>
+                    <a href="../#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero acceso</a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 2</div>
+                <div class="termometro-track"><div class="termo-step active"><div class="termo-dot">🌱</div><div class="termo-word">Semilla</div></div><div class="termo-step active"><div class="termo-dot">⏰</div><div class="termo-word">Tiempo</div></div><div class="termo-step active"><div class="termo-dot">📚</div><div class="termo-word">Saber</div></div><div class="termo-step active"><div class="termo-dot">🌟</div><div class="termo-word">Reconocimiento</div></div><div class="termo-step active"><div class="termo-dot">🎁</div><div class="termo-word">Don</div></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="block-card" id="gblock3">
+            <div class="block-header" onclick="toggleBlock('gblock3')">
+              <div class="block-num">Semana 3</div>
+              <div class="block-header-content"><h3>Relación</h3><p>La generosidad en familia, trabajo, conflicto y contigo mismo.</p></div>
+              <div class="block-days-badge">Días 12–16</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 12</div>
+                  <div class="day-title">Generosidad en la familia</div>
+                  <div class="day-author">La paradoja: somos más generosos con desconocidos que con los cercanos</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 13</div>
+                  <div class="day-title">Generosidad con los desconocidos</div>
+                  <div class="day-author">Tradición judía · La xenía como virtud sagrada</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 14</div>
+                  <div class="day-title">Generosidad con quienes nos han fallado</div>
+                  <div class="day-author">Paul Boese · El perdón amplía el futuro</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); overflow:hidden;">
+                  <div style="filter:blur(2px); pointer-events:none; user-select:none; padding:10px 14px; display:grid; gap:6px; opacity:0.6;">
+    <div class="day-item" style="pointer-events:none;">
+      <div class="day-num">Día 15 · 📍 Rodaje exterior</div>
+      <div class="day-title">Generosidad en tu entorno laboral real</div>
+      <div class="day-author">El reto silencioso que nadie verá pero todos sentirán</div>
+    </div>
+    <div class="day-item" style="pointer-events:none;">
+      <div class="day-num">Día 16</div>
+      <div class="day-title">El trabajo bien hecho como regalo colectivo</div>
+      <div class="day-author">San Martín · Dar lo mejor de uno mismo aunque nadie lo sepa</div>
+    </div>
+                  </div>
+                  <div style="background:rgba(10,10,22,0.92); padding:12px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid rgba(200,164,90,0.25);">
+                    <div>
+                      <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">🔒 Acceso pionero</div>
+                      <div style="font-size:13px; color:var(--muted);">Días 15–16 · Solo con acceso completo</div>
+                    </div>
+                    <a href="../#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero acceso</a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 3</div>
+                <div class="termometro-track"><div class="termo-step active"><div class="termo-dot">🏠</div><div class="termo-word">Familia</div></div><div class="termo-step active"><div class="termo-dot">🌍</div><div class="termo-word">Mundo</div></div><div class="termo-step active"><div class="termo-dot">🕊️</div><div class="termo-word">Perdón</div></div><div class="termo-step active"><div class="termo-dot">💼</div><div class="termo-word">Trabajo</div></div><div class="termo-step active"><div class="termo-dot">💛</div><div class="termo-word">Yo</div></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="block-card" id="gblock4">
+            <div class="block-header" onclick="toggleBlock('gblock4')">
+              <div class="block-num">Semana 4</div>
+              <div class="block-header-content"><h3>Integración</h3><p>La generosidad como vocación: sistematizada, legada, comunitaria.</p></div>
+              <div class="block-days-badge">Días 17–21</div>
+              <div class="block-toggle">▾</div>
+            </div>
+            <div class="block-body">
+              <div class="days-grid">
+                <div class="day-item">
+                  <div class="day-num">Día 17</div>
+                  <div class="day-title">La generosidad y la felicidad</div>
+                  <div class="day-author">Martin Seligman · La ciencia confirma lo que la filosofía sabía</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 18</div>
+                  <div class="day-title">La generosidad sistematizada</div>
+                  <div class="day-author">Madre Teresa · No es cuánto damos, sino cuánto amor ponemos</div>
+                </div>
+                <div class="day-item">
+                  <div class="day-num">Día 19</div>
+                  <div class="day-title">Generosidad y legado</div>
+                  <div class="day-author">Indira Gandhi · La mejor herencia no es dinero, es un ejemplo</div>
+                </div>
+                <div style="grid-column:1/-1; background:linear-gradient(135deg,var(--gold-glow),transparent); border:1px dashed rgba(200,164,90,0.3); border-radius:var(--radius-sm); overflow:hidden;">
+                  <div style="filter:blur(2px); pointer-events:none; user-select:none; padding:10px 14px; display:grid; gap:6px; opacity:0.6;">
+    <div class="day-item" style="pointer-events:none;">
+      <div class="day-num">Día 20 · 📍 Rodaje exterior</div>
+      <div class="day-title">El barrio como comunidad: la generosidad más olvidada</div>
+      <div class="day-author">Proverbio africano · Si quieres llegar lejos, ve acompañado</div>
+    </div>
+    <div class="day-item" style="pointer-events:none;">
+      <div class="day-num">Día 21</div>
+      <div class="day-title">La paradoja final de la generosidad</div>
+      <div class="day-author">Charles Kingsley · Cuanto más das, más descubres que tenías</div>
+    </div>
+                  </div>
+                  <div style="background:rgba(10,10,22,0.92); padding:12px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid rgba(200,164,90,0.25);">
+                    <div>
+                      <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">🔒 Acceso pionero</div>
+                      <div style="font-size:13px; color:var(--muted);">Días 20–21 · Solo con acceso completo</div>
+                    </div>
+                    <a href="../#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;">Quiero acceso</a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="block-termometro">
+                <div class="block-termometro-label">Corazón del Bloque 4</div>
+                <div class="termometro-track"><div class="termo-step active"><div class="termo-dot">🌱</div><div class="termo-word">Semilla</div></div><div class="termo-step active"><div class="termo-dot">🌊</div><div class="termo-word">Flujo</div></div><div class="termo-step active"><div class="termo-dot">🌳</div><div class="termo-word">Arraigo</div></div><div class="termo-step active"><div class="termo-dot">🌟</div><div class="termo-word">Legado</div></div><div class="termo-step active"><div class="termo-dot">☀️</div><div class="termo-word">Plenitud</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section">
+      <div class="container">
+        <div class="section-label">Día 1 · Ejemplo completo</div>
+        <h2 class="section-title">¿Qué es la generosidad?</h2>
+        <p class="section-desc" style="margin-bottom:48px;">Así es un día completo del ciclo. Tres momentos, nueve minutos, una virtud que empieza a cambiar.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; margin-bottom:48px;">
+          
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px; position:relative; overflow:hidden;">
+            <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, #C8A45A, transparent); opacity:0.5;"></div>
+            <div style="font-size:24px; margin-bottom:12px;">🌅</div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:16px;">Mañana · 50&quot;</div>
+            <p style="font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:16px;">El Manager desde un mercado concurrido. <em style="color:var(--text);">"La primera pregunta no es cómo ser más generoso. Es qué impide que ya lo seas. Porque la generosidad es natural. Algo pasa en el camino."</em></p><div style="background:var(--surface); border-radius:var(--radius-sm); padding:16px; font-size:13px; color:var(--muted);"><strong style="color:var(--gold);">Reto matinal:</strong> Escribe sin filtros: ¿Qué te impide ser más generoso? ¿Es el dinero, el tiempo, el miedo a que abusen? Sé honesto. La respuesta honesta es la útil.</div>
+          </div>
+          
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px; position:relative; overflow:hidden;">
+            <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, #C8A45A, transparent); opacity:0.5;"></div>
+            <div style="font-size:24px; margin-bottom:12px;">☀️</div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:16px;">Mediodía · 30&quot;</div>
+            <p style="font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:16px;"><strong style="color:var(--text);">Push:</strong> ¿Cuál ha sido tu acto de generosidad más genuino en la última semana?</p>
+          </div>
+          
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px; position:relative; overflow:hidden;">
+            <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, #C8A45A, transparent); opacity:0.5;"></div>
+            <div style="font-size:24px; margin-bottom:12px;">🌙</div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:16px;">Cierre · 5 min</div>
+            <div style="display:flex; flex-direction:column; gap:10px;"><div style="background:var(--surface); border-radius:var(--radius-sm); padding:12px; font-size:13px; color:var(--muted);">1. ¿Cuándo fue la última vez que diste algo sin esperar nada a cambio?</div><div style="background:var(--surface); border-radius:var(--radius-sm); padding:12px; font-size:13px; color:var(--muted);">2. ¿Hay alguien a quien le deberías dar más atención y no lo haces?</div><div style="background:var(--surface); border-radius:var(--radius-sm); padding:12px; font-size:13px; color:var(--muted);">3. ¿Qué tipo de generosidad te resulta más natural? ¿Cuál más difícil?</div></div>
+          </div>
+        </div>
+        <div style="background:var(--card); border:1px solid rgba(200,164,90,0.2); border-radius:var(--radius); padding:40px; position:relative; overflow:hidden;">
+          <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, var(--gold), transparent); opacity:0.4;"></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
+            <div>
+              <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:16px;">📚 Capa de profundidad · Opcional</div>
+              <p style="font-family:'Playfair Display',serif; font-size:20px; font-style:italic; color:var(--text); line-height:1.6; margin-bottom:16px;">"Lo que tienes que no hayas recibido."</p>
+              <p style="font-size:13px; color:var(--muted);">— San Pablo, 1 Corintios 4:7</p>
+            </div>
+            <div>
+              <div style="margin-bottom:16px;">
+                <div style="font-size:12px; color:var(--gold); font-weight:600; margin-bottom:8px;">📖 Libro</div>
+                <p style="font-size:14px; color:var(--text); margin-bottom:4px;">Give and Take — Adam Grant</p>
+                <p style="font-size:13px; color:var(--muted);">30 años de investigación: los que dan sin calcular terminan siendo los más exitosos a largo plazo.</p>
+              </div>
+              <div>
+                <div style="font-size:12px; color:var(--gold); font-weight:600; margin-bottom:8px;">🎬 Película</div>
+                <p style="font-size:14px; color:var(--text); margin-bottom:4px;">Pay It Forward (2000) — Mimi Leder</p>
+                <p style="font-size:13px; color:var(--muted);">La cadena de generosidad: cómo un solo acto gratuito puede cambiar vidas que nunca conocerás.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section pac-section-alt">
+      <div class="container">
+        <div class="section-label">Alcance del ciclo</div>
+        <h2 class="section-title">Las 9 dimensiones<br/>de la Generosidad</h2>
+        <p class="section-desc" style="margin-bottom:48px;">La generosidad no es una sola cosa. Es una familia de capacidades que, trabajadas juntas, construyen un carácter que no se quiebra.</p>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+          
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:20px; margin-bottom:10px;">💰</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;">Generosidad económica</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.5;">Dar dinero o recursos materiales de forma ordenada y libre.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:20px; margin-bottom:10px;">⏰</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;">Generosidad de tiempo</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.5;">Dar atención plena y presencia real a las personas que importan.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:20px; margin-bottom:10px;">📚</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;">Generosidad de conocimiento</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.5;">Compartir lo que sabes sin retener por miedo a la competencia.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:20px; margin-bottom:10px;">🌟</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;">Generosidad de reconocimiento</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.5;">Dar crédito y visibilidad a otros sin necesidad de acapararlo.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:20px; margin-bottom:10px;">❤️</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;">Generosidad emocional</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.5;">Estar disponible para el dolor ajeno sin huir ni abrumarse.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:20px; margin-bottom:10px;">🚪</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;">Generosidad de oportunidad</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.5;">Abrir puertas para otros, hacer conexiones, crear posibilidades.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:20px; margin-bottom:10px;">🕊️</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;">Generosidad del perdón</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.5;">La forma más difícil de dar: liberar lo que se nos debe.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:20px; margin-bottom:10px;">👂</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;">Generosidad de la escucha</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.5;">Dar a alguien el regalo de ser realmente escuchado.</div>
+          </div>
+          <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;">
+            <div style="font-size:20px; margin-bottom:10px;">🤫</div>
+            <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;">Generosidad del silencio</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.5;">No ocupar todo el espacio: dejar que otros brillen, hablen, existan.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pac-section">
+      <div class="container">
+        <div class="section-label">Bibliografía del ciclo</div>
+        <h2 class="section-title">22 libros. 19 películas.<br/>2.500 años de sabiduría.</h2>
+        <p class="section-desc" style="margin-bottom:48px;">Cada referencia está elegida con rigor. No para leerlas todas — para que sepas que lo que practicas tiene raíces profundas.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px;">
+          <div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:24px;">📚 Libros de referencia</div>
+            <div style="display:flex; flex-direction:column; gap:10px;"><div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">01</span><div><span style="font-size:14px; color:var(--text);">Ética a Nicómaco</span><span style="font-size:12px; color:var(--muted);"> — Aristóteles (Libro IV: eleutheriotes)</span></div></div>
+<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">Suma Teológica</span><span style="font-size:12px; color:var(--muted);"> — Tomás de Aquino (II-II, qq. 117-120)</span></div></div>
+<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">La auténtica felicidad</span><span style="font-size:12px; color:var(--muted);"> — Martin Seligman</span></div></div>
+<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">Give and Take</span><span style="font-size:12px; color:var(--muted);"> — Adam Grant</span></div></div>
+<div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 18 libros más · Acceso completo al unirte →</div></div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:24px;">🎬 Películas de referencia</div>
+            <div style="display:flex; flex-direction:column; gap:10px;"><div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">01</span><div><span style="font-size:14px; color:var(--text);">Pay It Forward</span><span style="font-size:12px; color:var(--muted);"> — 2000 · la cadena de generosidad</span></div></div>
+<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">02</span><div><span style="font-size:14px; color:var(--text);">La lista de Schindler</span><span style="font-size:12px; color:var(--muted);"> — 1993 · generosidad heroica ante la injusticia</span></div></div>
+<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">03</span><div><span style="font-size:14px; color:var(--text);">It's a Wonderful Life</span><span style="font-size:12px; color:var(--muted);"> — 1946 · el impacto invisible de la generosidad</span></div></div>
+<div style="display:flex; gap:12px; align-items:baseline;"><span style="color:var(--gold); font-size:12px; min-width:20px;">04</span><div><span style="font-size:14px; color:var(--text);">The Blind Side</span><span style="font-size:12px; color:var(--muted);"> — 2009 · generosidad que transforma vidas</span></div></div>
+<div style="font-size:13px; color:rgba(107,107,126,0.6); font-style:italic; padding:8px 0; border-top:1px solid var(--border); margin-top:4px;">+ 15 películas más · Acceso completo al unirte →</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--surface); text-align:center; padding:120px 32px; position:relative; overflow:hidden;">
+      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:600px; height:400px; background:radial-gradient(ellipse, rgba(200,164,90,0.1) 0%, transparent 70%); pointer-events:none;"></div>
+      <div style="position:relative; z-index:1; max-width:580px; margin:0 auto;">
+        <div class="pac-ciclo-label" style="justify-content:center; margin-bottom:32px;">
+          <span>CICLO 05</span>
+          <div class="pac-ciclo-div"></div>
+          <span>GENEROSIDAD</span>
+        </div>
+        <p class="serif" style="font-size:clamp(22px,3.5vw,36px); font-style:italic; color:var(--text); line-height:1.4; margin-bottom:16px;">"La generosidad no empobrece. Ensancha. El que abre la mano descubre que tenía más de lo que pensaba."</p>
+        <p style="font-size:13px; color:var(--muted); margin-bottom:48px;">— Aristomas · Día 21 · Ciclo Generosidad</p>
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;">
+          <input type="email" class="cta-input" placeholder="tu@email.com" style="min-width:240px;" />
+          <button class="btn btn-primary btn-lg">50 pioneros.<br/>Beta exclusiva. Únete</button>
+        </div>
+        <p style="font-size:12px; color:var(--muted);">Acceso exclusivo · Septiembre 2026 · Sin compromiso</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function toggleBlock(id) {
+      document.getElementById(id).classList.toggle('expanded');
+    }
+    function triggerReveals(container) {
+      container.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.95) el.classList.add('visible');
+      });
+    }
+    document.addEventListener('scroll', () => triggerReveals(document), { passive: true });
+    window.addEventListener('load', () => triggerReveals(document));
+  </script>
+</body>
+</html>
