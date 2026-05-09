@@ -537,6 +537,29 @@
       background: var(--bg);
     }
 
+    /* Virtue strip pills — scalable to 50+ */
+    .vcpill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 12px; font-weight: 600; white-space: nowrap;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--muted); transition: all 0.2s;
+      text-decoration: none; cursor: default; flex-shrink: 0;
+    }
+    .vcpill::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor; flex-shrink: 0;
+    }
+    .vcpill.available {
+      border-color: rgba(200,164,90,0.35); color: var(--gold); cursor: pointer;
+    }
+    .vcpill.available:hover { background: rgba(200,164,90,0.1); }
+    .vcpill-strip {
+      display: flex; gap: 8px; overflow-x: auto; flex: 1;
+      padding-bottom: 2px; scrollbar-width: none;
+    }
+    .vcpill-strip::-webkit-scrollbar { display: none; }
+
     .virtues-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1076,11 +1099,7 @@
       .concept-item { border-right: none; border-bottom: 1px solid var(--border); }
       .concept-item:last-child { border-bottom: none; }
 
-      #virtue-strip [style*="grid-template-columns:repeat(5"] { grid-template-columns: repeat(2,1fr) !important; }
-      #virtue-strip button:nth-child(2) { border-right: none !important; }
-      #virtue-strip button:nth-child(even) { border-right: none !important; }
-      #virtue-strip button { border-bottom: 1px solid var(--border) !important; border-right: 1px solid var(--border) !important; }
-      #virtue-strip button:nth-child(7) { grid-column: span 2; border-right: none !important; border-bottom: none !important; }
+      /* virtue-strip: scalable pills, no overrides needed */
 
       .philosophy-grid { grid-template-columns: 1fr; gap: 40px; }
 
@@ -1731,75 +1750,24 @@
 
   <!-- ═══════════════ VIRTUE STRIP ═══════════════ -->
   <section id="virtue-strip" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--surface);">
-    <div style="max-width:1200px; margin:0 auto; padding:40px 32px;">
-      <div style="display:flex; align-items:center; gap:16px; margin-bottom:28px; flex-wrap:wrap;">
-        <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);">Ciclos disponibles ahora</div>
-        <div style="flex:1; height:1px; background:var(--border); min-width:40px;"></div>
-        <a href="#virtudes" style="font-size:12px; color:var(--muted); text-decoration:none; white-space:nowrap;">Ver todos los ciclos →</a>
+    <div style="max-width:1200px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; gap:20px;">
+      <div style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); white-space:nowrap;">Ciclos</div>
+      <div class="vcpill-strip">
+        <button class="vcpill available" onclick="openCycle('paciencia')">Paciencia</button>
+        <button class="vcpill available" onclick="openCycle('fortaleza')">Fortaleza</button>
+        <button class="vcpill available" onclick="openCycle('humildad')">Humildad</button>
+        <button class="vcpill available" onclick="openCycle('prudencia')">Prudencia</button>
+        <button class="vcpill available" onclick="openCycle('generosidad')">Generosidad</button>
+        <button class="vcpill available" onclick="openCycle('esperanza')">Esperanza</button>
+        <button class="vcpill available" onclick="openCycle('laboriosidad')">Laboriosidad</button>
+        <span class="vcpill">Templanza</span>
+        <span class="vcpill">Justicia</span>
+        <span class="vcpill">Constancia</span>
+        <span class="vcpill">Templanza</span>
+        <span class="vcpill">Austeridad</span>
+        <span class="vcpill" style="opacity:0.4;">+ más por llegar</span>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
-
-        <button onclick="openPaciencia()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
-          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
-          <div style="font-size:20px; margin-bottom:10px;">⏳</div>
-          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Paciencia</div>
-          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 01</div>
-          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Tolerar la demora sin ansiedad</div>
-        </button>
-
-        <button onclick="openFortaleza()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
-          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
-          <div style="font-size:20px; margin-bottom:10px;">⚔️</div>
-          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Fortaleza</div>
-          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 02</div>
-          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Actuar a pesar del miedo</div>
-        </button>
-
-        <button onclick="openHumildad()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
-          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
-          <div style="font-size:20px; margin-bottom:10px;">🙏</div>
-          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Humildad</div>
-          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 03</div>
-          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Conocerse sin inflarse ni disminuirse</div>
-        </button>
-
-        <button onclick="openPrudencia()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
-          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
-          <div style="font-size:20px; margin-bottom:10px;">🧭</div>
-          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Prudencia</div>
-          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 04</div>
-          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Decidir bien en cada situación</div>
-        </button>
-
-        <button onclick="openGenerosidad()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
-          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
-          <div style="font-size:20px; margin-bottom:10px;">🤝</div>
-          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Generosidad</div>
-          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 05</div>
-          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Dar sin calcular lo que recibes</div>
-        </button>
-
-        <button onclick="openEsperanza()" style="all:unset; cursor:pointer; padding:20px 16px; border-right:1px solid var(--border); background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
-          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
-          <div style="font-size:20px; margin-bottom:10px;">🌟</div>
-          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Esperanza</div>
-          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 06</div>
-          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Tender hacia el bien futuro</div>
-        </button>
-
-        <button onclick="openLaboriosidad()" style="all:unset; cursor:pointer; padding:20px 16px; background:transparent; transition:background 0.2s; text-align:left; position:relative; overflow:hidden;" onmouseover="this.style.background='rgba(200,164,90,0.06)'" onmouseout="this.style.background='transparent'">
-          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.7;"></div>
-          <div style="font-size:20px; margin-bottom:10px;">🔨</div>
-          <div style="font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Laboriosidad</div>
-          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Ciclo 07</div>
-          <div style="font-size:11px; color:var(--muted); line-height:1.5;">El trabajo bien hecho</div>
-        </button>
-
-      </div>
-      <div style="display:flex; gap:20px; margin-top:16px; padding:0 4px; flex-wrap:wrap;">
-        <div style="font-size:11px; color:var(--muted);">⚖️ Templanza &nbsp;·&nbsp; ⚡ Justicia &nbsp;·&nbsp; <span style="color:rgba(107,107,126,0.5);">+9 más</span></div>
-        <div style="font-size:11px; color:rgba(107,107,126,0.5); margin-left:auto;">○ Próximamente</div>
-      </div>
+      <a href="#virtudes" style="font-size:12px; color:var(--muted); text-decoration:none; white-space:nowrap; flex-shrink:0;">Ver todos →</a>
     </div>
   </section>
 
@@ -2005,40 +1973,40 @@
       <p class="section-desc reveal">Cada virtud tiene su propio ciclo de 21 días. Paciencia, constancia, humildad, generosidad, coraje, austeridad, templanza — y muchas más por llegar.</p>
 
       <div class="virtues-grid">
-        <div class="virtue-card available featured reveal" onclick="openPaciencia()" style="cursor:pointer;">
+        <div class="virtue-card available featured reveal" onclick="openCycle('paciencia')" style="cursor:pointer;">
           <span class="virtue-badge">Ciclo 01 · Disponible ahora</span>
           <span class="virtue-emoji">⏳</span>
           <div class="virtue-name">Paciencia</div>
           <div class="virtue-desc">La capacidad de tolerar la demora sin ansiedad</div>
-          <button class="virtue-cta-btn" onclick="openPaciencia()">Ver el ciclo completo →</button>
+          <button class="virtue-cta-btn" onclick="openCycle('paciencia')">Ver el ciclo completo →</button>
         </div>
-        <div class="virtue-card available featured reveal reveal-delay-1" onclick="openFortaleza()" style="cursor:pointer;">
+        <div class="virtue-card available featured reveal reveal-delay-1" onclick="openCycle('fortaleza')" style="cursor:pointer;">
           <span class="virtue-badge">Ciclo 02 · Disponible ahora</span>
           <span class="virtue-emoji">⚔️</span>
           <div class="virtue-name">Fortaleza</div>
           <div class="virtue-desc">Actuar correctamente a pesar del miedo</div>
-          <button class="virtue-cta-btn" onclick="openFortaleza()">Ver el ciclo completo →</button>
+          <button class="virtue-cta-btn" onclick="openCycle('fortaleza')">Ver el ciclo completo →</button>
         </div>
-        <div class="virtue-card available featured reveal reveal-delay-2" onclick="openHumildad()" style="cursor:pointer;">
+        <div class="virtue-card available featured reveal reveal-delay-2" onclick="openCycle('humildad')" style="cursor:pointer;">
           <span class="virtue-badge">Ciclo 03 · Disponible ahora</span>
           <span class="virtue-emoji">🙏</span>
           <div class="virtue-name">Humildad</div>
           <div class="virtue-desc">Conocerse con precisión — sin inflarse ni disminuirse</div>
-          <button class="virtue-cta-btn" onclick="openHumildad()">Ver el ciclo completo →</button>
+          <button class="virtue-cta-btn" onclick="openCycle('humildad')">Ver el ciclo completo →</button>
         </div>
-        <div class="virtue-card available featured reveal reveal-delay-3" onclick="openPrudencia()" style="cursor:pointer;">
+        <div class="virtue-card available featured reveal reveal-delay-3" onclick="openCycle('prudencia')" style="cursor:pointer;">
           <span class="virtue-badge">Ciclo 04 · Disponible ahora</span>
           <span class="virtue-emoji">🧭</span>
           <div class="virtue-name">Prudencia</div>
           <div class="virtue-desc">La virtud madre: decidir bien en cada situación concreta</div>
-          <button class="virtue-cta-btn" onclick="openPrudencia()">Ver el ciclo completo →</button>
+          <button class="virtue-cta-btn" onclick="openCycle('prudencia')">Ver el ciclo completo →</button>
         </div>
-        <div class="virtue-card available featured reveal" onclick="openGenerosidad()" style="cursor:pointer;">
+        <div class="virtue-card available featured reveal" onclick="openCycle('generosidad')" style="cursor:pointer;">
           <span class="virtue-badge">Ciclo 05 · Disponible ahora</span>
           <span class="virtue-emoji">🤝</span>
           <div class="virtue-name">Generosidad</div>
           <div class="virtue-desc">Dar sin calcular lo que recibes a cambio</div>
-          <button class="virtue-cta-btn" onclick="openGenerosidad()">Ver el ciclo completo →</button>
+          <button class="virtue-cta-btn" onclick="openCycle('generosidad')">Ver el ciclo completo →</button>
         </div>
         <div class="virtue-card soon reveal reveal-delay-1">
           <span class="virtue-emoji">⚖️</span>
@@ -2052,19 +2020,19 @@
           <div class="virtue-desc">Dar a cada uno lo que le corresponde</div>
           <div class="virtue-status">○ Próximamente</div>
         </div>
-        <div class="virtue-card available featured reveal reveal-delay-3" onclick="openEsperanza()" style="cursor:pointer;">
+        <div class="virtue-card available featured reveal reveal-delay-3" onclick="openCycle('esperanza')" style="cursor:pointer;">
           <span class="virtue-badge">Ciclo 06 · Disponible ahora</span>
           <span class="virtue-emoji">🌟</span>
           <div class="virtue-name">Esperanza</div>
           <div class="virtue-desc">Tender hacia el bien futuro con confianza activa</div>
-          <button class="virtue-cta-btn" onclick="openEsperanza()">Ver el ciclo completo →</button>
+          <button class="virtue-cta-btn" onclick="openCycle('esperanza')">Ver el ciclo completo →</button>
         </div>
-        <div class="virtue-card available featured reveal" onclick="openLaboriosidad()" style="cursor:pointer;">
+        <div class="virtue-card available featured reveal" onclick="openCycle('laboriosidad')" style="cursor:pointer;">
           <span class="virtue-badge">Ciclo 07 · Disponible ahora</span>
           <span class="virtue-emoji">🔨</span>
           <div class="virtue-name">Laboriosidad</div>
           <div class="virtue-desc">El trabajo bien hecho, equilibrado con la vida completa</div>
-          <button class="virtue-cta-btn" onclick="openLaboriosidad()">Ver el ciclo completo →</button>
+          <button class="virtue-cta-btn" onclick="openCycle('laboriosidad')">Ver el ciclo completo →</button>
         </div>
       </div>
     </div>
@@ -2428,7 +2396,7 @@
 
     <!-- NAV -->
     <div class="pac-nav">
-      <button class="pac-back" onclick="closePaciencia()">
+      <button class="pac-back" onclick="closeCycle('paciencia')">
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
@@ -2971,7 +2939,7 @@
         </div>
         <p style="font-size:12px; color:var(--muted);">Sin spam. Solo acceso anticipado.</p>
         <div style="margin-top:40px; padding-top:32px; border-top:1px solid var(--border);">
-          <button onclick="closePaciencia()" style="background:none; border:none; color:var(--muted); font-size:14px; cursor:pointer; transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">
+          <button onclick="closeCycle('paciencia')" style="background:none; border:none; color:var(--muted); font-size:14px; cursor:pointer; transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">
             ← Volver a la web principal
           </button>
         </div>
@@ -2988,12 +2956,12 @@
 
     <!-- NAV -->
     <div class="pac-nav">
-      <button class="pac-back" onclick="closeFortaleza()">
+      <button class="pac-back" onclick="closeCycle('fortaleza')">
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
       <div class="pac-nav-title">Fortaleza · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeFortaleza()">Quiero probar</a>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeCycle('fortaleza')">Quiero probar</a>
     </div>
 
     <!-- HERO -->
@@ -3451,12 +3419,12 @@
   <div id="humildad-page">
 
     <div class="pac-nav">
-      <button class="pac-back" onclick="closeHumildad()">
+      <button class="pac-back" onclick="closeCycle('humildad')">
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
       <div class="pac-nav-title">Humildad · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeHumildad()">Quiero probar</a>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeCycle('humildad')">Quiero probar</a>
     </div>
 
     <div class="pac-hero">
@@ -3910,12 +3878,12 @@
   <div id="prudencia-page">
 
     <div class="pac-nav">
-      <button class="pac-back" onclick="closePrudencia()">
+      <button class="pac-back" onclick="closeCycle('prudencia')">
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
       <div class="pac-nav-title">Prudencia · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closePrudencia()">Quiero probar</a>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeCycle('prudencia')">Quiero probar</a>
     </div>
 
     <div class="pac-hero">
@@ -4369,12 +4337,12 @@
   <div id="generosidad-page">
 
     <div class="pac-nav">
-      <button class="pac-back" onclick="closeGenerosidad()">
+      <button class="pac-back" onclick="closeCycle('generosidad')">
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
       <div class="pac-nav-title">Generosidad · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeGenerosidad()">Quiero probar</a>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeCycle('generosidad')">Quiero probar</a>
     </div>
 
     <div class="pac-hero">
@@ -4830,12 +4798,12 @@
   <div id="esperanza-page">
 
     <div class="pac-nav">
-      <button class="pac-back" onclick="closeEsperanza()">
+      <button class="pac-back" onclick="closeCycle('esperanza')">
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
       <div class="pac-nav-title">Esperanza · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeEsperanza()">Quiero probar</a>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeCycle('esperanza')">Quiero probar</a>
     </div>
 
     <div class="pac-hero">
@@ -5187,12 +5155,12 @@
   <div id="laboriosidad-page">
 
     <div class="pac-nav">
-      <button class="pac-back" onclick="closeLaboriosidad()">
+      <button class="pac-back" onclick="closeCycle('laboriosidad')">
         <span class="pac-back-arrow">←</span>
         Volver
       </button>
       <div class="pac-nav-title">Laboriosidad · 21 días</div>
-      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeLaboriosidad()">Quiero probar</a>
+      <a href="#cta" class="btn btn-primary" style="font-size:13px; padding:8px 18px;" onclick="closeCycle('laboriosidad')">Quiero probar</a>
     </div>
 
     <div class="pac-hero">
@@ -5295,7 +5263,7 @@
                     <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
                     <div style="font-size:13px; color:var(--muted);">Días 4–5 · Solo disponible para pioneros</div>
                   </div>
-                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;" onclick="closeLaboriosidad()">Quiero probar</a>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;" onclick="closeCycle('laboriosidad')">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -5340,7 +5308,7 @@
                     <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
                     <div style="font-size:13px; color:var(--muted);">Días 9–12 · Solo disponible para pioneros</div>
                   </div>
-                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;" onclick="closeLaboriosidad()">Quiero probar</a>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;" onclick="closeCycle('laboriosidad')">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -5385,7 +5353,7 @@
                     <div style="font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Contenido completo</div>
                     <div style="font-size:13px; color:var(--muted);">Días 16–17 · Solo disponible para pioneros</div>
                   </div>
-                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;" onclick="closeLaboriosidad()">Quiero probar</a>
+                  <a href="#cta" class="btn btn-primary" style="font-size:12px; padding:8px 16px; white-space:nowrap;" onclick="closeCycle('laboriosidad')">Quiero probar</a>
                 </div>
               </div>
               <div class="block-termometro">
@@ -5555,111 +5523,55 @@
     });
 
     // Paciencia page navigation
-    function openPaciencia() {
-      const page = document.getElementById('paciencia-page');
+    // ── Generic cycle open/close (works for all 50+ virtues) ──
+    function openCycle(id) {
+      const page = document.getElementById(id + '-page');
+      if (!page) return;
       page.classList.add('open');
       page.scrollTop = 0;
       document.body.style.overflow = 'hidden';
+      // Trigger initial reveals for elements already in view
+      triggerReveals(page);
     }
-    function closePaciencia() {
-      const page = document.getElementById('paciencia-page');
+    function closeCycle(id) {
+      const page = document.getElementById(id + '-page');
+      if (!page) return;
       page.classList.remove('open');
       document.body.style.overflow = '';
     }
 
-    // Block toggle accordion
+    // ── Block accordion ──
     function toggleBlock(id) {
-      const card = document.getElementById(id);
-      card.classList.toggle('expanded');
+      document.getElementById(id).classList.toggle('expanded');
     }
 
-    // Fortaleza page navigation
-    function openFortaleza() {
-      const page = document.getElementById('fortaleza-page');
-      page.classList.add('open');
-      page.scrollTop = 0;
-      document.body.style.overflow = 'hidden';
-    }
-    function closeFortaleza() {
-      document.getElementById('fortaleza-page').classList.remove('open');
-      document.body.style.overflow = '';
+    // ── Scroll reveal — works on any cycle page ──
+    function triggerReveals(container) {
+      container.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.95) el.classList.add('visible');
+      });
     }
 
+    document.querySelectorAll('[id$="-page"]').forEach(page => {
+      page.addEventListener('scroll', () => triggerReveals(page), { passive: true });
+    });
 
-    // Humildad page
-    function openHumildad() {
-      const page = document.getElementById('humildad-page');
-      page.classList.add('open');
-      page.scrollTop = 0;
-      document.body.style.overflow = 'hidden';
-    }
-    function closeHumildad() {
-      document.getElementById('humildad-page').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    // Prudencia page
-    function openPrudencia() {
-      const page = document.getElementById('prudencia-page');
-      page.classList.add('open');
-      page.scrollTop = 0;
-      document.body.style.overflow = 'hidden';
-    }
-    function closePrudencia() {
-      document.getElementById('prudencia-page').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    // Generosidad page
-    function openGenerosidad() {
-      const page = document.getElementById('generosidad-page');
-      page.classList.add('open');
-      page.scrollTop = 0;
-      document.body.style.overflow = 'hidden';
-    }
-    function closeGenerosidad() {
-      document.getElementById('generosidad-page').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    // Esperanza page
-    function openEsperanza() {
-      const page = document.getElementById('esperanza-page');
-      page.classList.add('open');
-      page.scrollTop = 0;
-      document.body.style.overflow = 'hidden';
-    }
-    function closeEsperanza() {
-      document.getElementById('esperanza-page').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function openLaboriosidad() {
-      const page = document.getElementById('laboriosidad-page');
-      page.classList.add('open');
-      page.scrollTop = 0;
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLaboriosidad() {
-      document.getElementById('laboriosidad-page').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    // Contact form submit
+    // ── Contact form ──
     function submitContact(e) {
       e.preventDefault();
       document.getElementById('contact-form-wrap').style.display = 'none';
       document.getElementById('contact-success').style.display = 'block';
     }
 
-    // Reveal observer for paciencia page
-    const pacPage = document.getElementById('paciencia-page');
-    pacPage.addEventListener('scroll', () => {
-      document.querySelectorAll('#paciencia-page .reveal:not(.visible)').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.9) el.classList.add('visible');
-      });
-    });
-  </script>
+    // ── Main page reveal on scroll ──
+    const revealObserver = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  </script>  </script>
 
 </body>
 </html>
