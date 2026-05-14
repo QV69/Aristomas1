@@ -119,17 +119,32 @@ Plataforma de entrenamiento en virtudes. 21 días · una virtud · 9 min/día. F
 | 4 | 1.500 | 3.071 | 254.893€ | 175.000€ | +79.893€ | +5.770€ |
 | 5 | 1.850 | 4.153 | 344.699€ | 185.000€ | +159.699€ | +165.469€ |
 
-**Costes Año 1 (~120.000€ presupuesto):**
+**Costes Año 1 — desglose actual (Total: 120.000€):**
 - Plataforma/tech: 25.000€
-- Marketing/publi: 25.000€
-- Producción contenido: 18.000€
-- VirtuManagers (fees producción): variable
-- Fundador: sin salario hasta beneficios
+- Marketing campañas: **40.000€** (actualizado — VMs con equity reducen fees de producción)
+- Producción contenido/vídeo: 17.500€
+- VirtuManagers arranque: 3.000€ (reducido porque reciben 1% equity c/u)
+- Todo terreno/operaciones: 20.000€
+- Seguridad Social: 6.000€
+- Legal + constitución: 3.000€
+- Diseño, marca, otros: 2.500€
+- Imprevistos: 3.000€
 
-**CAC estimado (paid media LATAM):**
-- Optimista: 14€ · Realista: 60€ · Conservador: 350€
+**Marketing: mix de canales (40.000€ total)**
+- Paid Media (25%): 10.000€ → Meta/Instagram LATAM
+- Influencers producción/activación (50%): 20.000€ → placement es equity (0€ cash)
+- Orgánico/contenido propio (25%): 10.000€ → newsletter, RRSS, SEO
+
+**CAC por canal (modelo Funnel Marketing en Excel):**
+- Paid realista: ~83€ · Paid optimista: ~25€
+- Influencer (producción): realista ~556€ / optimista ~119€ (equity = 5%×300k amortizado)
+- Orgánico: realista ~250€ / optimista ~125€ (Year 1, crece con tiempo)
 - CAC máximo sostenible (ratio 3:1 LTV): 110€
-- 25.000€ marketing Año 1 ÷ 60€ CAC = ~416 usuarios vía paid. Resto: influencers + orgánico.
+
+**Usuarios Año 1 esperados por canal:**
+- Realista total: ~190–220 usuarios (paid 120 + influencers 36 + orgánico 40)
+- Optimista total: ~560–640 usuarios (paid 265 + influencers 168 + orgánico 80)
+- Objetivo modelo P&L: 700 → requiere escenario optimista en todos los canales
 
 ---
 
