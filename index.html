@@ -2509,11 +2509,13 @@
     // ── Beta form ──
     document.getElementById('beta-form').addEventListener('submit', async function(e) {
       e.preventDefault();
+      console.log('Beta form submit triggered');
       const data = new FormData(this);
       try {
         const res = await fetch('https://formspree.io/f/mdajownq', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        console.log('Formspree response:', res.status);
         if (res.ok) this.innerHTML = '<p style="color:var(--gold);font-family:\'Playfair Display\',serif;font-size:17px;text-align:center;padding:16px 0;">✓ Apuntado. Te avisamos en cuanto arranque la beta.</p>';
-      } catch(err) {}
+      } catch(err) { console.error('Beta form error:', err); }
     });
 
     // ── Contact form ──
