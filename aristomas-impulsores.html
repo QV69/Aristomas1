@@ -493,6 +493,46 @@
     .form-submit { margin-top: 24px; text-align: center; }
     .form-note { font-size: 12px; color: var(--muted); margin-top: 12px; }
 
+    /* Role checkboxes */
+    .role-checks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .role-check {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.2s;
+      user-select: none;
+    }
+    .role-check:hover { border-color: rgba(200,164,90,0.3); }
+    .role-check input[type="checkbox"] { display: none; }
+    .role-check-box {
+      width: 18px; height: 18px;
+      border: 1.5px solid var(--muted);
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      font-size: 11px;
+    }
+    .role-check.checked { border-color: rgba(200,164,90,0.5); }
+    .role-check.checked .role-check-box {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #08080F;
+      font-weight: 700;
+    }
+    .role-check-label { font-size: 14px; color: var(--text); font-weight: 500; }
+    .role-check-sub { font-size: 12px; color: var(--muted); margin-left: auto; }
+
     /* ─── FOOTER ─── */
     footer {
       background: var(--bg);
@@ -534,7 +574,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="aristomas-redesign.html" class="nav-back">← Aristomas</a>
+    <a href="index.html" class="nav-back">← Aristomas</a>
     <a href="#" class="nav-logo">ARISTOMAS<sup>®</sup></a>
     <span class="nav-badge">Acceso restringido</span>
   </nav>
@@ -556,7 +596,7 @@
       </p>
 
       <div class="hero-context">
-        <strong>Dónde estamos:</strong> El Ciclo 01 — Paciencia — está completamente desarrollado: 21 días, 4 bloques, 22 libros de referencia, 19 películas, el guion completo de producción listo. Beta privada prevista para septiembre 2026. Plataforma en desarrollo. Primer círculo de impulsores abierto.
+        <strong>Dónde estamos:</strong> 8 ciclos de virtud completamente desarrollados — Paciencia, Fortaleza, Esperanza, Generosidad, Humildad, Laboriosidad, Prudencia y Orden. 7 ya publicados con página propia. Cada ciclo: 21 días, 4 bloques, guion completo de producción. Beta privada prevista para septiembre 2026. Primer círculo de impulsores abierto.
       </div>
     </div>
   </section>
@@ -564,26 +604,62 @@
   <!-- ═══════════════ ESTADO ═══════════════ -->
   <section id="estado" style="background:var(--surface);">
     <div class="container">
-      <div class="section-label reveal">Estado del proyecto</div>
-      <h2 class="section-title reveal">Lo que existe hoy.<br/>Lo que viene.</h2>
-      <p class="section-desc reveal">Aristomas no es una idea. Es un método ya construido, esperando ser producido y lanzado al mundo.</p>
+
+      <!-- Recordatorio mínimo de qué es Aristomas -->
+      <div class="reveal" style="padding:24px 28px; background:rgba(200,164,90,0.05); border:1px solid rgba(200,164,90,0.15); border-radius:var(--radius); margin-bottom:56px;">
+        <p style="font-size:15px; color:var(--muted); line-height:1.8; margin-bottom:12px;">
+          <strong style="color:var(--text);">Aristomas</strong> es una plataforma de entrenamiento en virtud. Ciclos de 21 días — uno por virtud — para que la paciencia, el coraje o la generosidad dejen de ser conceptos y se conviertan en quién eres. Basada en la filosofía de Aristóteles y la neurociencia del hábito: el carácter no se lee, se practica.
+        </p>
+        <a href="index.html" style="font-size:13px; color:var(--gold); text-decoration:none; font-weight:500;">Ver el proyecto completo →</a>
+      </div>
+
+      <div class="section-label reveal">Proceso de construcción</div>
+      <h2 class="section-title reveal">Dónde estamos<br/>y lo que viene.</h2>
+      <p class="section-desc reveal">Aristomas ya tiene lo más difícil: el método y el contenido. Lo que construimos ahora es la infraestructura para hacerlo llegar — la plataforma, la producción de vídeo y el equipo humano que lo rodea. Por eso estás aquí.</p>
+
+      <!-- Roadmap -->
+      <div class="reveal" style="display:flex; align-items:flex-start; gap:0; margin:44px 0 48px;">
+        <div style="flex:1; text-align:center;">
+          <div style="width:28px; height:28px; border-radius:50%; background:#4ADE80; color:#08080F; font-weight:700; font-size:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 10px;">✓</div>
+          <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:4px;">Contenido</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;"><a href="index.html#virtudes" style="color:var(--muted); text-decoration:underline; text-underline-offset:3px;">8 ciclos publicados</a></div>
+        </div>
+        <div style="height:2px; flex:0.5; background:rgba(74,222,128,0.4); margin-top:13px; flex-shrink:0;"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="width:28px; height:28px; border-radius:50%; background:var(--gold); color:#08080F; font-weight:700; font-size:11px; display:flex; align-items:center; justify-content:center; margin:0 auto 10px;">▶</div>
+          <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:4px;">Plataforma</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">App · Producción vídeo</div>
+        </div>
+        <div style="height:2px; flex:0.5; background:var(--subtle); margin-top:13px; flex-shrink:0;"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="width:28px; height:28px; border-radius:50%; border:2px solid var(--muted); color:var(--muted); font-size:11px; font-weight:600; display:flex; align-items:center; justify-content:center; margin:0 auto 10px;">β</div>
+          <div style="font-size:12px; font-weight:600; color:var(--muted); margin-bottom:4px;">Beta privada</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Septiembre 2026</div>
+        </div>
+        <div style="height:2px; flex:0.5; background:var(--subtle); margin-top:13px; flex-shrink:0;"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="width:28px; height:28px; border-radius:50%; border:2px solid var(--muted); color:var(--muted); font-size:11px; display:flex; align-items:center; justify-content:center; margin:0 auto 10px;">→</div>
+          <div style="font-size:12px; font-weight:600; color:var(--muted); margin-bottom:4px;">Lanzamiento</div>
+          <div style="font-size:11px; color:var(--muted); line-height:1.5;">Público general</div>
+        </div>
+      </div>
 
       <div class="status-grid">
         <div class="status-item reveal">
           <div class="status-indicator">
             <div class="status-dot done"></div>
-            <span style="color:#4ADE80;">Completado</span>
+            <span style="color:#4ADE80;">Completados</span>
           </div>
-          <h4>Ciclo 01 · Paciencia</h4>
-          <p>21 días desarrollados en profundidad. Guion de producción completo, referencias filosóficas y cinematográficas, estructura de 4 bloques.</p>
+          <h4>8 ciclos desarrollados</h4>
+          <p>Paciencia, Fortaleza, Esperanza, Generosidad, Humildad, Laboriosidad, Prudencia y Orden. 21 días cada uno, 4 bloques, guion completo de producción.</p>
         </div>
         <div class="status-item reveal reveal-delay-1">
           <div class="status-indicator">
             <div class="status-dot done"></div>
-            <span style="color:#4ADE80;">Listo</span>
+            <span style="color:#4ADE80;">Publicado</span>
           </div>
-          <h4>Método y framework</h4>
-          <p>Claridad → Razón → Emoción → Acción. Estructura diaria de 3 momentos. Termómetro gamificado. Capas de profundidad opcionales.</p>
+          <h4>Web y método</h4>
+          <p><a href="index.html" style="color:var(--muted); text-decoration:underline; text-underline-offset:3px;">7 ciclos con página propia publicada.</a> Método consolidado: Claridad → Razón → Emoción → Acción. Manager de la Virtud como figura central de cada ciclo.</p>
         </div>
         <div class="status-item reveal reveal-delay-2">
           <div class="status-indicator">
@@ -654,49 +730,6 @@
             <div class="path-cta">
               <p>Si crees que podrías ser esta persona, o conoces a alguien que lo sea, esto es lo más importante que necesitamos ahora mismo.</p>
               <a href="#contacto" class="btn btn-primary" onclick="setInterest('Manager de la Virtud')">Me interesa este rol →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. ADVISOR DE CONTENIDO -->
-        <div class="path-card" id="path2">
-          <div class="path-header" onclick="togglePath('path2')">
-            <div class="path-icon advisor">🧠</div>
-            <div>
-              <div class="path-title">Advisor de contenido</div>
-              <div class="path-subtitle">Experto que valida, enriquece y orienta el desarrollo de virtudes específicas.</div>
-            </div>
-            <span class="path-tag open">Buscando</span>
-            <span class="path-toggle">▾</span>
-          </div>
-          <div class="path-body">
-            <div class="path-col">
-              <h4>El rol</h4>
-              <p>Cada virtud necesita a alguien que la conozca desde dentro — ya sea desde la filosofía moral, la psicología positiva, la neurociencia del hábito o la experiencia práctica. El Advisor revisa el contenido del ciclo, aporta referencias, detecta errores y sugiere profundidad.</p>
-              <h4>Perfiles que necesitamos</h4>
-              <ul>
-                <li>Filósofo o académico en ética de la virtud (aristotélica, tomista o contemporánea)</li>
-                <li>Psicólogo o investigador en psicología positiva o agilidad emocional</li>
-                <li>Neurocientífico o especialista en formación de hábitos</li>
-                <li>Profesional con expertise en una virtud concreta (resiliencia, liderazgo, etc.)</li>
-              </ul>
-            </div>
-            <div class="path-col">
-              <h4>Dedicación estimada</h4>
-              <ul>
-                <li>Revisión del guion completo del ciclo (1–2 sesiones)</li>
-                <li>Consultas puntuales durante el desarrollo de la virtud</li>
-                <li>Posibilidad de aparecer en la "capa de profundidad" opcional del ciclo</li>
-              </ul>
-              <h4>Qué ofrece Aristomas</h4>
-              <div class="highlight">
-                <strong>Crédito como experto del ciclo</strong>
-                Visibilidad dentro de la plataforma para los usuarios del ciclo. Participación en la comunidad académica que se irá construyendo alrededor del proyecto. Conversación sobre compensación o equity según perfil.
-              </div>
-            </div>
-            <div class="path-cta">
-              <p>Si tienes expertise en alguna de las virtudes o en las disciplinas que fundamentan el método, nos encantaría hablar.</p>
-              <a href="#contacto" class="btn btn-primary" onclick="setInterest('Advisor de contenido')">Explorar esta colaboración →</a>
             </div>
           </div>
         </div>
@@ -834,33 +867,41 @@
         <h2 class="section-title reveal">El primer paso<br/>es una conversación.</h2>
         <p class="section-desc reveal" style="margin:0 auto; text-align:center;">Sin formularios formales ni procesos. Cuéntanos quién eres, qué te mueve y cómo crees que puedes contribuir. Respondemos a todo.</p>
 
-        <form class="form-grid" onsubmit="handleSubmit(event)">
-          <div class="form-field reveal">
-            <label>Nombre</label>
-            <input type="text" class="form-input" placeholder="Tu nombre" required />
-          </div>
-          <div class="form-field reveal reveal-delay-1">
+        <form class="form-grid" id="impulsores-form">
+          <div class="form-field full reveal">
             <label>Email</label>
-            <input type="email" class="form-input" placeholder="tu@email.com" required />
-          </div>
-          <div class="form-field reveal">
-            <label>LinkedIn o web</label>
-            <input type="url" class="form-input" placeholder="https://..." />
-          </div>
-          <div class="form-field reveal reveal-delay-1">
-            <label id="interest-label">Cómo quieres contribuir</label>
-            <select class="form-select" id="interest-select" required>
-              <option value="">Selecciona una opción</option>
-              <option value="manager">Manager de la Virtud</option>
-              <option value="advisor">Advisor de contenido</option>
-              <option value="investor">Inversor / Partner estratégico</option>
-              <option value="builder">Early builder / Embajador</option>
-              <option value="other">Otro — lo explico abajo</option>
-            </select>
+            <input type="email" class="form-input" id="email-field" placeholder="tu@email.com" required />
           </div>
           <div class="form-field full reveal">
-            <label>Cuéntanos</label>
-            <textarea class="form-textarea" id="message-field" placeholder="Por qué estás aquí. Qué te ha traído a esta página. Qué puedes aportar. Sin plantilla — solo escribe." required></textarea>
+            <label>¿Cómo quieres estar dentro? <span style="color:var(--muted);font-weight:400;font-size:11px;text-transform:none;letter-spacing:0;">(puedes marcar más de uno)</span></label>
+            <div class="role-checks" id="role-checks">
+              <label class="role-check" onclick="toggleCheck(this)">
+                <input type="checkbox" name="role" value="manager" id="check-manager" />
+                <div class="role-check-box">✓</div>
+                <span class="role-check-label">Manager de la Virtud</span>
+                <span class="role-check-sub">Experto · Autoridad</span>
+              </label>
+              <label class="role-check" onclick="toggleCheck(this)">
+                <input type="checkbox" name="role" value="investor" id="check-investor" />
+                <div class="role-check-box">✓</div>
+                <span class="role-check-label">Inversor o partner estratégico</span>
+                <span class="role-check-sub">Capital · Red</span>
+              </label>
+              <label class="role-check" onclick="toggleCheck(this)">
+                <input type="checkbox" name="role" value="builder" id="check-builder" />
+                <div class="role-check-box">✓</div>
+                <span class="role-check-label">Early builder o embajador</span>
+                <span class="role-check-sub">Comunidad · Feedback</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-field full reveal">
+            <label>¿Cómo has llegado hasta aquí?</label>
+            <textarea class="form-textarea" id="origin-field" placeholder="Quién te lo comentó, cómo lo descubriste..." style="min-height:72px;"></textarea>
+          </div>
+          <div class="form-field full reveal">
+            <label>¿Cómo crees que podrías contribuir?</label>
+            <textarea class="form-textarea" id="message-field" placeholder="No hace falta que sea muy concreto — cuéntanos lo que tengas en mente. Si tienes alguna pregunta sobre el proyecto, una propuesta concreta o simplemente quieres explorar cómo encajar, este es el sitio." required style="min-height:120px;"></textarea>
           </div>
           <div class="form-submit full reveal">
             <button type="submit" class="btn btn-primary" style="padding:14px 36px; font-size:15px;">Enviar mi expresión de interés</button>
@@ -900,24 +941,42 @@
       document.getElementById(id).classList.toggle('expanded');
     }
 
-    // Pre-select interest from path CTAs
+    // Toggle role checkbox
+    function toggleCheck(label) {
+      const cb = label.querySelector('input[type="checkbox"]');
+      cb.checked = !cb.checked;
+      label.classList.toggle('checked', cb.checked);
+    }
+
+    // Pre-check role from path CTAs
     function setInterest(value) {
       const map = {
-        'Manager de la Virtud': 'manager',
-        'Advisor de contenido': 'advisor',
-        'Inversor / Partner estratégico': 'investor',
-        'Early builder / Embajador': 'builder'
+        'Manager de la Virtud': 'check-manager',
+        'Inversor / Partner estratégico': 'check-investor',
+        'Early builder / Embajador': 'check-builder'
       };
-      const select = document.getElementById('interest-select');
-      if (map[value]) select.value = map[value];
+      const id = map[value];
+      if (!id) return;
+      const cb = document.getElementById(id);
+      if (cb && !cb.checked) {
+        cb.checked = true;
+        cb.closest('.role-check').classList.add('checked');
+      }
+      document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
     }
 
     // Form submit (demo)
-    function handleSubmit(e) {
+    document.getElementById('impulsores-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      document.querySelector('.form-grid').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    }
+      const data = new FormData(this);
+      try {
+        const res = await fetch('https://formspree.io/f/maqkypyw', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          document.querySelector('.form-grid').style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        }
+      } catch(err) {}
+    });
 
     // Nav shadow
     window.addEventListener('scroll', () => {
