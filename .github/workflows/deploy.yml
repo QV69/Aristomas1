@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          server-dir: /httpdocs/
+          server-dir: /aristomas.com/
           exclude: |
             **/.git*
             **/.git*/**
