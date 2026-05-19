@@ -2535,7 +2535,9 @@
       const data = new FormData(this);
       const params = new URLSearchParams();
       params.append('email', data.get('email') || '');
-      params.append('origen', data.get('origen') || 'Contacto');
+      params.append('nombre', data.get('nombre') || '');
+      params.append('mensaje', data.get('mensaje') || '');
+      params.append('origen', data.get('origen') || 'Contacto Web');
       try {
         await fetch(SCRIPT_URL, { method: 'POST', body: params, mode: 'no-cors' });
       } catch(err) {}
