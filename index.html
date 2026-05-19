@@ -8,22 +8,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJ7FBCLVR6"></script>
+  <!-- Analytics: carga condicional según consentimiento -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HJ7FBCLVR6');
-  </script>
-
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
+    function loadAnalytics() {
+      // Google Analytics 4
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HJ7FBCLVR6';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-HJ7FBCLVR6');
+      // Microsoft Clarity
+      (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wr2epry9wk");
+      })(window, document, "clarity", "script", "wr2epry9wk");
+    }
+    if (localStorage.getItem('aristomas_cookies') === 'accepted') { loadAnalytics(); }
   </script>
 
   <style>
@@ -2509,29 +2514,33 @@
     // openCycle kept as fallback for any remaining onclick references.
     function openCycle(id) { location.href = 'ciclos/' + id + '.html'; }
 
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbweU7hy_v8ZNLOSSfr7XEq2M_YijnokFj_M1wTZEwbXQE3eJmg3PdSsyXEywzNKbwQKBQ/exec';
+
     // ── Beta form ──
     document.getElementById('beta-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      console.log('Beta form submit triggered');
       const data = new FormData(this);
+      const params = new URLSearchParams();
+      params.append('email', data.get('email') || '');
+      params.append('origen', data.get('origen') || 'Beta Aristomas');
       try {
-        const res = await fetch('https://formspree.io/f/mdajownq', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-        console.log('Formspree response:', res.status);
-        if (res.ok) this.innerHTML = '<p style="color:var(--gold);font-family:\'Playfair Display\',serif;font-size:17px;text-align:center;padding:16px 0;">✓ Apuntado. Te avisamos en cuanto arranque la beta.</p>';
-      } catch(err) { console.error('Beta form error:', err); }
+        await fetch(SCRIPT_URL, { method: 'POST', body: params, mode: 'no-cors' });
+      } catch(err) {}
+      this.innerHTML = '<p style="color:var(--gold);font-family:\'Playfair Display\',serif;font-size:17px;text-align:center;padding:16px 0;">✓ Apuntado. Te avisamos en cuanto arranque la beta.</p>';
     });
 
     // ── Contact form ──
     document.getElementById('contact-form-wrap').addEventListener('submit', async function(e) {
       e.preventDefault();
       const data = new FormData(this);
+      const params = new URLSearchParams();
+      params.append('email', data.get('email') || '');
+      params.append('origen', data.get('origen') || 'Contacto');
       try {
-        const res = await fetch('https://formspree.io/f/mdajownq', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-        if (res.ok) {
-          document.getElementById('contact-form-wrap').style.display = 'none';
-          document.getElementById('contact-success').style.display = 'block';
-        }
+        await fetch(SCRIPT_URL, { method: 'POST', body: params, mode: 'no-cors' });
       } catch(err) {}
+      document.getElementById('contact-form-wrap').style.display = 'none';
+      document.getElementById('contact-success').style.display = 'block';
     });
 
     // ── Reveal on scroll (main page only) ──
@@ -2541,6 +2550,31 @@
     );
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+  </script>
+
+  <!-- ═══════════════ COOKIE BANNER ═══════════════ -->
+  <div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; padding:14px 24px; background:rgba(16,16,26,0.97); border-top:1px solid rgba(200,164,90,0.25); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+    <p style="margin:0; font-size:13px; color:#6B6B7E; line-height:1.5; flex:1; min-width:200px;">
+      Usamos cookies analíticas (Google Analytics y Microsoft Clarity) para mejorar el sitio.
+      <a href="/legal" style="color:#C8A45A; text-decoration:none; margin-left:4px;">Más info</a>
+    </p>
+    <div style="display:flex; gap:10px; flex-shrink:0;">
+      <button onclick="cookieChoice('rejected')" style="padding:8px 18px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:transparent; color:#6B6B7E; font-size:13px; cursor:pointer; font-family:inherit; transition:color 0.2s;" onmouseover="this.style.color='#EDE8DF'" onmouseout="this.style.color='#6B6B7E'">Rechazar</button>
+      <button onclick="cookieChoice('accepted')" style="padding:8px 18px; border-radius:8px; border:1px solid rgba(200,164,90,0.4); background:rgba(200,164,90,0.12); color:#C8A45A; font-size:13px; cursor:pointer; font-family:inherit; font-weight:600; transition:background 0.2s;" onmouseover="this.style.background='rgba(200,164,90,0.22)'" onmouseout="this.style.background='rgba(200,164,90,0.12)'">Aceptar</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var pref = localStorage.getItem('aristomas_cookies');
+      if (!pref) document.getElementById('cookie-banner').style.display = 'flex';
+    })();
+
+    function cookieChoice(choice) {
+      localStorage.setItem('aristomas_cookies', choice);
+      document.getElementById('cookie-banner').style.display = 'none';
+      if (choice === 'accepted') loadAnalytics();
+    }
   </script>
 
 </body>
