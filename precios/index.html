@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <title>Precios · Aristomas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #08080F;
+      --surface: #10101A;
+      --card: #16161F;
+      --card-hover: #1C1C28;
+      --gold: #C8A45A;
+      --gold-dim: rgba(200,164,90,0.15);
+      --gold-glow: rgba(200,164,90,0.08);
+      --gold-border: rgba(200,164,90,0.35);
+      --text: #EDE8DF;
+      --muted: #6B6B7E;
+      --border: rgba(255,255,255,0.07);
+      --radius: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,8,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-back {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      padding: 160px 40px 80px;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-bridge {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .hero-bridge strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* PRICING GRID */
+    .pricing-section {
+      padding: 60px 40px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* BASE CARD */
+    .plan-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .plan-card:hover { transform: translateY(-3px); }
+
+    /* BADGE */
+    .plan-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .plan-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .plan-tagline {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .plan-price {
+      margin-bottom: 20px;
+    }
+
+    .plan-price .amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .plan-price .currency {
+      font-size: 22px;
+      vertical-align: top;
+      margin-top: 8px;
+      display: inline-block;
+      color: var(--text);
+    }
+
+    .plan-price .period {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .plan-equivalent {
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .plan-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      flex: 1;
+    }
+
+    .plan-cta {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .plan-cta:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text);
+    }
+
+    /* HIGHLIGHTED: PRIMER CICLO */
+    .plan-card.highlight-start {
+      border-color: rgba(255,255,255,0.14);
+      background: #18181F;
+    }
+
+    .plan-card.highlight-start .plan-badge {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .plan-card.highlight-start .plan-cta {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text);
+    }
+
+    /* HIGHLIGHTED: ANUAL */
+    .plan-card.highlight-annual {
+      border-color: var(--gold-border);
+      background: linear-gradient(160deg, #1A1810, var(--card));
+    }
+
+    .plan-card.highlight-annual .plan-badge {
+      background: var(--gold-dim);
+      color: var(--gold);
+      border-color: var(--gold-border);
+    }
+
+    .plan-card.highlight-annual .plan-name,
+    .plan-card.highlight-annual .amount,
+    .plan-card.highlight-annual .currency { color: var(--text); }
+
+    .plan-card.highlight-annual .plan-cta {
+      background: var(--gold-dim);
+      border-color: var(--gold-border);
+      color: var(--gold);
+    }
+    .plan-card.highlight-annual .plan-cta:hover {
+      background: rgba(200,164,90,0.25);
+    }
+
+    /* STAR: PIONERO */
+    .plan-card.highlight-pioneer {
+      border-color: var(--gold);
+      background: linear-gradient(160deg, #1E1A0E, #16161F);
+      box-shadow: 0 0 40px rgba(200,164,90,0.12);
+    }
+
+    .plan-card.highlight-pioneer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .plan-card.highlight-pioneer .plan-badge {
+      background: rgba(200,164,90,0.2);
+      color: var(--gold);
+      border-color: rgba(200,164,90,0.5);
+    }
+
+    .plan-card.highlight-pioneer .amount,
+    .plan-card.highlight-pioneer .currency { color: var(--gold); }
+
+    .plan-card.highlight-pioneer .plan-cta {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #08080F;
+      font-weight: 700;
+    }
+    .plan-card.highlight-pioneer .plan-cta:hover {
+      background: #D4B06A;
+    }
+
+    /* DIVIDER */
+    .plan-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    /* NOTA */
+    .nota-section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 40px 120px;
+      text-align: center;
+    }
+
+    .nota-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+    }
+
+    .nota-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .nota-plus {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.4;
+      flex-shrink: 0;
+    }
+
+    .nota-closing {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .nota-closing em {
+      color: var(--text);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 120px 24px 60px; }
+      .pricing-section { padding: 40px 20px 80px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .nota-section { padding: 0 20px 80px; }
+      .nota-includes { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="/">aristomas</a>
+    <a class="nav-back" href="/">← Volver</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label reveal">Precios</div>
+    <h1 class="reveal">Elige cómo entrenar<br/>tu carácter.</h1>
+    <p class="hero-sub reveal">Desde 0,27€ al día. Sin permanencia. Sin compromisos.</p>
+    <!-- nota: 100€/año = 0,27€/día -->
+    <p class="hero-bridge reveal">Empieza con un ciclo. Si te engancha, elige tu ritmo.<br/>Si eres de los primeros, entra de pionero y <strong>bloquea tu precio para siempre.</strong></p>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing-section">
+    <div class="pricing-grid">
+
+      <!-- PRIMER CICLO -->
+      <div class="plan-card highlight-start reveal">
+        <div class="plan-badge">Empieza aquí</div>
+        <div class="plan-name">Ciclo de Estreno</div>
+        <div class="plan-tagline">Empieza hoy, sin ataduras</div>
+        <div class="plan-price">
+          <span class="currency">€</span><span class="amount">9,99</span>
+          <div class="period">pago único</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px;">IVA incluido</div>
+        </div>
+        <div class="plan-desc">
+          Tu primer ciclo completo de 21 días. Si no es para ti, no pasa nada. Si lo es, ya sabes lo que vale.
+        </div>
+        <a href="#" class="plan-cta">Empezar ahora</a>
+      </div>
+
+      <!-- MENSUAL -->
+      <div class="plan-card reveal reveal-delay-1">
+        <div class="plan-badge">Flexible</div>
+        <div class="plan-name">Mensual</div>
+        <div class="plan-tagline">Flexibilidad total</div>
+        <div class="plan-price">
+          <span class="currency">€</span><span class="amount">12,99</span>
+          <div class="period">al mes</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px;">IVA incluido</div>
+        </div>
+        <div class="plan-desc">
+          Un ciclo al mes, renovable cuando quieras. Cancela en cualquier momento. Para quien prefiere ir paso a paso sin comprometerse a largo plazo.
+        </div>
+        <a href="#" class="plan-cta">Elegir mensual</a>
+      </div>
+
+      <!-- ANUAL -->
+      <div class="plan-card highlight-annual reveal reveal-delay-2">
+        <div class="plan-badge">Recomendado</div>
+        <div class="plan-name">Anual</div>
+        <div class="plan-tagline">El compromiso real</div>
+        <div class="plan-price">
+          <span class="currency">€</span><span class="amount">99,99</span>
+          <div class="period">al año · 10 virtudes</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px;">IVA incluido</div>
+        </div>
+        <div class="plan-equivalent">0,27€ al día · como un café a la semana</div>
+        <div class="plan-desc">
+          Diez virtudes en un año. El carácter no se construye con impulsos — se construye con constancia.
+        </div>
+        <a href="#" class="plan-cta">Elegir anual</a>
+      </div>
+
+      <!-- PIONERO -->
+      <div class="plan-card highlight-pioneer reveal reveal-delay-3">
+        <div class="plan-badge">⚡ Solo 250 plazas</div>
+        <div class="plan-name">Pionero</div>
+        <div class="plan-tagline">Precio bloqueado para siempre</div>
+        <div class="plan-price">
+          <span class="currency" style="color:var(--gold);">€</span><span class="amount">69,99</span>
+          <div class="period">al año · 10 virtudes · precio fijo</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px;">IVA incluido</div>
+        </div>
+        <div class="plan-equivalent">Acceso exclusivo para los 250 primeros</div>
+        <div class="plan-desc">
+          Para los que entran antes del lanzamiento. Renuevas cada año al mismo precio, siempre. Cuando se cubran las 250 plazas, este precio desaparece.
+        </div>
+        <a href="#" class="plan-cta">Quiero ser pionero</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NOTA -->
+  <div class="nota-section">
+    <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;" class="reveal">Todos los ciclos incluyen</div>
+    <div class="nota-includes reveal">
+      <div class="nota-item">
+        <span class="nota-plus">+</span>
+        <span>Vídeo matinal cada día del ciclo</span>
+      </div>
+      <div class="nota-item">
+        <span class="nota-plus">+</span>
+        <span>Mensaje de mediodía</span>
+      </div>
+      <div class="nota-item">
+        <span class="nota-plus">+</span>
+        <span>Reflexión nocturna</span>
+      </div>
+      <div class="nota-item">
+        <span class="nota-plus">+</span>
+        <span>Masterclass de cierre con el Manager de la Virtud</span>
+      </div>
+    </div>
+    <p class="nota-closing reveal">
+      Los 21 días son solo el inicio. Y hay más: si quieres seguir profundizando en cada virtud, Aristomas continúa contigo: <em>lecturas, películas, referencias...</em> enviadas de forma regular.
+    </p>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
